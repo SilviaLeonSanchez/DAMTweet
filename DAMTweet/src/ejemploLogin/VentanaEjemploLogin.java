@@ -1,9 +1,6 @@
 package ejemploLogin;
 
-import java.awt.Color;
 import java.awt.Image;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -51,8 +48,8 @@ public class VentanaEjemploLogin extends javax.swing.JDialog {
             System.out.println(ex.getMessage());
         }
 
-        /* Configuracion de los colores de las aplicaciones, abria que crear una
-        clase para el manejo de los colores,  las fuented tipograficas y que quede todo igual.*/
+        /* Configuracion de los colores de las aplicaciones, habria que crear una
+        clase para el manejo de los colores, las fuentes tipograficas y que quede todo igual.*/
         buttonSingup.setForeground(MaterialColors.LIGHT_BLUE_A200);
         buttonSingup.setBackground(MaterialColors.WHITE);
         buttonLogin.setBackground(MaterialColors.LIGHT_BLUE_A200);
