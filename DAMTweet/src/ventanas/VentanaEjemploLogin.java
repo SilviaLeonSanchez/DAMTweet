@@ -1,4 +1,4 @@
-package ejemploLogin;
+package ventanas;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -21,7 +21,7 @@ import mdlaf.utils.MaterialColors;
  */
 public class VentanaEjemploLogin extends javax.swing.JDialog {
 
-    private final static String RUTA_LOGO = "src/ejemploLogin/Twitter_Logo_Blue.png";
+    private final static String RUTA_LOGO = "src/img/Twitter_Logo_Blue.png";
 
     /**
      * Creates new form NewJDialog
