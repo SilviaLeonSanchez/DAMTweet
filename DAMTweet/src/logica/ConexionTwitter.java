@@ -9,6 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import twitter4j.PagableResponseList;
+import twitter4j.Paging;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -55,27 +57,56 @@ public class ConexionTwitter {
     }
 
     public List<Status> getTweetsUsuario() {
-
-        List<Status> tweets = null;
-
         try {
 
-            tweets = this.twitter.getUserTimeline();
+            return this.twitter.getUserTimeline();
 
         } catch (TwitterException e) {
             e.printStackTrace();
         }
+        return null;
+    }
+    
+    public List<Status> getUltimosTweetsUsuariosSeguidos(){
+        try {
 
-        return tweets;
+            return this.twitter.getHomeTimeline();
+
+        } catch (TwitterException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public void enviarTweet(String tweet) {
+    public void enviarTweet(String textoTweet) {
         try {
-            Status status = twitter.updateStatus(tweet);
-            System.out.println("Successfully updated the status to [" + status.getText() + "].");
+            Status tweet = twitter.updateStatus(textoTweet);
+            System.out.println("Successfully updated the status to [" + tweet.getText() + "].");
         } catch (TwitterException ex) {
             Logger.getLogger(ConexionTwitter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void retwitearTweet(Status tweet){
+        try {
+            Status retwittedTweet = twitter.retweetStatus(tweet.getId());
+            System.out.println("Successfully retweeted [" + retwittedTweet.getText() + "].");
+        } catch (TwitterException ex) {
+            Logger.getLogger(ConexionTwitter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public List<User> getSeguidores(){
+        PagableResponseList<User> seguidores = null;
+        
+        try {
+            seguidores = twitter.getFollowersList(getUsuario().getId(), -1);
+        } catch (TwitterException ex) {
+            Logger.getLogger(ConexionTwitter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return seguidores;
+    }
+    
 
 }

@@ -7,9 +7,7 @@ package pruebas;
 
 import java.util.List;
 import logica.ConexionTwitter;
-import twitter4j.Status;
-import twitter4j.Twitter;
-import twitter4j.User;
+import twitter4j.*;
 
 /**
  *
@@ -27,11 +25,11 @@ public class main {
         // No subir al repositorio los token de acceso a la API, pueden banearnos la cuenta!!
         
         // TOKEN DE CLIENTE (Será el que pidamos al usuario final)
-        final String API_KEY =  "";
+        final String API_KEY = "";
         final String API_KEY_SECRET = "";
         
-        final String ACCESS_TOKEN =  "";
-        final String ACCESS_TOKEN_SECRET =  "";
+        final String ACCESS_TOKEN = "";
+        final String ACCESS_TOKEN_SECRET = "";
 
         
         // Abrir la conexion con la API de Twitter
@@ -40,7 +38,7 @@ public class main {
         
         // Pedir los datos del usuario (que seria nuestra cuenta de momento)
         User usuario = conexion.getUsuario();
-        System.out.println("DATOS DEL USUARIO: ");
+        System.out.println("DATOS DEL USUARIO:");
         conexion.verInfoUsuario(usuario);
         
         
@@ -55,8 +53,31 @@ public class main {
         
         //  Enviar tweet
         String mensaje = "Hola mundo";
-        //conexion.enviarTweet(mensaje);
+        // conexion.enviarTweet(mensaje);
         
+        
+        // Pedir los ultimos tweets
+        List<Status> tweetsUsuariosSeguidos = conexion.getUltimosTweetsUsuariosSeguidos();
+        Status retwittedTweet = null;
+        
+        System.out.println("TWEETS USUARIOS SEGUIDOS:");
+        for (Status tweet : tweetsUsuariosSeguidos) {
+             System.out.println(tweet.getUser().getName()+ ": "+tweet.getText());
+             retwittedTweet = tweet;
+        }
+        System.out.println();
+        
+        
+        // Retwitear
+        // conexion.retwitearTweet(retwittedTweet);
+        
+        
+        // Ver seguidores
+        List<User> seguidores = conexion.getSeguidores();
+        System.out.println("SEGUIDORES:");
+        for (User seguidor : seguidores) {
+            System.out.println("Nombre: "+ seguidor.getName());
+        }
         
     }
     
