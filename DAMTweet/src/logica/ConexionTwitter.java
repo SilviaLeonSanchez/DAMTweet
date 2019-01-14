@@ -6,8 +6,9 @@
 package logica;
 
 import java.awt.Desktop;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.net.MalformedURLException;
+import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -59,40 +60,33 @@ public class ConexionTwitter {
         autenticacionUsuario();
     }
 
-    private void autenticacionUsuario() {
-        AccessToken accessToken = null;
+    public void autenticacionUsuario() {
         RequestToken requestToken = null;
-
+        AccessToken accessToken = null;
         do {
             try {
-                // Obtener el token para poder pedir acceso a la cuenta del usuario
+                // Pedir el token para la autenticacion del usuario
                 requestToken = twitter.getOAuthRequestToken();
-                System.out.println("Request Token obtenido con éxito.");
-
-                // Tiene una URL que es donde el usuario se autentica
-                String url = requestToken.getAuthorizationURL();
+                
+                // Abrir en el navegador la URL donde se logueara y le daran el PIN
+                String url = requestToken.getAuthorizationURL();                
                 Desktop.getDesktop().browse((new URL(url)).toURI());
-
-                // Pedir el pin que le han dado al usuario al autenticarse            
-                JOptionPane panel = new JOptionPane("Introduce el PIN", JOptionPane.INFORMATION_MESSAGE, JOptionPane.INFORMATION_MESSAGE);
-                String pin = panel.getMessage().toString();
-
+                
+                //Pedirle el PIN
+                String pin = JOptionPane.showInputDialog("Introduce el PIN");
                 if (pin.length() > 0) {
                     accessToken = twitter.getOAuthAccessToken(requestToken, pin);
                 } else {
                     accessToken = twitter.getOAuthAccessToken(requestToken);
                 }
-
-                Thread.sleep(100);
-
+                
             } catch (TwitterException ex) {
                 System.out.println(ex.getMessage());
-            } catch (MalformedURLException ex) {
-                System.out.println(ex.getMessage());
-            } catch (URISyntaxException | IOException | InterruptedException ex) {
-                System.out.println(ex.getMessage());
+            } catch (IOException ex) {
+                Logger.getLogger(ConexionTwitter.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (URISyntaxException ex) {
+                Logger.getLogger(ConexionTwitter.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         } while (accessToken == null);
     }
 

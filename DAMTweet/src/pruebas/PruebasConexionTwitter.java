@@ -22,21 +22,31 @@ public class PruebasConexionTwitter {
         
         // PRUEBAS DE FUNCIONAMIENTO DE LA LIBRERIA TWITTER4J PARA CONECTAR CON LA API DE TWITTER
         
-        // No subir al repositorio los token de acceso a la API, pueden banearnos la cuenta!!
         
         // TOKEN DE CLIENTE (la aplicacion)
         final String API_KEY =  "";
         final String API_KEY_SECRET = "";
         
-        // TOKEN DEL USUARIO
+        // TOKEN DEL USUARIO 
         final String ACCESS_TOKEN =  "";
         final String ACCESS_TOKEN_SECRET =  "";
 
-
         
-        // Abrir la conexion con la API de Twitter
-        ConexionTwitter conexion = new ConexionTwitter(API_KEY, API_KEY_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET);
         
+        // CONECTAR CON LA CUENTA DE TWITTER
+        
+        ConexionTwitter conexion = null;
+        
+        // Conectar con Twitter con la cuenta developer
+        // conexion = new ConexionTwitter(API_KEY, API_KEY_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET);
+        
+        
+        // Conectar con cualquier otro usuario (pide autenticacion)
+        // conexion = new ConexionTwitter(API_KEY, API_KEY_SECRET);
+        
+        
+        
+        // ACCIONES DE TWITTER
         
         // Pedir los datos del usuario (que seria nuestra cuenta de momento)
         User usuario = conexion.getUsuario();
