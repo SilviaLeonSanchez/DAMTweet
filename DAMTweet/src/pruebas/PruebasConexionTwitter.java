@@ -13,7 +13,7 @@ import twitter4j.*;
  *
  * @author silvia
  */
-public class main {
+public class PruebasConexionTwitter {
 
     /**
      * @param args the command line arguments
@@ -24,12 +24,13 @@ public class main {
         
         // No subir al repositorio los token de acceso a la API, pueden banearnos la cuenta!!
         
-        // TOKEN DE CLIENTE (Será el que pidamos al usuario final)
-        final String API_KEY =  "krMk9AbjMVeQTcIJ4rVukgLih";
-        final String API_KEY_SECRET = "Bp86NiJ2ZMPOYz3lG2FuOzEx4OHv8i0xB7XLBk0rajtHW5PRIb";
+        // TOKEN DE CLIENTE (la aplicacion)
+        final String API_KEY =  "";
+        final String API_KEY_SECRET = "";
         
-        final String ACCESS_TOKEN =  "1083755027276197889-R2RzgsJGLaMpmcN4aHb3Pih1GXZZGX";
-        final String ACCESS_TOKEN_SECRET =  "2n36KLIFqovONusbX0vtU6pw8U3gdLWlDR09EQlTkzB12";
+        // TOKEN DEL USUARIO
+        final String ACCESS_TOKEN =  "";
+        final String ACCESS_TOKEN_SECRET =  "";
 
 
         
