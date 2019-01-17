@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fotocirculo;
 
+package utils.componenteFotoRedonda;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.io.Serializable;
 import javax.swing.JLabel;
 import static javax.swing.SwingConstants.CENTER;
 import javax.swing.border.AbstractBorder;
@@ -15,7 +16,7 @@ import javax.swing.border.AbstractBorder;
  *
  * @author Annie
  */
-public class CLabel extends JLabel {
+public class CLabel extends JLabel implements Serializable {
 
     private AbstractBorder circleBorder = new CircleBorder();
     private int lineBorder = 1;
