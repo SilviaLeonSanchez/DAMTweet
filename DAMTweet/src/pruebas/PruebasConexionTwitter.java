@@ -23,28 +23,16 @@ public class PruebasConexionTwitter {
         
         // PRUEBAS DE FUNCIONAMIENTO DE LA LIBRERIA TWITTER4J PARA CONECTAR CON LA API DE TWITTER
         
+         // PRUEBAS DE FUNCIONAMIENTO DE LA LIBRERIA TWITTER4J PARA CONECTAR CON LA API DE TWITTER
         
-        // TOKEN DE CLIENTE (la aplicacion)
-        final String API_KEY =  "";
-        final String API_KEY_SECRET = "";
-        
-        // TOKEN DEL USUARIO 
-        final String ACCESS_TOKEN =  "";
-        final String ACCESS_TOKEN_SECRET =  "";
-
+        Boolean logearseConCuentaDeveloeper = true;
+             
         
         
         // CONECTAR CON LA CUENTA DE TWITTER
-        
         ConexionTwitter conexion = null;
         
-        // Conectar con Twitter con la cuenta developer
-         conexion = new ConexionTwitter();
-        
-        
-        // Conectar con cualquier otro usuario (pide autenticacion)
-        // conexion = new ConexionTwitter(API_KEY, API_KEY_SECRET);
-        
+        conexion = new ConexionTwitter(false);
         
         
         // ACCIONES DE TWITTER
