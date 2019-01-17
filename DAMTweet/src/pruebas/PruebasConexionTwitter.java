@@ -25,7 +25,7 @@ public class PruebasConexionTwitter {
         
          // PRUEBAS DE FUNCIONAMIENTO DE LA LIBRERIA TWITTER4J PARA CONECTAR CON LA API DE TWITTER
         
-        Boolean logearseConCuentaDeveloeper = true;
+        Boolean logearseConCuentaDeveloeper = false;
              
         
         
