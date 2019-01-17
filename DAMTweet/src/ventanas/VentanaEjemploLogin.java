@@ -30,7 +30,7 @@ public class VentanaEjemploLogin extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         Image img = new ImageIcon(RUTA_LOGO).getImage();
-        ImageIcon img2 = new ImageIcon(img.getScaledInstance(120, 120, Image.SCALE_SMOOTH));
+        ImageIcon img2 = new ImageIcon(img.getScaledInstance(120, 120, Image.SCALE_SMOOTH));//para poner el tamaño que queramos a una imagen
 
         labelIcono.setIcon(img2);
         //labelIcono.setIcon(new ImageIcon(RUTA_LOGO));
