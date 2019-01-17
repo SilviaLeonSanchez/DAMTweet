@@ -6,6 +6,7 @@
 package pruebas;
 
 import java.util.List;
+import java.util.Scanner;
 import logica.ConexionTwitter;
 import twitter4j.*;
 
@@ -38,7 +39,7 @@ public class PruebasConexionTwitter {
         ConexionTwitter conexion = null;
         
         // Conectar con Twitter con la cuenta developer
-        // conexion = new ConexionTwitter(API_KEY, API_KEY_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET);
+         conexion = new ConexionTwitter();
         
         
         // Conectar con cualquier otro usuario (pide autenticacion)
@@ -49,6 +50,11 @@ public class PruebasConexionTwitter {
         // ACCIONES DE TWITTER
         
         // Pedir los datos del usuario (que seria nuestra cuenta de momento)
+         // conexion.autenticacionUsuario();
+        
+        
+        
+        
         User usuario = conexion.getUsuario();
         System.out.println("DATOS DEL USUARIO:");
         conexion.verInfoUsuario(usuario);

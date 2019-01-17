@@ -48,6 +48,12 @@ public class ConexionTwitter {
 
         this.twitter = new TwitterFactory(config.build()).getInstance();
     }
+    
+    
+    // Conexion de twiiter con las key y los token guardados en twitter4j.properties
+    public ConexionTwitter() {
+        this.twitter = TwitterFactory.getSingleton();
+    }
 
     //Para conectar con cualquier otra cuenta de Twitter
     public ConexionTwitter(String apiKey, String apiKeySecret) {
