@@ -32,7 +32,7 @@ public class PruebasConexionTwitter {
         // CONECTAR CON LA CUENTA DE TWITTER
         ConexionTwitter conexion = null;
         
-        conexion = new ConexionTwitter(false);
+        conexion = new ConexionTwitter(logearseConCuentaDeveloeper);
         
         
         // ACCIONES DE TWITTER
