@@ -6,9 +6,7 @@
 package logica;
 
 import java.awt.Desktop;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -51,8 +49,15 @@ public class ConexionTwitter {
     
     
     // Conexion de twiiter con las key y los token guardados en twitter4j.properties
-    public ConexionTwitter() {
+    public ConexionTwitter(boolean logearseCuentaDeveloper) {
         this.twitter = TwitterFactory.getSingleton();
+        
+        if (logearseCuentaDeveloper) {
+            // Nada ya que las credenciales estan en el archivo configuracion
+        } else {
+           twitter.setOAuthAccessToken(null);// Quitamos los de la cuneta developer
+           this.autenticacionUsuario();
+        }
     }
 
     //Para conectar con cualquier otra cuenta de Twitter
