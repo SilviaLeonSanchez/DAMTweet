@@ -5,7 +5,15 @@
  */
 package ventanas;
 
+import static java.awt.image.ImageObserver.ERROR;
+import static java.awt.image.ImageObserver.WIDTH;
 import javax.swing.ImageIcon;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import mdlaf.MaterialLookAndFeel;
+import mdlaf.animation.MaterialUIMovement;
+import mdlaf.utils.MaterialColors;
 
 /**
  *
@@ -19,6 +27,33 @@ public class TwitterLogin extends javax.swing.JFrame {
     public TwitterLogin() {
         initComponents();
         jLabelLogo.setIcon( new ImageIcon(getClass().getResource(RUTA_LOGO)));
+        
+         configureWindowAndComponents();
+    }
+    
+     public void configureWindowAndComponents() {
+
+        try {
+            UIManager.setLookAndFeel(new MaterialLookAndFeel());
+            SwingUtilities.updateComponentTreeUI(this);
+            pack();
+        } catch (UnsupportedLookAndFeelException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        /* Configuracion de los colores de las aplicaciones, habria que crear una
+        clase para el manejo de los colores, las fuentes tipograficas y que quede todo igual.*/
+        jButtonIniciar.setForeground(MaterialColors.LIGHT_BLUE_A200);
+        jButtonIniciar.setBackground(MaterialColors.WHITE);
+        jButtonRegistro.setBackground(MaterialColors.LIGHT_BLUE_A200);
+
+        /* 
+        Clase que viene con la libreria para que al pasar el raton por encima
+        cambie el color
+         */
+        MaterialUIMovement.add(jButtonIniciar, MaterialColors.LIGHT_BLUE_100, WIDTH, ERROR);
+        MaterialUIMovement.add(jButtonRegistro, MaterialColors.BLUE_200, 5, 100 / 30);
+
     }
 
     /**
