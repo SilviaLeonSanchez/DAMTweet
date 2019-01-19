@@ -6,8 +6,8 @@
 package pruebas;
 
 import java.util.List;
-import java.util.Scanner;
 import logica.ConexionTwitter;
+import logica.GestionTwitter;
 import twitter4j.*;
 
 /**
@@ -30,9 +30,11 @@ public class PruebasConexionTwitter {
         
         
         // CONECTAR CON LA CUENTA DE TWITTER
-        ConexionTwitter conexion = null;
+        ConexionTwitter con = null;
         
-        conexion = new ConexionTwitter(logearseConCuentaDeveloeper);
+        con = new ConexionTwitter(logearseConCuentaDeveloeper);
+        
+        GestionTwitter conexion = new GestionTwitter(con.getTwitter());
         
         
         // ACCIONES DE TWITTER
