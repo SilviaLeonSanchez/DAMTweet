@@ -79,7 +79,7 @@ private File foto_video;
         jButtonMensaje = new javax.swing.JButton();
         jButtonLike = new javax.swing.JButton();
         jButtonRetweet = new javax.swing.JButton();
-        fotoRedonda = new componenteFotoRedonda.FotoRedonda();
+        fotoRedonda = new utils.componenteFotoRedonda.FotoRedonda();
 
         setPreferredSize(new java.awt.Dimension(690, 520));
 
@@ -175,7 +175,7 @@ private File foto_video;
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private componenteFotoRedonda.FotoRedonda fotoRedonda;
+    private utils.componenteFotoRedonda.FotoRedonda fotoRedonda;
     private javax.swing.JButton jButtonContestar;
     private javax.swing.JButton jButtonLike;
     private javax.swing.JButton jButtonMensaje;

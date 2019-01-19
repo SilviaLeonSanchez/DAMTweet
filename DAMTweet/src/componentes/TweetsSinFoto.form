@@ -148,7 +148,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="componenteFotoRedonda.FotoRedonda" name="fotoRedonda1">
+        <Component class="utils.componenteFotoRedonda.FotoRedonda" name="fotoRedonda1">
         </Component>
       </SubComponents>
     </Container>
