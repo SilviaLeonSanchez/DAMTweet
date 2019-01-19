@@ -8,6 +8,7 @@ package pruebas;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import logica.ConexionTwitter;
+import twitter4j.Location;
 import twitter4j.Trend;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -22,51 +23,32 @@ public class PruebasTwitter {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
         try {
             ConexionTwitter conexion = new ConexionTwitter(true);
-            
+
             Twitter twitter = conexion.getTwitter();
-            
-            /*
-            trends.add(twitter.getPlaceTrends(764814));
-            trends.add(twitter.getPlaceTrends(766273));
-            trends.add(twitter.getPlaceTrends(766356));
-            trends.add(twitter.getPlaceTrends(768026));
-            trends.add(twitter.getPlaceTrends(769293));
-            trends.add(twitter.getPlaceTrends(774508));
-            trends.add(twitter.getPlaceTrends(776688));
-            trends.add(twitter.getPlaceTrends(779063));
-*/
-            
-            System.out.println("\nTRENDS DE ESPAÑA CODIGO: 753692");
-            for (Trend trend : twitter.getPlaceTrends(753692).getTrends()) {
-                System.out.println("\t" + trend.getName() + ": "+ trend.getTweetVolume() + " retweets");
+
+            int[] codigosWoeid = {753692, 754542, 764814, 766273, 766356, 768026, 769293, 774508, 776688, 779063};
+
+            for (int i : codigosWoeid) {
+
+                Location lugar = twitter.getPlaceTrends(i).getLocation();
+                System.out.println("\nTRENDS: WOEID: "+lugar.getWoeid()+ " LUGAR: " + lugar.getName() );
+                
+                Trend[] trends = twitter.getPlaceTrends(i).getTrends();
+                for (int j = 0; j < 10; j++) {
+                    System.out.println("\t" + trends[j].getName() + ": " + trends[j].getTweetVolume() + " retweets");
+                    
+                }
+                System.out.println();
+
             }
-            System.out.println();
-            
-            
-            System.out.println("\nTRENDS DE ESPAÑA CODIGO: 754542");
-            for (Trend trend : twitter.getPlaceTrends(754542).getTrends()) {
-                System.out.println("\t" + trend.getName() + ": "+ trend.getTweetVolume() + " retweets");
-            }
-            System.out.println();
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+
         } catch (TwitterException ex) {
             Logger.getLogger(PruebasTwitter.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
+
     }
-    
+
 }

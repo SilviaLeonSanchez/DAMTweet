@@ -1,5 +1,6 @@
 package utils.bbdd;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -10,48 +11,29 @@ import java.sql.Statement;
  *
  * @author Silvia Leon
  */
-public class GestorBBDD_MySQL {
+public class GestorBBDD_SQLite {
 
     // ATRIBUTOS
     protected VistaGestorBBDD vista;
     protected Connection conexion;
     protected Statement consulta;
-    protected int tipoResultado;
-    protected int tipoActualizacion;
     protected String url;
-    protected String usuario;
-    protected String password;
+    protected String rutaBBDD;
+    protected String nombreBBDD;
 
     // METODOS
     // CONSTRUCTORES
-    public GestorBBDD_MySQL(String IP_BBDD, String usuario, String password, String esquema) {
-        this.url = "jdbc:mysql://" + IP_BBDD + ":3306/"+ esquema + "?serverTimezone=UTC" ;
-        parametrosConexion();
-    }
-
-    public GestorBBDD_MySQL(String usuario, String password, String esquema) {
-        this.url = "jdbc:mysql://localhost:3306/"+esquema+"?serverTimezone=UTC";
-        parametrosConexion();
-    }
-    
-    private void parametrosConexion(){
+    public GestorBBDD_SQLite(String pathCarpetaPrograma, String dbName) {
+        this.url = "jdbc:sqlite:" + pathCarpetaPrograma + File.separator + dbName;
+        this.rutaBBDD = pathCarpetaPrograma;
+        this.nombreBBDD = dbName;
         this.vista = new VistaGestorBBDD();
-        this.tipoResultado = ResultSet.TYPE_SCROLL_SENSITIVE;
-        this.tipoActualizacion = ResultSet.CONCUR_UPDATABLE;
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conectarBBDD(usuario, password);
-            this.vista.exitoConexion();
-            // this.consulta = conexion.createStatement(tipoResultado, tipoActualizacion);
-        } catch (ClassNotFoundException ex) {
-            System.out.println("No se ha encontrado la clase al cargar el driver de la BBDD MySQL.");
-        }
+        conectarBBDD();
     }
 
     public Statement getConsulta() {
         return consulta;
     }
-
 
     // GETTER Y SETTER
     public String getUrl() {
@@ -70,37 +52,11 @@ public class GestorBBDD_MySQL {
         return vista;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-    
-    public void setTipoResultado(int tipoResultado) {
-        this.tipoResultado = tipoResultado;
-    }
-
-    public int getTipoResultado() {
-        return tipoResultado;
-    }
-    
-    public void setTipoActualizacion(int tipoActualizacion) {
-        this.tipoActualizacion = tipoActualizacion;
-    }
-
-    public int getTipoActualizacion() {
-        return tipoActualizacion;
-    }
-
-    
     // CONEXION BBDD
-    private boolean conectarBBDD(String usuario, String password) {
+    private boolean conectarBBDD() {
         try {
-            this.conexion = DriverManager.getConnection(url, usuario, password);
-            this.usuario = usuario;
-            this.password = password;
+            this.conexion = DriverManager.getConnection(url);
+            this.consulta = this.conexion.createStatement();
             return true;
         } catch (SQLException ex) {
             vista.errorConexion();
@@ -112,14 +68,7 @@ public class GestorBBDD_MySQL {
 
     public boolean reconectarBBDD() {
         if (isClosed()) {
-            try {
-                this.conexion = DriverManager.getConnection(url, usuario, password);
-                return true;
-            } catch (SQLException ex) {
-                vista.errorConexion();
-                System.out.print("Mensaje error: " + ex.getMessage());
-                return false;
-            }
+            conectarBBDD();
         }
         return true;
     }
@@ -145,7 +94,6 @@ public class GestorBBDD_MySQL {
         }
     }
 
-    
     // COMMITS Y ROLLBACK
     public boolean autocommit(boolean autocommit) {
         try {
@@ -177,7 +125,6 @@ public class GestorBBDD_MySQL {
         }
     }
 
-    
     // SENTENCIAS
     public ResultSet ejecutarSELECT(String sentencia) {
         try {
@@ -185,7 +132,7 @@ public class GestorBBDD_MySQL {
         } catch (SQLException ex) {
             vista.errorConsulta();
             System.out.println(ex.getMessage());
-        }   
+        }
         return null;
     }
 
@@ -198,14 +145,13 @@ public class GestorBBDD_MySQL {
             return -1;
         }
     }
-    
-    public boolean ejecutar(String sentencia){
+
+    public boolean ejecutar(String sentencia) {
         try {
             return this.consulta.execute(sentencia);
         } catch (SQLException ex) {
             return false;
         }
     }
-
 
 }
