@@ -19,12 +19,12 @@ import mdlaf.utils.MaterialColors;
  *
  * @author alumnop
  */
-public class TwitterLogin extends javax.swing.JFrame {
+public class PantallaLogin extends javax.swing.JFrame {
 
     private static final String RUTA_LOGO = "/img/Twitter_Logo_Blue240.png";
     
     
-    public TwitterLogin() {
+    public PantallaLogin() {
         initComponents();
         jLabelLogo.setIcon( new ImageIcon(getClass().getResource(RUTA_LOGO)));
         
@@ -179,21 +179,23 @@ public class TwitterLogin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TwitterLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TwitterLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TwitterLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TwitterLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TwitterLogin().setVisible(true);
+                new PantallaLogin().setVisible(true);
             }
         });
     }
