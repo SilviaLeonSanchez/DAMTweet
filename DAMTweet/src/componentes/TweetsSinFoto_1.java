@@ -69,7 +69,7 @@ private File fotoUsuario;
         jButtonRetweet = new javax.swing.JButton();
         jButtonLike = new javax.swing.JButton();
         jButtonMensaje = new javax.swing.JButton();
-        fotoRedonda1 = new utils.componenteFotoRedonda.FotoRedonda();
+        fotoRedonda1 = new componenteFotoRedonda.FotoRedonda();
 
         jLabel2.setText("Usuario");
 
@@ -153,7 +153,7 @@ private File fotoUsuario;
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private utils.componenteFotoRedonda.FotoRedonda fotoRedonda1;
+    private componenteFotoRedonda.FotoRedonda fotoRedonda1;
     private javax.swing.JButton jButtonContestar;
     private javax.swing.JButton jButtonLike;
     private javax.swing.JButton jButtonMensaje;
