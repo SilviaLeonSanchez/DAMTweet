@@ -40,8 +40,7 @@ public class EscribirTweet extends javax.swing.JPanel implements Serializable {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        fotoRedonda = new utils.componenteFotoRedonda.FotoRedonda();
+        jPanelEscribirTweet = new javax.swing.JPanel();
         jTextFieldTexto = new javax.swing.JTextField();
         jButtonAnhadirEmoji = new javax.swing.JButton();
         jButtonImagen = new javax.swing.JButton();
@@ -50,6 +49,8 @@ public class EscribirTweet extends javax.swing.JPanel implements Serializable {
         jButtonUbicacion = new javax.swing.JButton();
         jButtonMas_Anhadir = new javax.swing.JButton();
         jButtonTwittear = new javax.swing.JButton();
+
+        jPanelEscribirTweet.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jTextFieldTexto.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextFieldTexto.setText("¿Qué está pasando?");
@@ -74,15 +75,14 @@ public class EscribirTweet extends javax.swing.JPanel implements Serializable {
 
         jButtonTwittear.setText("Twittear");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(fotoRedonda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelEscribirTweetLayout = new javax.swing.GroupLayout(jPanelEscribirTweet);
+        jPanelEscribirTweet.setLayout(jPanelEscribirTweetLayout);
+        jPanelEscribirTweetLayout.setHorizontalGroup(
+            jPanelEscribirTweetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelEscribirTweetLayout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addGroup(jPanelEscribirTweetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelEscribirTweetLayout.createSequentialGroup()
                         .addComponent(jButtonImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)
                         .addComponent(jButtonGif, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -99,15 +99,14 @@ public class EscribirTweet extends javax.swing.JPanel implements Serializable {
                 .addComponent(jButtonAnhadirEmoji, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fotoRedonda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+        jPanelEscribirTweetLayout.setVerticalGroup(
+            jPanelEscribirTweetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelEscribirTweetLayout.createSequentialGroup()
+                .addGroup(jPanelEscribirTweetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldTexto, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                     .addComponent(jButtonAnhadirEmoji, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelEscribirTweetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonGif, javax.swing.GroupLayout.PREFERRED_SIZE, 34, Short.MAX_VALUE)
                     .addComponent(jButtonEncuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 34, Short.MAX_VALUE)
                     .addComponent(jButtonUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 34, Short.MAX_VALUE)
@@ -123,14 +122,14 @@ public class EscribirTweet extends javax.swing.JPanel implements Serializable {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanelEscribirTweet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelEscribirTweet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -141,7 +140,6 @@ public class EscribirTweet extends javax.swing.JPanel implements Serializable {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private utils.componenteFotoRedonda.FotoRedonda fotoRedonda;
     private javax.swing.JButton jButtonAnhadirEmoji;
     private javax.swing.JButton jButtonEncuesta;
     private javax.swing.JButton jButtonGif;
@@ -149,7 +147,7 @@ public class EscribirTweet extends javax.swing.JPanel implements Serializable {
     private javax.swing.JButton jButtonMas_Anhadir;
     private javax.swing.JButton jButtonTwittear;
     private javax.swing.JButton jButtonUbicacion;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelEscribirTweet;
     private javax.swing.JTextField jTextFieldTexto;
     // End of variables declaration//GEN-END:variables
 }
