@@ -49,11 +49,11 @@ public class DBHelper {
         habra que crear mas tablas y normaliuzarlas, crear relaciones etc..               
          */
         String sql = "CREATE TABLE IF NOT EXISTS USERS (\n"
-                + "	id integer PRIMARY KEY,\n"
+                + "	id integer PRIMARY KEY UNIQUE,\n"
                 + "	name text NOT NULL,\n"
-                + "	user_name text NOT NULL UNIQUE,\n"
+                + "	user_name text NOT NULL,\n"
                 + "     token text NOT NULL,\n"
-                + "     secret_token text NOT NULL\n"
+                + "     secret_token VARBINARY NOT NULL\n"
                 + ");";
 
         try (Connection conn = this.connect();
@@ -67,16 +67,17 @@ public class DBHelper {
 
     }
 
-    public void insertarUsuario(String name, String user_name, String token, String secret_token) {
+    public void insertarUsuario(long id, String name, String user_name, String token, byte[] secret_token) {
 
-        String sql = "INSERT INTO USERS(name, user_name, token, secret_token) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO USERS(id, name, user_name, token, secret_token) VALUES(?,?,?,?,?)";
 
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, name);
-            pstmt.setString(2, user_name);
-            pstmt.setString(3, token);
-            pstmt.setString(4, secret_token);
+            pstmt.setLong(1, id);
+            pstmt.setString(2, name);
+            pstmt.setString(3, user_name);
+            pstmt.setString(4, token);
+            pstmt.setBytes(5, secret_token);
 
             pstmt.executeUpdate();
 
