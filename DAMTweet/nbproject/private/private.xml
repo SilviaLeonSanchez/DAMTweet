@@ -6,11 +6,6 @@
             <file>file:/home/silvia/Documentos/DAM2/DI/2Trimestre/DAMTweet/DAMTweet/src/logica/DBHelper.java</file>
             <file>file:/home/silvia/Documentos/DAM2/DI/2Trimestre/DAMTweet/DAMTweet/src/pruebas/PruebasTwitter.java</file>
         </group>
-        <group name="DI">
-            <file>file:/home/sebas/Documents/DAM/DI/DAMTweet/DAMTweet/src/pruebas/PruebaPantallaLogin.java</file>
-            <file>file:/home/sebas/Documents/DAM/DI/DAMTweet/DAMTweet/src/logica/GestionTwitter.java</file>
-            <file>file:/home/sebas/Documents/DAM/DI/DAMTweet/DAMTweet/src/utils/bbdd/GestorBBDD_SQLite.java</file>
-            <file>file:/home/sebas/Documents/DAM/DI/DAMTweet/DAMTweet/src/logica/ConexionTwitter.java</file>
-        </group>
+        <group name="DI"/>
     </open-files>
 </project-private>

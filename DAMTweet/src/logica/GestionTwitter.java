@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import twitter4j.PagableResponseList;
+import twitter4j.Query;
+import twitter4j.QueryResult;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -20,14 +22,13 @@ import twitter4j.User;
  * @author silvia
  */
 public class GestionTwitter {
-    
+
     private Twitter twitter;
 
     public GestionTwitter(Twitter twitter) {
         this.twitter = twitter;
     }
-    
-        
+
     public User getUsuario() {
         try {
             return this.twitter.showUser(twitter.getScreenName());
@@ -95,5 +96,30 @@ public class GestionTwitter {
 
         return seguidores;
     }
-    
+
+    /**
+     * Realiza una busqueda standar tanto de texto como de hastags
+     * @param stringQuery
+     * @return lista de tweets
+     */
+    public List<Status> buscarTweets(String stringQuery) {
+        try {
+            Query busqueda = new Query(stringQuery);
+            QueryResult result;
+            result = twitter.search(busqueda);
+            List<Status> tweets = result.getTweets();
+
+            for (Status tweet : tweets) {
+                System.out.println("@" + tweet.getUser().getScreenName() + " - " + tweet.getText());
+            }
+
+            return tweets;
+        } catch (TwitterException te) {
+            te.printStackTrace();
+            System.out.println("Fallo al buscar tweets: " + te.getMessage());
+            System.exit(-1);
+        }
+        return null;
+    }
+
 }

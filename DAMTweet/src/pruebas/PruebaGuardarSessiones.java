@@ -20,6 +20,9 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import logica.ConexionTwitter;
 import logica.DBHelper;
+import twitter4j.Query;
+import twitter4j.QueryResult;
+import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
@@ -106,7 +109,7 @@ public class PruebaGuardarSessiones {
 
             System.out.println("Este es mi id => " + twitter.getId());
 
-        } catch (SQLException ex) {
+         } catch (SQLException ex) {
             Logger.getLogger(PruebaGuardarSessiones.class.getName()).log(Level.SEVERE, null, ex);
         } catch (TwitterException ex) {
             Logger.getLogger(PruebaGuardarSessiones.class.getName()).log(Level.SEVERE, null, ex);
