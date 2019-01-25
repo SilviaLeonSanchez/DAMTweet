@@ -15,6 +15,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialColors;
+import utils.bbdd.GestorBBDD_SQLite;
 
 /**
  *
@@ -22,25 +23,27 @@ import mdlaf.utils.MaterialColors;
  */
 public class PantallaLogin extends javax.swing.JFrame {
 
-    private static final String RUTA_LOGO = File.separator +"img"+File.separator +"Twitter_Logo_Blue240.png";
-    public static String RUTA_BBDD;
-    public static String NOMBRE_BBDD = "twitter.sqlite3";
+    private static final String RUTA_LOGO = File.separator + "img" + File.separator + "Twitter_Logo_Blue240.png";
+    public static String RUTA_BBDD = null;
+    public static GestorBBDD_SQLite BBDD;
     
-    
-    
+
     public PantallaLogin() {
         initComponents();
-        jLabelLogo.setIcon( new ImageIcon(getClass().getResource(RUTA_LOGO)));
-        
-        File bbdd = new File(File.separator + "bbdd" + File.separator + NOMBRE_BBDD);
-        if (bbdd.exists()){
-            RUTA_BBDD = bbdd.getAbsolutePath();
+        jLabelLogo.setIcon(new ImageIcon(getClass().getResource(RUTA_LOGO)));
+
+        File paquete_bbdd = new File(File.separator + "bbdd" + File.separator + "twitter.sqlite3");
+        if (paquete_bbdd.exists()){
+            RUTA_BBDD = paquete_bbdd.getAbsolutePath();
         }
         
+        BBDD = new GestorBBDD_SQLite(RUTA_BBDD);
+
+
         configureWindowAndComponents();
     }
-    
-     public void configureWindowAndComponents() {
+
+    public void configureWindowAndComponents() {
 
         try {
             UIManager.setLookAndFeel(new MaterialLookAndFeel());

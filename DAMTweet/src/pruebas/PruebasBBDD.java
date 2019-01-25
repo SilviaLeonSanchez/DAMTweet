@@ -5,6 +5,7 @@
  */
 package pruebas;
 
+import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -22,30 +23,20 @@ public class PruebasBBDD {
      */
     public static void main(String[] args) {
 
-        String ruta = "turuta"; // Ya hay una bbdd en el paquete bbdd, poner la ruta 
-        String nombrebbdd = "twitter.sqlite3";
+        String RUTA_BBDD = null;
+        File paquete_bbdd = new File(File.separator + "bbdd" + File.separator + "twitter.sqlite3");
 
-        GestorBBDD_SQLite bbdd = new GestorBBDD_SQLite(ruta, nombrebbdd);
-
-        //  CREAR TABLA PARA TRENDING TOPICS
-        String tabla = "lugaresTT";
-        String woeid = "woeid";
-        String ciudad = "ciudad";
-
-        /*
-        String sqlTablaTT = "CREATE TABLE IF NOT EXISTS " + tabla + " (\n"
-        + "	" + woeid + " integer PRIMARY KEY,\n"
-        + "	" + ciudad + " text NOT NULL\n"
-        + ");";
-        bbdd.ejecutar(sqlTablaTT);
-        */
-
+        if (paquete_bbdd.exists()){
+            RUTA_BBDD = paquete_bbdd.getAbsolutePath();
+        }
+        
+        GestorBBDD_SQLite bbdd = new GestorBBDD_SQLite(RUTA_BBDD);
 
         // CONSULTAR TABLA
-        ResultSet resultado = bbdd.ejecutarSELECT("select * from "+tabla+" where "+ciudad+" = Madrid");
+        ResultSet resultado = bbdd.ejecutarSELECT("select * from LUGARES_TT where ciudad = 'Madrid'");
         try {
             while (resultado.next()) {
-                System.out.println(resultado.getInt(woeid));
+                System.out.println(resultado.getInt("woeid"));
             }
         } catch (SQLException ex) {
             bbdd.desconectarBBDD();

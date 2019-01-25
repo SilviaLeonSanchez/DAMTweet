@@ -1,6 +1,5 @@
 package utils.bbdd;
 
-import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,14 +21,12 @@ public class GestorBBDD_SQLite {
     protected Statement consulta;
     protected String url;
     protected String rutaBBDD;
-    protected String nombreBBDD;
 
     // METODOS
     // CONSTRUCTORES
-    public GestorBBDD_SQLite(String pathCarpetaPrograma, String dbName) {
-        this.url = "jdbc:sqlite:" + pathCarpetaPrograma + File.separator + dbName;
-        this.rutaBBDD = pathCarpetaPrograma;
-        this.nombreBBDD = dbName;
+    public GestorBBDD_SQLite(String ruta_bbdd) {
+        this.url = "jdbc:sqlite:" + ruta_bbdd;
+        this.rutaBBDD = ruta_bbdd;
         this.vista = new VistaGestorBBDD();
         conectarBBDD();
     }
