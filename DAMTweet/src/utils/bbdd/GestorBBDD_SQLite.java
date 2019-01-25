@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import logica.Usuario;
 
 /**
  *
@@ -153,13 +154,13 @@ public class GestorBBDD_SQLite {
             return false;
         }
     }
-    
-     public void crearTablas() {
+
+    public void crearTablas() {
 
         try {
             /* Instruciones SQL para crear la tabla usuarios, posiblemente en el futuro
             habra que crear mas tablas y normaliuzarlas, crear relaciones etc..
-            */
+             */
             String sql_usuarios = "CREATE TABLE IF NOT EXISTS USERS (\n"
                     + "	id integer PRIMARY KEY UNIQUE,\n"
                     + "	name text NOT NULL,\n"
@@ -167,15 +168,15 @@ public class GestorBBDD_SQLite {
                     + "     token text NOT NULL,\n"
                     + "     secret_token VARBINARY NOT NULL\n"
                     + ");";
-            
+
             String sql_TT = "CREATE TABLE IF NOT EXISTS LUGARES_TT (\n"
                     + "	woeid integer PRIMARY KEY,\n"
                     + "	ciudad text NOT NULL\n"
                     + ");";
-            
+
             consulta.execute(sql_usuarios);
             consulta.execute(sql_TT);
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(GestorBBDD_SQLite.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -186,7 +187,7 @@ public class GestorBBDD_SQLite {
 
         try {
             String sql = "INSERT INTO USERS(id, name, user_name, token, secret_token) VALUES(?,?,?,?,?)";
-            
+
             this.reconectarBBDD();
             PreparedStatement pstmt = conexion.prepareStatement(sql);
             pstmt.setLong(1, id);
@@ -200,13 +201,12 @@ public class GestorBBDD_SQLite {
             Logger.getLogger(GestorBBDD_SQLite.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-
     }
 
-    public ResultSet getUserData(String user_name) {
+    public Usuario getUserData(String user_name) {
         try {
             String sql = "SELECT * FROM USERS WHERE user_name=?";
-            
+
             this.reconectarBBDD();
             PreparedStatement pstmt = conexion.prepareStatement(sql);
 
@@ -214,9 +214,12 @@ public class GestorBBDD_SQLite {
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                System.out.println(rs.getInt("id") + "\t"
-                        + rs.getString("name") + "\t"
-                        + rs.getDouble("user_name"));
+                long id = rs.getLong("id");
+                String nombre = rs.getString("name");
+                String nombreUsuario = rs.getString("user_name");
+                String token = rs.getString("token");
+                byte[] secret_toekn = rs.getBytes("secret_token");
+                return new Usuario(id, nombre, nombreUsuario, token, secret_toekn);
             }
         } catch (SQLException ex) {
             Logger.getLogger(GestorBBDD_SQLite.class.getName()).log(Level.SEVERE, null, ex);

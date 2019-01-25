@@ -8,13 +8,24 @@ package ventanas;
 import static java.awt.image.ImageObserver.ERROR;
 import static java.awt.image.ImageObserver.WIDTH;
 import java.io.File;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import logica.ConexionTwitter;
+import logica.GestionTwitter;
+import logica.Usuario;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialColors;
+import twitter4j.Twitter;
 import utils.bbdd.GestorBBDD_SQLite;
 
 /**
@@ -26,21 +37,62 @@ public class PantallaLogin extends javax.swing.JFrame {
     private static final String RUTA_LOGO = File.separator + "img" + File.separator + "Twitter_Logo_Blue240.png";
     public static String RUTA_BBDD = null;
     public static GestorBBDD_SQLite BBDD;
-    
+    private GestionTwitter gestionTwitter;
+    private Twitter twitter;
 
     public PantallaLogin() {
         initComponents();
         jLabelLogo.setIcon(new ImageIcon(getClass().getResource(RUTA_LOGO)));
 
-        File paquete_bbdd = new File(File.separator + "bbdd" + File.separator + "twitter.sqlite3");
-        if (paquete_bbdd.exists()){
+        File paquete_bbdd = new File("bbdd" + File.separator + "twitter.sqlite3");
+        if (paquete_bbdd.exists()) {
             RUTA_BBDD = paquete_bbdd.getAbsolutePath();
+        } else {
+            RUTA_BBDD = paquete_bbdd.getAbsolutePath();
+            new File(File.separator + "bbdd").mkdir();
         }
-        
+        System.out.println(RUTA_BBDD);
         BBDD = new GestorBBDD_SQLite(RUTA_BBDD);
-
-
+        BBDD.crearTablas();
         configureWindowAndComponents();
+        rellenarComoBoxUsuarios(getUsuariosLogeados());
+
+    }
+
+    public void rellenarComoBoxUsuarios(List<Usuario> usuarios) {
+        if (usuarios.size() < 1) {
+            this.jComboBoxUsuarios.setVisible(false);
+            this.jButtonIniciar.setVisible(false);
+        } else {
+            DefaultComboBoxModel dcm = new DefaultComboBoxModel();
+            for (Usuario usuario : usuarios) {
+                dcm.addElement(usuario.getUsername());
+            }
+            jComboBoxUsuarios.setModel(dcm);
+        }
+
+    }
+
+    public List<Usuario> getUsuariosLogeados() {
+
+        ResultSet rs = BBDD.ejecutarSELECT("SELECT * FROM USERS;");
+
+        List<Usuario> usuariosLogeados = new ArrayList();
+
+        try {
+            while (rs.next()) {
+                long id = rs.getLong("id");
+                String nombre = rs.getString("name");
+                String nombreUsuario = rs.getString("user_name");
+                String token = rs.getString("token");
+                byte[] secret_toekn = rs.getBytes("secret_token");
+                usuariosLogeados.add(new Usuario(id, nombre, nombreUsuario, token, secret_toekn));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PantallaLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return usuariosLogeados;
     }
 
     public void configureWindowAndComponents() {
@@ -59,6 +111,8 @@ public class PantallaLogin extends javax.swing.JFrame {
         jButtonIniciar.setBackground(MaterialColors.WHITE);
         jButtonRegistro.setBackground(MaterialColors.LIGHT_BLUE_A200);
 
+        jComboBoxUsuarios.removeAllItems();
+
         /* 
         Clase que viene con la libreria para que al pasar el raton por encima
         cambie el color
@@ -66,6 +120,11 @@ public class PantallaLogin extends javax.swing.JFrame {
         MaterialUIMovement.add(jButtonIniciar, MaterialColors.LIGHT_BLUE_100, WIDTH, ERROR);
         MaterialUIMovement.add(jButtonRegistro, MaterialColors.BLUE_200, 5, 100 / 30);
 
+    }
+    
+    public void lanzarPantallaPrincipal(){
+        PantallaPrincipal pantallaPrincipal = new PantallaPrincipal(this,true, gestionTwitter);
+        pantallaPrincipal.setVisible(true);
     }
 
     /**
@@ -98,9 +157,19 @@ public class PantallaLogin extends javax.swing.JFrame {
 
         jButtonIniciar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jButtonIniciar.setText("INICIAR");
+        jButtonIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIniciarActionPerformed(evt);
+            }
+        });
 
         jButtonRegistro.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jButtonRegistro.setText("REGISTRARSE");
+        jButtonRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistroActionPerformed(evt);
+            }
+        });
 
         jToolBarOpciones.setRollover(true);
 
@@ -173,6 +242,24 @@ public class PantallaLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistroActionPerformed
+        ConexionTwitter conexionTwitter = new ConexionTwitter(false);
+        gestionTwitter = new GestionTwitter(conexionTwitter.getTwitter());
+        this.setVisible(false);
+        lanzarPantallaPrincipal();
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonRegistroActionPerformed
+
+    private void jButtonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarActionPerformed
+       
+        Usuario usuario = BBDD.getUserData((String) jComboBoxUsuarios.getSelectedItem());
+        ConexionTwitter conexionTwitter = new ConexionTwitter(usuario);
+        gestionTwitter = new GestionTwitter(conexionTwitter.getTwitter());
+        this.setVisible(false);
+        lanzarPantallaPrincipal();
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonIniciarActionPerformed
 
     /**
      * @param args the command line arguments
