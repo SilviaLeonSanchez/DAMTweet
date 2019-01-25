@@ -45,11 +45,10 @@ public class PruebasBBDD {
         DAO daoBBDD = new DAO(bbdd);
 
         // CONSULTAR TABLA
-        ResultSet resultado = daoBBDD.ejecutarSELECT(tabla);
+        ResultSet resultado = daoBBDD.ejecutarSELECT(tabla, ciudad, "Madrid");
         try {
             while (resultado.next()) {
-                System.out.println(resultado.getInt(woeid) + "\t"
-                        + resultado.getString(ciudad));
+                System.out.println(resultado.getInt(woeid));
             }
         } catch (SQLException ex) {
             bbdd.desconectarBBDD();

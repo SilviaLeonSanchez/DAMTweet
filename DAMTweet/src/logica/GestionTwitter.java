@@ -13,6 +13,7 @@ import twitter4j.PagableResponseList;
 import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.Status;
+import twitter4j.Trend;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.User;
@@ -120,6 +121,34 @@ public class GestionTwitter {
             System.exit(-1);
         }
         return null;
+    }
+    
+    public Trend[] getTrendingTopics(int woeid){
+        Trend[] tt = null;
+        try {
+            tt = twitter.getPlaceTrends(woeid).getTrends();
+        } catch (TwitterException ex) {
+            Logger.getLogger(GestionTwitter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return tt;
+    }
+    
+    public String getLugarTrendingTopic(int woeid){
+        String lugar = null;
+        try {
+            lugar = twitter.getPlaceTrends(woeid).getLocation().getName();
+        } catch (TwitterException ex) {
+            Logger.getLogger(GestionTwitter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lugar;
+    }
+    
+    public int getTotalRetweetTT(Trend t){
+        return t.getTweetVolume();
+    }
+    
+    public String getTrendingTopic(Trend t){
+        return t.getName();
     }
 
 }
