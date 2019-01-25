@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import utils.bbdd.DAO;
 import utils.bbdd.GestorBBDD_SQLite;
 
 /**
@@ -41,11 +40,9 @@ public class PruebasBBDD {
         bbdd.ejecutar(sqlTablaTT);
         */
 
-        // GESITIONAR INFORMACION BBDD
-        DAO daoBBDD = new DAO(bbdd);
 
         // CONSULTAR TABLA
-        ResultSet resultado = daoBBDD.ejecutarSELECT(tabla, ciudad, "Madrid");
+        ResultSet resultado = bbdd.ejecutarSELECT("select * from "+tabla+" where "+ciudad+" = Madrid");
         try {
             while (resultado.next()) {
                 System.out.println(resultado.getInt(woeid));

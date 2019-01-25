@@ -7,6 +7,7 @@ package ventanas;
 
 import static java.awt.image.ImageObserver.ERROR;
 import static java.awt.image.ImageObserver.WIDTH;
+import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -21,14 +22,22 @@ import mdlaf.utils.MaterialColors;
  */
 public class PantallaLogin extends javax.swing.JFrame {
 
-    private static final String RUTA_LOGO = "/img/Twitter_Logo_Blue240.png";
+    private static final String RUTA_LOGO = File.separator +"img"+File.separator +"Twitter_Logo_Blue240.png";
+    public static String RUTA_BBDD;
+    public static String NOMBRE_BBDD = "twitter.sqlite3";
+    
     
     
     public PantallaLogin() {
         initComponents();
         jLabelLogo.setIcon( new ImageIcon(getClass().getResource(RUTA_LOGO)));
         
-         configureWindowAndComponents();
+        File bbdd = new File(File.separator + "bbdd" + File.separator + NOMBRE_BBDD);
+        if (bbdd.exists()){
+            RUTA_BBDD = bbdd.getAbsolutePath();
+        }
+        
+        configureWindowAndComponents();
     }
     
      public void configureWindowAndComponents() {
