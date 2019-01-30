@@ -5,16 +5,18 @@
  */
 package componentes;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Annie
  */
-public class TrendingTopicSinCabecera extends javax.swing.JPanel {
+public class TrendingTopic extends javax.swing.JPanel implements Serializable {
 
     private String numTweets;
     private String idUsuario;
     
-    public TrendingTopicSinCabecera() {
+    public TrendingTopic() {
         initComponents();
     }
 
@@ -24,6 +26,7 @@ public class TrendingTopicSinCabecera extends javax.swing.JPanel {
 
     public void setNumTweets(String numTweets) {
         this.numTweets = numTweets;
+        this.jLabelTotalTweets.setText(numTweets);
     }
 
     public String getIdUsuario() {
@@ -32,6 +35,7 @@ public class TrendingTopicSinCabecera extends javax.swing.JPanel {
 
     public void setIdUsuario(String idUsuario) {
         this.idUsuario = idUsuario;
+        this.jLabelIdUsuario.setText(idUsuario);
     }
 
     

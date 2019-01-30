@@ -1,10 +1,11 @@
-
 package componentes;
 
-import java.io.File;
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -16,36 +17,30 @@ import twitter4j.User;
  */
 public class EscribirTweet extends javax.swing.JPanel implements Serializable {
 
-    private File fotoPerfil;
-    private String textoTwittear;
-    private Twitter twitter;
-    
-     public EscribirTweet() throws TwitterException, MalformedURLException {
+
+    public EscribirTweet() {
         initComponents();
-       //Para que salga la foto del usuario
-       User usuario=twitter.showUser(twitter.getId());
-       URL urlImagen=new URL(usuario.getProfileImageURL());
-       ImageIcon imagen=new ImageIcon(urlImagen);
-       jLabelFoto.setIcon(imagen);
     }
 
-    public File getFotoPerfil() {
-        return fotoPerfil;
+    public Icon getFotoPerfil() {
+        return this.jLabelFoto.getIcon();
     }
-
-    public void setFotoPerfil(File fotoPerfil) {
-        this.fotoPerfil = fotoPerfil;
+    
+    public void setFotoPerfil(Twitter twitter){
+        try {
+            User usuario = twitter.showUser(twitter.getId());
+            URL urlImagen = new URL(usuario.getProfileImageURL());
+            ImageIcon imagen = new ImageIcon(urlImagen);
+            jLabelFoto.setIcon(imagen);
+        } catch (TwitterException | IllegalStateException | MalformedURLException ex) {
+            Logger.getLogger(EscribirTweet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public String getTextoTwittear() {
-        return textoTwittear;
+        return this.jTextFieldTexto.getText();
     }
 
-    public void setTextoTwittear(String textoTwittear) {
-        this.textoTwittear = textoTwittear;
-    }
-
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
