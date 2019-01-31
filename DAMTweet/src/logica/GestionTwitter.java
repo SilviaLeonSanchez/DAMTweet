@@ -27,6 +27,10 @@ public class GestionTwitter {
 
     private Twitter twitter;
 
+    public Twitter getTwitter() {
+        return twitter;
+    }
+
     public GestionTwitter(Twitter twitter) {
         this.twitter = twitter;
     }
@@ -49,9 +53,7 @@ public class GestionTwitter {
 
     public List<Status> getTweetsUsuario() {
         try {
-
             return this.twitter.getUserTimeline();
-
         } catch (TwitterException e) {
             e.printStackTrace();
         }
@@ -60,9 +62,7 @@ public class GestionTwitter {
 
     public List<Status> getUltimosTweetsUsuariosSeguidos() {
         try {
-
             return this.twitter.getHomeTimeline();
-
         } catch (TwitterException e) {
             e.printStackTrace();
         }
@@ -126,9 +126,11 @@ public class GestionTwitter {
     }
 
     /**
-     *  Realiza una busqueda de usuarios simple.
-     * @param username el nombre del usuario a busca    
-     * @param numPaginas el numero de paginas de usuarios a recoger(minimo 1 pagina)
+     * Realiza una busqueda de usuarios simple.
+     *
+     * @param username el nombre del usuario a busca
+     * @param numPaginas el numero de paginas de usuarios a recoger(minimo 1
+     * pagina)
      * @return List<User> lista con los usuarios que coinciden con la busquedas
      */
     public List<User> buscarUsuarios(String username, int numPaginas) {
@@ -137,7 +139,7 @@ public class GestionTwitter {
         try {
             do {
                 usuarios = twitter.searchUsers(username, 1);
-                
+
                 // Compruba que el metodo funciona
                 for (User usuario : usuarios) {
                     if (usuario.getStatus() != null) {

@@ -45,12 +45,12 @@ public class PantallaLogin extends javax.swing.JFrame {
         jLabelLogo.setIcon(new ImageIcon(getClass().getResource(RUTA_LOGO)));
 
         File paquete_bbdd = new File("bbdd" + File.separator + "twitter.sqlite3");
-        if (paquete_bbdd.exists()) {
-            RUTA_BBDD = paquete_bbdd.getAbsolutePath();
-        } else {
-            RUTA_BBDD = paquete_bbdd.getAbsolutePath();
+        RUTA_BBDD = paquete_bbdd.getAbsolutePath();
+        
+        if (!paquete_bbdd.exists()) {
             new File(File.separator + "bbdd").mkdir();
         }
+        
         System.out.println(RUTA_BBDD);
         BBDD = new GestorBBDD_SQLite(RUTA_BBDD);
         BBDD.crearTablas();

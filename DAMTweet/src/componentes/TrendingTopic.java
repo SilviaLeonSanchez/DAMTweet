@@ -6,6 +6,7 @@
 package componentes;
 
 import java.io.Serializable;
+import twitter4j.Trend;
 
 /**
  *
@@ -18,6 +19,12 @@ public class TrendingTopic extends javax.swing.JPanel implements Serializable {
     
     public TrendingTopic() {
         initComponents();
+    }
+    
+    public void inicializarComponente(Trend trendingTopic){
+        setIdUsuario(trendingTopic.getName());
+        int tweets = trendingTopic.getTweetVolume();
+        setNumTweets(((tweets != -1)? tweets+"" : ""));
     }
 
     public String getNumTweets() {
@@ -58,18 +65,19 @@ public class TrendingTopic extends javax.swing.JPanel implements Serializable {
         jPanelTrendingSinCabeceraLayout.setHorizontalGroup(
             jPanelTrendingSinCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTrendingSinCabeceraLayout.createSequentialGroup()
-                .addGroup(jPanelTrendingSinCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabelIdUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelTotalTweets, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(302, 302, 302))
+                .addContainerGap()
+                .addGroup(jPanelTrendingSinCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelTotalTweets, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                    .addComponent(jLabelIdUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanelTrendingSinCabeceraLayout.setVerticalGroup(
             jPanelTrendingSinCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTrendingSinCabeceraLayout.createSequentialGroup()
-                .addComponent(jLabelIdUsuario)
+                .addComponent(jLabelIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelTotalTweets)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addComponent(jLabelTotalTweets, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -85,8 +93,8 @@ public class TrendingTopic extends javax.swing.JPanel implements Serializable {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelTrendingSinCabecera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanelTrendingSinCabecera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

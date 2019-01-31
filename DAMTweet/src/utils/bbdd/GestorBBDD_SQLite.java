@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import logica.Usuario;
@@ -226,5 +229,40 @@ public class GestorBBDD_SQLite {
         }
         return null;
     }
+    
+    public HashMap<String, Integer> getWoeidTrendingTopic(){
+        try {
+            ResultSet resultado = ejecutarSELECT("select * from LUGARES_TT");
+            HashMap<String, Integer> lugaresTT = new HashMap<>();
+            
+            while (resultado.next()) {
+                lugaresTT.put(resultado.getString("ciudad"), resultado.getInt("woeid"));
+            }
+            
+            return lugaresTT;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(GestorBBDD_SQLite.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public List<String> getLugaresTrendingTopic(){
+        try {
+            ResultSet resultado = ejecutarSELECT("select ciudad from LUGARES_TT");
+            ArrayList<String> lugaresTT = new ArrayList<>();
+            
+            while (resultado.next()) {
+                lugaresTT.add(resultado.getString("ciudad"));
+            }
+            
+            return lugaresTT;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(GestorBBDD_SQLite.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
 
 }

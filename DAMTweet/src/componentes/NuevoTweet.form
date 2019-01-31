@@ -16,19 +16,19 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jPanelEscribirTweet" min="-2" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanelEscribirTweet" min="-2" pref="769" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanelEscribirTweet" max="32767" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -46,50 +46,54 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabelFoto" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="jButtonImagen" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="jLabelFoto" min="-2" pref="54" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jTextFieldTexto" min="-2" pref="650" max="-2" attributes="0"/>
+                          <EmptySpace min="5" max="32767" attributes="0"/>
+                          <Component id="jButtonAnhadirEmoji" min="-2" pref="38" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jButtonImagen" linkSize="1" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                          <Component id="jButtonGif" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="jButtonGif" linkSize="1" min="-2" pref="42" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                          <Component id="jButtonEncuesta" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="jButtonEncuesta" linkSize="1" min="-2" pref="37" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                          <Component id="jButtonUbicacion" min="-2" pref="34" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="189" max="-2" attributes="0"/>
-                          <Component id="jButtonMas_Anhadir" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="jButtonUbicacion" linkSize="1" min="-2" pref="35" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jButtonMas_Anhadir" linkSize="1" min="-2" pref="34" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="jButtonTwittear" min="-2" pref="112" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jTextFieldTexto" min="-2" pref="650" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="jButtonAnhadirEmoji" min="-2" pref="34" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButtonAnhadirEmoji" min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="jTextFieldTexto" min="-2" pref="137" max="-2" attributes="0"/>
-                      <Component id="jLabelFoto" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButtonGif" alignment="0" pref="34" max="32767" attributes="0"/>
-                      <Component id="jButtonEncuesta" alignment="0" pref="34" max="32767" attributes="0"/>
-                      <Component id="jButtonUbicacion" alignment="0" pref="34" max="32767" attributes="0"/>
-                      <Component id="jButtonMas_Anhadir" alignment="0" pref="34" max="32767" attributes="0"/>
-                      <Component id="jButtonImagen" pref="34" max="32767" attributes="0"/>
-                      <Component id="jButtonTwittear" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jButtonAnhadirEmoji" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="jTextFieldTexto" min="-2" pref="78" max="-2" attributes="0"/>
+                      <Component id="jLabelFoto" alignment="0" min="-2" pref="56" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jButtonGif" linkSize="3" min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="jButtonImagen" linkSize="3" min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="jButtonEncuesta" linkSize="3" min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="jButtonUbicacion" linkSize="3" min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="jButtonMas_Anhadir" linkSize="3" min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="jButtonTwittear" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -115,9 +119,6 @@
               <Image iconType="3" name="/img/gif.png"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGifActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonEncuesta">
           <Properties>
@@ -144,6 +145,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Twittear"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonTwittearActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldTexto">
           <Properties>
