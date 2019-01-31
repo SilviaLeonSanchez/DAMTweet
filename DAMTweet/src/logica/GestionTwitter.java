@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import twitter4j.PagableResponseList;
 import twitter4j.Query;
 import twitter4j.QueryResult;
+import twitter4j.ResponseList;
 import twitter4j.Status;
 import twitter4j.Trend;
 import twitter4j.Twitter;
@@ -100,16 +101,17 @@ public class GestionTwitter {
 
     /**
      * Realiza una busqueda standar tanto de texto como de hastags
+     *
      * @param stringQuery
-     * @return lista de tweets
+     * @return lista de tweets List<Status>
      */
     public List<Status> buscarTweets(String stringQuery) {
         try {
             Query busqueda = new Query(stringQuery);
-            QueryResult result;
-            result = twitter.search(busqueda);
+            QueryResult result = twitter.search(busqueda);
             List<Status> tweets = result.getTweets();
 
+            // Para comporprobar que funciona el metodo
             for (Status tweet : tweets) {
                 System.out.println("@" + tweet.getUser().getScreenName() + " - " + tweet.getText());
             }
@@ -122,8 +124,41 @@ public class GestionTwitter {
         }
         return null;
     }
-    
-    public Trend[] getTrendingTopics(int woeid){
+
+    /**
+     *  Realiza una busqueda de usuarios simple.
+     * @param username el nombre del usuario a busca    
+     * @param numPaginas el numero de paginas de usuarios a recoger(minimo 1 pagina)
+     * @return List<User> lista con los usuarios que coinciden con la busquedas
+     */
+    public List<User> buscarUsuarios(String username, int numPaginas) {
+        ResponseList<User> usuarios = null;
+        int page = 1;
+        try {
+            do {
+                usuarios = twitter.searchUsers(username, 1);
+                
+                // Compruba que el metodo funciona
+                for (User usuario : usuarios) {
+                    if (usuario.getStatus() != null) {
+                        System.out.println("@" + usuario.getScreenName() + " - " + usuario.getStatus().getText());
+                    } else {
+                        // el usuario es privado
+                        System.out.println("@" + usuario.getScreenName());
+                    }
+                }
+                page++;
+            } while (usuarios.size() != 0 && page < numPaginas);
+
+        } catch (TwitterException te) {
+            te.printStackTrace();
+            System.out.println("Error al buscar ususario: " + te.getMessage());
+            System.exit(-1);
+        }
+        return usuarios;
+    }
+
+    public Trend[] getTrendingTopics(int woeid) {
         Trend[] tt = null;
         try {
             tt = twitter.getPlaceTrends(woeid).getTrends();
@@ -132,8 +167,8 @@ public class GestionTwitter {
         }
         return tt;
     }
-    
-    public String getLugarTrendingTopic(int woeid){
+
+    public String getLugarTrendingTopic(int woeid) {
         String lugar = null;
         try {
             lugar = twitter.getPlaceTrends(woeid).getLocation().getName();
@@ -142,12 +177,12 @@ public class GestionTwitter {
         }
         return lugar;
     }
-    
-    public int getTotalRetweetTT(Trend t){
+
+    public int getTotalRetweetTT(Trend t) {
         return t.getTweetVolume();
     }
-    
-    public String getTrendingTopic(Trend t){
+
+    public String getTrendingTopic(Trend t) {
         return t.getName();
     }
 
