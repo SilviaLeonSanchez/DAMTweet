@@ -34,7 +34,7 @@ import utils.bbdd.GestorBBDD_SQLite;
  */
 public class PantallaLogin extends javax.swing.JFrame {
 
-    private static final String RUTA_LOGO = File.separator + "img" + File.separator + "Twitter_Logo_Blue240.png";
+   // private static final String RUTA_LOGO = File.separator + "img" + File.separator + "Twitter_Logo_Blue240.png";
     public static String RUTA_BBDD = null;
     public static GestorBBDD_SQLite BBDD;
     private GestionTwitter gestionTwitter;
@@ -42,7 +42,7 @@ public class PantallaLogin extends javax.swing.JFrame {
 
     public PantallaLogin() {
         initComponents();
-        jLabelLogo.setIcon(new ImageIcon(getClass().getResource(RUTA_LOGO)));
+        //jLabelLogo.setIcon(new ImageIcon(getClass().getResource(RUTA_LOGO)));
 
         File paquete_bbdd = new File("bbdd" + File.separator + "twitter.sqlite3");
         RUTA_BBDD = paquete_bbdd.getAbsolutePath();
@@ -150,6 +150,7 @@ public class PantallaLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Twitter_Logo_Blue240.png"))); // NOI18N
         jLabelLogo.setText("jLabel1");
         jLabelLogo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 

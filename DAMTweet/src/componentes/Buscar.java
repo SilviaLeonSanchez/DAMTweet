@@ -34,6 +34,8 @@ public class Buscar extends javax.swing.JPanel implements Serializable {
 
         jPanelBuscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jButtonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
+
         jTextFieldTexto.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextFieldTexto.setText("Buscar...");
         jTextFieldTexto.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
