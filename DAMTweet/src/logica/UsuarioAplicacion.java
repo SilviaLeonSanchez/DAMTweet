@@ -9,14 +9,14 @@ package logica;
  *
  * @author sebas
  */
-public class Usuario {
+public class UsuarioAplicacion {
     long id;
     String token;
     String nombre;
     String username;
     byte[] privateToken;
 
-    public Usuario(long id, String nombre, String username, String token, byte[] privateToken) {
+    public UsuarioAplicacion(long id, String nombre, String username, String token, byte[] privateToken) {
         this.id = id;
         this.username = username;
         this.nombre = nombre;

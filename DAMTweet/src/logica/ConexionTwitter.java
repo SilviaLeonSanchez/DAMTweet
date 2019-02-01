@@ -58,7 +58,7 @@ public class ConexionTwitter {
     }
 
     // Conexion de twetter con una session guardada
-    public ConexionTwitter(Usuario usuario) {
+    public ConexionTwitter(UsuarioAplicacion usuario) {
         this.twitter = TwitterFactory.getSingleton();
         String tokenDescifrado = null;
         try {

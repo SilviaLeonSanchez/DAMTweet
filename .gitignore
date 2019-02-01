@@ -1,2 +1,4 @@
 /DAMTweet/build/
 *.class
+/DAMTweet/nbproject/private/
+/DAMTweet/dist/

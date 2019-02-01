@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import logica.Usuario;
+import logica.UsuarioAplicacion;
 
 /**
  *
@@ -206,7 +206,7 @@ public class GestorBBDD_SQLite {
 
     }
 
-    public Usuario getUserData(String user_name) {
+    public UsuarioAplicacion getUserData(String user_name) {
         try {
             String sql = "SELECT * FROM USERS WHERE user_name=?";
 
@@ -222,7 +222,7 @@ public class GestorBBDD_SQLite {
                 String nombreUsuario = rs.getString("user_name");
                 String token = rs.getString("token");
                 byte[] secret_toekn = rs.getBytes("secret_token");
-                return new Usuario(id, nombre, nombreUsuario, token, secret_toekn);
+                return new UsuarioAplicacion(id, nombre, nombreUsuario, token, secret_toekn);
             }
         } catch (SQLException ex) {
             Logger.getLogger(GestorBBDD_SQLite.class.getName()).log(Level.SEVERE, null, ex);

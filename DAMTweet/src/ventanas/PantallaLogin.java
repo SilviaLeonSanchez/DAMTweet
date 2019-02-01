@@ -21,7 +21,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import logica.ConexionTwitter;
 import logica.GestionTwitter;
-import logica.Usuario;
+import logica.UsuarioAplicacion;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialColors;
@@ -59,13 +59,13 @@ public class PantallaLogin extends javax.swing.JFrame {
 
     }
 
-    public void rellenarComoBoxUsuarios(List<Usuario> usuarios) {
+    public void rellenarComoBoxUsuarios(List<UsuarioAplicacion> usuarios) {
         if (usuarios.size() < 1) {
             this.jComboBoxUsuarios.setVisible(false);
             this.jButtonIniciar.setVisible(false);
         } else {
             DefaultComboBoxModel dcm = new DefaultComboBoxModel();
-            for (Usuario usuario : usuarios) {
+            for (UsuarioAplicacion usuario : usuarios) {
                 dcm.addElement(usuario.getUsername());
             }
             jComboBoxUsuarios.setModel(dcm);
@@ -73,11 +73,11 @@ public class PantallaLogin extends javax.swing.JFrame {
 
     }
 
-    public List<Usuario> getUsuariosLogeados() {
+    public List<UsuarioAplicacion> getUsuariosLogeados() {
 
         ResultSet rs = BBDD.ejecutarSELECT("SELECT * FROM USERS;");
 
-        List<Usuario> usuariosLogeados = new ArrayList();
+        List<UsuarioAplicacion> usuariosLogeados = new ArrayList();
 
         try {
             while (rs.next()) {
@@ -86,7 +86,7 @@ public class PantallaLogin extends javax.swing.JFrame {
                 String nombreUsuario = rs.getString("user_name");
                 String token = rs.getString("token");
                 byte[] secret_toekn = rs.getBytes("secret_token");
-                usuariosLogeados.add(new Usuario(id, nombre, nombreUsuario, token, secret_toekn));
+                usuariosLogeados.add(new UsuarioAplicacion(id, nombre, nombreUsuario, token, secret_toekn));
             }
         } catch (SQLException ex) {
             Logger.getLogger(PantallaLogin.class.getName()).log(Level.SEVERE, null, ex);
@@ -254,7 +254,7 @@ public class PantallaLogin extends javax.swing.JFrame {
 
     private void jButtonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarActionPerformed
        
-        Usuario usuario = BBDD.getUserData((String) jComboBoxUsuarios.getSelectedItem());
+        UsuarioAplicacion usuario = BBDD.getUserData((String) jComboBoxUsuarios.getSelectedItem());
         ConexionTwitter conexionTwitter = new ConexionTwitter(usuario);
         gestionTwitter = new GestionTwitter(conexionTwitter.getTwitter());
         this.setVisible(false);
