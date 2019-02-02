@@ -15,7 +15,7 @@ import twitter4j.Trend;
 public class TrendingTopic extends javax.swing.JPanel implements Serializable {
 
     private String numTweets;
-    private String idUsuario;
+    private String trend;
     
     public TrendingTopic() {
         initComponents();
@@ -37,11 +37,11 @@ public class TrendingTopic extends javax.swing.JPanel implements Serializable {
     }
 
     public String getIdUsuario() {
-        return idUsuario;
+        return trend;
     }
 
     public void setIdUsuario(String idUsuario) {
-        this.idUsuario = idUsuario;
+        this.trend = idUsuario;
         this.jLabelIdUsuario.setText(idUsuario);
     }
 

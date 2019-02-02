@@ -98,6 +98,7 @@ public class GestionTwitter {
 
         return seguidores;
     }
+    
 
     /**
      * Realiza una busqueda standar tanto de texto como de hastags

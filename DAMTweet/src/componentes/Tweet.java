@@ -132,7 +132,6 @@ public class Tweet extends javax.swing.JPanel implements Serializable, ListCellR
         jLabelTweet = new javax.swing.JLabel();
         jButtonContestar = new javax.swing.JButton();
         jButtonLike = new javax.swing.JButton();
-        jButtonMensaje = new javax.swing.JButton();
         jButtonRetweet = new javax.swing.JButton();
 
         jPanelTweetsSinFoto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -156,8 +155,6 @@ public class Tweet extends javax.swing.JPanel implements Serializable, ListCellR
             }
         });
 
-        jButtonMensaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mensaje.png"))); // NOI18N
-
         jButtonRetweet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/retweet.png"))); // NOI18N
         jButtonRetweet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,8 +177,6 @@ public class Tweet extends javax.swing.JPanel implements Serializable, ListCellR
                         .addComponent(jButtonRetweet, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)
                         .addComponent(jButtonLike, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
-                        .addComponent(jButtonMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanelTweetsSinFotoLayout.createSequentialGroup()
                         .addGroup(jPanelTweetsSinFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,8 +206,7 @@ public class Tweet extends javax.swing.JPanel implements Serializable, ListCellR
                 .addGroup(jPanelTweetsSinFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonRetweet, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonContestar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonLike, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonLike, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -234,20 +228,19 @@ public class Tweet extends javax.swing.JPanel implements Serializable, ListCellR
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonLikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLikeActionPerformed
-      
-    }//GEN-LAST:event_jButtonLikeActionPerformed
-
     private void jButtonRetweetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetweetActionPerformed
         twitter.retwitearTweet(tweet);
         JOptionPane.showMessageDialog(this, "Se ha retuiteado correctamente");
     }//GEN-LAST:event_jButtonRetweetActionPerformed
 
+    private void jButtonLikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLikeActionPerformed
+
+    }//GEN-LAST:event_jButtonLikeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonContestar;
     private javax.swing.JButton jButtonLike;
-    private javax.swing.JButton jButtonMensaje;
     private javax.swing.JButton jButtonRetweet;
     private javax.swing.JLabel jLabelFecha;
     private javax.swing.JLabel jLabelFoto;

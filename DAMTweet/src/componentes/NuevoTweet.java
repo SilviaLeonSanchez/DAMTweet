@@ -166,8 +166,12 @@ public class NuevoTweet extends javax.swing.JPanel implements Serializable {
 
     private void jButtonTwittearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTwittearActionPerformed
         String tweet = this.jTextFieldTexto.getText();
+        if (tweet.length() > 140){
+            JOptionPane.showMessageDialog(this, "Tweet demasiado largo. Maximo 140 caracteres.");
+        }else{
         twitter.enviarTweet(tweet);
         JOptionPane.showMessageDialog(this, "Tweet enviado: "+tweet);
+        }
     }//GEN-LAST:event_jButtonTwittearActionPerformed
 
 

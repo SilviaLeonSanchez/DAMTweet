@@ -5,10 +5,17 @@
  */
 package informes;
 
+import twitter4j.Status;
+
 /**
  *
  * @author silvia
  */
-public class Seguidores {
+public class Tweet {
+
+    public Tweet(Status tweet) {
+    }
+    
+    
     
 }

@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -25,7 +24,6 @@ import logica.UsuarioAplicacion;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialColors;
-import twitter4j.Twitter;
 import utils.bbdd.GestorBBDD_SQLite;
 
 /**
@@ -37,8 +35,7 @@ public class PantallaLogin extends javax.swing.JFrame {
    // private static final String RUTA_LOGO = File.separator + "img" + File.separator + "Twitter_Logo_Blue240.png";
     public static String RUTA_BBDD = null;
     public static GestorBBDD_SQLite BBDD;
-    private GestionTwitter gestionTwitter;
-    private Twitter twitter;
+    public static GestionTwitter gestionTwitter;
 
     public PantallaLogin() {
         initComponents();
