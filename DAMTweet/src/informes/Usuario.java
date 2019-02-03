@@ -85,6 +85,11 @@ public class Usuario {
     public int getTotalAmigos() {
         return totalAmigos;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", fechaAlta=" + fechaAlta + ", descripcion=" + descripcion + ", email=" + email + ", localizacion=" + localizacion + ", idioma=" + idioma + ", totalTweetsPublicados=" + totalTweetsPublicados + ", totalSeguidores=" + totalSeguidores + ", totalFavoritos=" + totalFavoritos + ", totalAmigos=" + totalAmigos + '}';
+    }
     
     
     

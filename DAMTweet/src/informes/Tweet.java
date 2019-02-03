@@ -72,6 +72,11 @@ public class Tweet {
     public String getEnRespuestaAUsuario() {
         return enRespuestaAUsuario;
     }
+
+    @Override
+    public String toString() {
+        return "Tweet{" + "id=" + id + ", fecha=" + fecha + ", idioma=" + idioma + ", texto=" + texto + ", twiteadoPor=" + twiteadoPor + ", esFavorito=" + esFavorito + ", totalFavoritos=" + totalFavoritos + ", totalRetweets=" + totalRetweets + ", enRespuestaAUsuario=" + enRespuestaAUsuario + '}';
+    }
     
     
     
