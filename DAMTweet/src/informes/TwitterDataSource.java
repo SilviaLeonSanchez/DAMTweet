@@ -17,7 +17,8 @@ import static ventanas.PantallaLogin.gestionTwitter;
  */
 public class TwitterDataSource {
 
-    
+    // Falta indicar como parametro el usuario del que se quieren conseguir los tweets
+    // De momento esta puesto para los del usuario logueado
     public static List<Tweet> getTweets() {
         ArrayList<Tweet> tweets = new ArrayList<>();
         for (Status tweet : gestionTwitter.getTweetsUsuario()) {
@@ -34,11 +35,9 @@ public class TwitterDataSource {
         return seguidores;
     }
 
-    // Falta enlazar con los usuarios seguidos, 
-    // esta con los seguidores para que se pueda usar en pruebas
     public static List<Usuario> getSeguidos() {
         ArrayList<Usuario> seguidos = new ArrayList<>();
-        for (User seguido : gestionTwitter.getSeguidores()) {
+        for (User seguido : gestionTwitter.getSeguidos()) {
             seguidos.add(new Usuario(seguido));
         }
         return seguidos;

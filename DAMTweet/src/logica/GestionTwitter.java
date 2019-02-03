@@ -99,6 +99,18 @@ public class GestionTwitter {
         return seguidores;
     }
     
+    public List<User> getSeguidos() {
+        PagableResponseList<User> seguidos = null;
+
+        try {
+            seguidos = twitter.getFriendsList(getUsuario().getId(), -1);
+        } catch (TwitterException ex) {
+            Logger.getLogger(ConexionTwitter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return seguidos;
+    }
+    
 
     /**
      * Realiza una busqueda standar tanto de texto como de hastags
