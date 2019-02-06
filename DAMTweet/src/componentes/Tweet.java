@@ -13,9 +13,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
-import logica.GestionTwitter;
 import twitter4j.Status;
 import twitter4j.User;
+import static ventanas.PantallaLogin.gestionTwitter;
 
 /**
  *
@@ -25,11 +25,11 @@ public class Tweet extends javax.swing.JPanel implements Serializable, ListCellR
 
     // ATRIBUTOS
     private String nombreUsuario;
-    private String idUsuario;
+    private String id;
+    private String retweets;
     private String textoTweet;
 
     private SimpleDateFormat sdf;
-    private GestionTwitter twitter;
     private Status tweet;
 
     // METODOS
@@ -38,13 +38,13 @@ public class Tweet extends javax.swing.JPanel implements Serializable, ListCellR
         sdf = new SimpleDateFormat("dd-MM-yyyy");
     }
 
-    public void inicializarComponente(GestionTwitter gestorTwitter, Status tweet) {
+    public void inicializarComponente(Status tweet) {
         try {
             this.tweet = tweet;
-            this.twitter = gestorTwitter;
             setFecha(tweet.getCreatedAt());
-            setNombreUsuario(tweet.getUser().getScreenName());
-            //setIdUsuario(tweet.getUser().);
+            setNombreUsuario(tweet.getUser().getName());     
+            setId("@"+tweet.getUser().getScreenName());
+            setRetweets("Retweets "+Integer.toString(tweet.getRetweetCount()));
             setFotoUsuario();
             setTextoTweet(tweet.getText());
         } catch (IllegalStateException ex) {
@@ -62,13 +62,22 @@ public class Tweet extends javax.swing.JPanel implements Serializable, ListCellR
         this.jLabelUsuario.setText(nombreUsuario);
     }
 
-    public String getIdUsuario() {
-        return idUsuario;
+    public String getId() {
+        return id;
     }
 
-    public void setIdUsuario(String idUsuario) {
-        this.idUsuario = idUsuario;
-        this.jLabelUsuario.setText(idUsuario);
+    public void setId(String id) {
+        this.id = id;
+        this.jLabelId.setText(id);
+    }
+    
+    public String getRetweets() {
+        return retweets;
+    }
+
+    public void setRetweets(String retwets) {
+        this.retweets = retwets;
+        this.jLabelRetweets.setText(retwets);
     }
 
     public String getTextoTweet() {
@@ -76,24 +85,9 @@ public class Tweet extends javax.swing.JPanel implements Serializable, ListCellR
     }
 
     public void setTextoTweet(String textoTweet) {
-        String[] palabras = textoTweet.split(" ");
-        String texto = "";
-        int letras = 0;
-
-        for (String palabra : palabras) {
-            letras += palabra.length();
-            texto += palabra;
-            if (letras >= 60) {
-                texto += "\n";
-                letras = 0;
-            } else {
-                texto += " ";
-                letras++;
-            }
-        }
-        System.out.println(texto);
+        String texto = dividirTexto(textoTweet);
         this.textoTweet = texto;
-        this.jLabelTweet.setText(textoTweet);
+        this.jLabelTweet.setText(texto);
     }
 
     public Icon getFotoUsuario() {
@@ -118,6 +112,25 @@ public class Tweet extends javax.swing.JPanel implements Serializable, ListCellR
     public void setFecha(Date fecha) {
         this.jLabelFecha.setText(sdf.format(fecha));
     }
+    
+    private String dividirTexto(String textoTweet){
+        String[] palabras = textoTweet.split(" ");
+        String texto = "";
+        int letras = 0;
+
+        for (String palabra : palabras) {
+            letras += palabra.length();
+            texto += palabra;
+            if (letras >= 60) {
+                texto += "\n";
+                letras = 0;
+            } else {
+                texto += " ";
+                letras++;
+            }
+        }
+        return texto;
+    }
 
     // METODOS ESPECIFICOS
     @SuppressWarnings("unchecked")
@@ -126,27 +139,25 @@ public class Tweet extends javax.swing.JPanel implements Serializable, ListCellR
 
         jPanelTweetsSinFoto = new javax.swing.JPanel();
         jLabelUsuario = new javax.swing.JLabel();
-        jLabelIdUsuario = new javax.swing.JLabel();
+        jLabelRetweets = new javax.swing.JLabel();
         jLabelFoto = new javax.swing.JLabel();
         jLabelFecha = new javax.swing.JLabel();
         jLabelTweet = new javax.swing.JLabel();
-        jButtonContestar = new javax.swing.JButton();
         jButtonLike = new javax.swing.JButton();
         jButtonRetweet = new javax.swing.JButton();
+        jLabelId = new javax.swing.JLabel();
 
         jPanelTweetsSinFoto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabelUsuario.setText("Usuario");
 
-        jLabelIdUsuario.setText("Id Usuario");
+        jLabelRetweets.setText("Retweets");
 
         jLabelFoto.setMaximumSize(new java.awt.Dimension(48, 48));
         jLabelFoto.setMinimumSize(new java.awt.Dimension(48, 48));
         jLabelFoto.setPreferredSize(new java.awt.Dimension(48, 48));
 
         jLabelFecha.setText("Fecha");
-
-        jButtonContestar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/burbuja.png"))); // NOI18N
 
         jButtonLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/like.png"))); // NOI18N
         jButtonLike.addActionListener(new java.awt.event.ActionListener() {
@@ -162,6 +173,8 @@ public class Tweet extends javax.swing.JPanel implements Serializable, ListCellR
             }
         });
 
+        jLabelId.setText("Id");
+
         javax.swing.GroupLayout jPanelTweetsSinFotoLayout = new javax.swing.GroupLayout(jPanelTweetsSinFoto);
         jPanelTweetsSinFoto.setLayout(jPanelTweetsSinFotoLayout);
         jPanelTweetsSinFotoLayout.setHorizontalGroup(
@@ -171,22 +184,21 @@ public class Tweet extends javax.swing.JPanel implements Serializable, ListCellR
                 .addComponent(jLabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelTweetsSinFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelTweet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelTweetsSinFotoLayout.createSequentialGroup()
-                        .addComponent(jLabelTweet, javax.swing.GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE)
-                        .addGap(12, 12, 12))
-                    .addGroup(jPanelTweetsSinFotoLayout.createSequentialGroup()
-                        .addComponent(jLabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelId, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelRetweets, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabelIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonContestar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
                         .addComponent(jButtonRetweet, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
+                        .addGap(18, 18, 18)
                         .addComponent(jButtonLike, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(12, 12, 12))
         );
         jPanelTweetsSinFotoLayout.setVerticalGroup(
             jPanelTweetsSinFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,11 +208,11 @@ public class Tweet extends javax.swing.JPanel implements Serializable, ListCellR
                     .addComponent(jLabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelTweetsSinFotoLayout.createSequentialGroup()
                         .addGroup(jPanelTweetsSinFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelUsuario)
                             .addGroup(jPanelTweetsSinFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabelIdUsuario)
-                                .addComponent(jLabelUsuario))
-                            .addComponent(jLabelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonContestar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabelRetweets)
+                                .addComponent(jLabelId))
                             .addComponent(jButtonRetweet, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonLike, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -208,7 +220,7 @@ public class Tweet extends javax.swing.JPanel implements Serializable, ListCellR
                 .addGap(8, 8, 8))
         );
 
-        jPanelTweetsSinFotoLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabelFecha, jLabelIdUsuario, jLabelUsuario});
+        jPanelTweetsSinFotoLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabelFecha, jLabelId, jLabelRetweets, jLabelUsuario});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -229,7 +241,7 @@ public class Tweet extends javax.swing.JPanel implements Serializable, ListCellR
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRetweetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetweetActionPerformed
-        twitter.retwitearTweet(tweet);
+        gestionTwitter.retwitearTweet(tweet);
         JOptionPane.showMessageDialog(this, "Se ha retuiteado correctamente");
     }//GEN-LAST:event_jButtonRetweetActionPerformed
 
@@ -239,12 +251,12 @@ public class Tweet extends javax.swing.JPanel implements Serializable, ListCellR
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonContestar;
     private javax.swing.JButton jButtonLike;
     private javax.swing.JButton jButtonRetweet;
     private javax.swing.JLabel jLabelFecha;
     private javax.swing.JLabel jLabelFoto;
-    private javax.swing.JLabel jLabelIdUsuario;
+    private javax.swing.JLabel jLabelId;
+    private javax.swing.JLabel jLabelRetweets;
     private javax.swing.JLabel jLabelTweet;
     private javax.swing.JLabel jLabelUsuario;
     private javax.swing.JPanel jPanelTweetsSinFoto;
@@ -255,7 +267,7 @@ public class Tweet extends javax.swing.JPanel implements Serializable, ListCellR
         //CADA VEZ Q SALGA UN TWEET NUEVO, SALDRA LO SIGUIENTE
         Status status = (Status) value;
         //Id usuario
-        jLabelIdUsuario.setText("@" + status.getUser().getScreenName());
+        jLabelRetweets.setText("@" + status.getUser().getScreenName());
         //Nombre usuario
         jLabelUsuario.setText(status.getUser().getName());
         //Fecha

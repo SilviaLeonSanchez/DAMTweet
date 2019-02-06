@@ -26,7 +26,7 @@ public class PruebaComponenteTweet extends javax.swing.JFrame {
         GestionTwitter conexion = new GestionTwitter(con.getTwitter());
         List<Status> tweetsUsuariosSeguidos = conexion.getUltimosTweetsUsuariosSeguidos();
         Status tweet = tweetsUsuariosSeguidos.get(0);
-        this.tweet2.inicializarComponente(conexion, tweet);
+        this.tweet2.inicializarComponente(tweet);
     }
     
     

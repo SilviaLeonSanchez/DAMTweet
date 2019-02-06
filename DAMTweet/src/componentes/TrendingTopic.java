@@ -22,7 +22,11 @@ public class TrendingTopic extends javax.swing.JPanel implements Serializable {
     }
     
     public void inicializarComponente(Trend trendingTopic){
-        setIdUsuario(trendingTopic.getName());
+        String nombre = trendingTopic.getName();
+        if (!nombre.startsWith("#")){
+            nombre = "#"+nombre;
+        }
+        setIdUsuario(nombre);
         int tweets = trendingTopic.getTweetVolume();
         setNumTweets(((tweets != -1)? tweets+"" : ""));
     }

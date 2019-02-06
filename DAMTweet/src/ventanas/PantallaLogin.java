@@ -32,22 +32,23 @@ import utils.bbdd.GestorBBDD_SQLite;
  */
 public class PantallaLogin extends javax.swing.JFrame {
 
-   // private static final String RUTA_LOGO = File.separator + "img" + File.separator + "Twitter_Logo_Blue240.png";
+    // private static final String RUTA_LOGO = File.separator + "img" + File.separator + "Twitter_Logo_Blue240.png";
     public static String RUTA_BBDD = null;
     public static GestorBBDD_SQLite BBDD;
     public static GestionTwitter gestionTwitter;
 
     public PantallaLogin() {
         initComponents();
+        setLocationRelativeTo(null);
         //jLabelLogo.setIcon(new ImageIcon(getClass().getResource(RUTA_LOGO)));
 
         File paquete_bbdd = new File("bbdd" + File.separator + "twitter.sqlite3");
         RUTA_BBDD = paquete_bbdd.getAbsolutePath();
-        
+
         if (!paquete_bbdd.exists()) {
             new File(File.separator + "bbdd").mkdir();
         }
-        
+
         System.out.println(RUTA_BBDD);
         BBDD = new GestorBBDD_SQLite(RUTA_BBDD);
         BBDD.crearTablas();
@@ -118,9 +119,9 @@ public class PantallaLogin extends javax.swing.JFrame {
         MaterialUIMovement.add(jButtonRegistro, MaterialColors.BLUE_200, 5, 100 / 30);
 
     }
-    
-    public void lanzarPantallaPrincipal(){
-        PantallaPrincipal pantallaPrincipal = new PantallaPrincipal(this,true, gestionTwitter);
+
+    public void lanzarPantallaPrincipal() {
+        PantallaPrincipal pantallaPrincipal = new PantallaPrincipal(this, true);
         pantallaPrincipal.setVisible(true);
     }
 
@@ -137,12 +138,6 @@ public class PantallaLogin extends javax.swing.JFrame {
         jComboBoxUsuarios = new javax.swing.JComboBox<>();
         jButtonIniciar = new javax.swing.JButton();
         jButtonRegistro = new javax.swing.JButton();
-        jToolBarOpciones = new javax.swing.JToolBar();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -169,38 +164,6 @@ public class PantallaLogin extends javax.swing.JFrame {
             }
         });
 
-        jToolBarOpciones.setRollover(true);
-
-        jButton2.setText("jButton1");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBarOpciones.add(jButton2);
-
-        jButton3.setText("jButton2");
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBarOpciones.add(jButton3);
-
-        jButton4.setText("jButton3");
-        jButton4.setFocusable(false);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBarOpciones.add(jButton4);
-
-        jButton5.setText("jButton4");
-        jButton5.setFocusable(false);
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBarOpciones.add(jButton5);
-
-        jButton6.setText("jButton5");
-        jButton6.setFocusable(false);
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBarOpciones.add(jButton6);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -218,16 +181,12 @@ public class PantallaLogin extends javax.swing.JFrame {
                                 .addComponent(jComboBoxUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
                                 .addComponent(jButtonIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(400, 400, 400))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBarOpciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(400, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBarOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(105, 105, 105)
+                .addGap(145, 145, 145)
                 .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -250,7 +209,7 @@ public class PantallaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRegistroActionPerformed
 
     private void jButtonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarActionPerformed
-       
+
         UsuarioAplicacion usuario = BBDD.getUserData((String) jComboBoxUsuarios.getSelectedItem());
         ConexionTwitter conexionTwitter = new ConexionTwitter(usuario);
         gestionTwitter = new GestionTwitter(conexionTwitter.getTwitter());
@@ -298,15 +257,9 @@ public class PantallaLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButtonIniciar;
     private javax.swing.JButton jButtonRegistro;
     private javax.swing.JComboBox<String> jComboBoxUsuarios;
     private javax.swing.JLabel jLabelLogo;
-    private javax.swing.JToolBar jToolBarOpciones;
     // End of variables declaration//GEN-END:variables
 }

@@ -51,25 +51,23 @@
                   <Component id="jLabelFoto" min="-2" pref="88" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabelTweet" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="jLabelTweet" pref="629" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabelUsuario" min="-2" pref="132" max="-2" attributes="0"/>
+                          <Component id="jLabelUsuario" min="-2" pref="146" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jLabelId" min="-2" pref="140" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jLabelRetweets" min="-2" pref="96" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jLabelFecha" min="-2" pref="86" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabelIdUsuario" min="-2" pref="112" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabelFecha" min="-2" pref="112" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jButtonContestar" min="-2" pref="34" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="jButtonRetweet" min="-2" pref="34" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jButtonLike" min="-2" pref="35" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -81,12 +79,12 @@
                       <Component id="jLabelFoto" min="-2" pref="89" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                  <Component id="jLabelIdUsuario" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelUsuario" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelUsuario" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabelFecha" linkSize="1" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Component id="jLabelRetweets" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelId" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jLabelFecha" linkSize="1" min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="jButtonContestar" min="-2" pref="34" max="-2" attributes="0"/>
                               <Component id="jButtonRetweet" min="-2" pref="34" max="-2" attributes="0"/>
                               <Component id="jButtonLike" min="-2" pref="34" max="-2" attributes="0"/>
                           </Group>
@@ -105,9 +103,9 @@
             <Property name="text" type="java.lang.String" value="Usuario"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabelIdUsuario">
+        <Component class="javax.swing.JLabel" name="jLabelRetweets">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Id Usuario"/>
+            <Property name="text" type="java.lang.String" value="Retweets"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelFoto">
@@ -130,13 +128,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelTweet">
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonContestar">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/burbuja.png"/>
-            </Property>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="jButtonLike">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -156,6 +147,11 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRetweetActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelId">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Id"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
