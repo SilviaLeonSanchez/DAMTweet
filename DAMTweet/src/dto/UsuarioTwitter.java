@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package informes;
+package dto;
 
 import java.util.Date;
 import twitter4j.User;
@@ -12,7 +12,7 @@ import twitter4j.User;
  *
  * @author silvia
  */
-public class Usuario {
+public class UsuarioTwitter {
     
     private final long id;
     private final String nombre;
@@ -28,7 +28,7 @@ public class Usuario {
     private final int totalAmigos;
     
 
-    public Usuario(User user) {
+    public UsuarioTwitter(User user) {
         this.id = user.getId();
         this.nombre = "@" + user.getScreenName();
         this.fechaAlta = user.getCreatedAt();

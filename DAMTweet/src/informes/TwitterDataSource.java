@@ -5,6 +5,8 @@
  */
 package informes;
 
+import dto.Tweet;
+import dto.UsuarioTwitter;
 import java.util.ArrayList;
 import java.util.List;
 import logica.ConexionTwitter;
@@ -35,26 +37,26 @@ public class TwitterDataSource {
         return tweets;
     }
 
-    public static List<Usuario> getSeguidores() {
+    public static List<UsuarioTwitter> getSeguidores() {
         // SOLO PARA PRUEBAS
         ConexionTwitter conexionTwitter = new ConexionTwitter(true);
         GestionTwitter gestionTwitter = new GestionTwitter(conexionTwitter.getTwitter());
         
-        ArrayList<Usuario> seguidores = new ArrayList<>();
+        ArrayList<UsuarioTwitter> seguidores = new ArrayList<>();
         for (User seguidor : gestionTwitter.getSeguidores()) {
-            seguidores.add(new Usuario(seguidor));
+            seguidores.add(new UsuarioTwitter(seguidor));
         }
         return seguidores;
     }
 
-    public static List<Usuario> getSeguidos() {
+    public static List<UsuarioTwitter> getSeguidos() {
         // SOLO PARA PRUEBAS
         ConexionTwitter conexionTwitter = new ConexionTwitter(true);
         GestionTwitter gestionTwitter = new GestionTwitter(conexionTwitter.getTwitter());
         
-        ArrayList<Usuario> seguidos = new ArrayList<>();
+        ArrayList<UsuarioTwitter> seguidos = new ArrayList<>();
         for (User seguido : gestionTwitter.getSeguidos()) {
-            seguidos.add(new Usuario(seguido));
+            seguidos.add(new UsuarioTwitter(seguido));
         }
         return seguidos;
     }

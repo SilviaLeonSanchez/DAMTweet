@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package informes;
+package dto;
 
 import java.util.Date;
 import twitter4j.Status;

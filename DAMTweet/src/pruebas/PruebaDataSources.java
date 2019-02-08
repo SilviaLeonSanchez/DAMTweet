@@ -5,9 +5,9 @@
  */
 package pruebas;
 
-import informes.Tweet;
+import dto.Tweet;
 import informes.TwitterDataSource;
-import informes.Usuario;
+import dto.UsuarioTwitter;
 import java.util.List;
 
 /**
@@ -30,18 +30,18 @@ public class PruebaDataSources {
         }
         
         // VER SEGUIDORES
-        List<Usuario> seguidores = TwitterDataSource.getSeguidores();
+        List<UsuarioTwitter> seguidores = TwitterDataSource.getSeguidores();
         
         System.out.println("SEGUIDORES");
-        for (Usuario seguidor : seguidores) {
+        for (UsuarioTwitter seguidor : seguidores) {
             System.out.println(seguidor.toString());
         }
         
         // VER SEGUIDOS
-        List<Usuario> seguidos = TwitterDataSource.getSeguidos();
+        List<UsuarioTwitter> seguidos = TwitterDataSource.getSeguidos();
         
         System.out.println("SEGUIDOS");
-        for (Usuario seguido : seguidos) {
+        for (UsuarioTwitter seguido : seguidos) {
             System.out.println(seguido.toString());
         }
         
