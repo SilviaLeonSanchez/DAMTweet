@@ -51,23 +51,22 @@
                   <Component id="jLabelFoto" min="-2" pref="88" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabelTweet" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="jLabelUsuario" min="-2" pref="146" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jLabelId" min="-2" pref="140" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jLabelRetweets" min="-2" pref="96" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jLabelFecha" min="-2" pref="86" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jLabelRetweets" min="-2" pref="51" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jButtonRetweet" min="-2" pref="34" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jButtonLike" min="-2" pref="35" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
+                      <Component id="jLabelTweet" min="-2" pref="564" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -79,12 +78,12 @@
                       <Component id="jLabelFoto" min="-2" pref="89" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabelUsuario" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabelFecha" linkSize="1" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                                  <Component id="jLabelRetweets" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="jLabelUsuario" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelId" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelFecha" linkSize="1" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="jLabelRetweets" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jButtonRetweet" min="-2" pref="34" max="-2" attributes="0"/>
                               <Component id="jButtonLike" min="-2" pref="34" max="-2" attributes="0"/>
                           </Group>
@@ -104,9 +103,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelRetweets">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Retweets"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelFoto">
           <Properties>

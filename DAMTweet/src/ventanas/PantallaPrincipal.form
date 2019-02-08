@@ -3,6 +3,15 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="null"/>
+    </Property>
+    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="null"/>
+    </Property>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[1024, 600]"/>
+    </Property>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
@@ -25,44 +34,46 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jLabelUsuario" pref="196" max="32767" attributes="0"/>
                   <Component id="jPanelTrendingTopics" max="32767" attributes="0"/>
-                  <Component id="jLabelUsuario" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="Buscador" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="Buscador" pref="0" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jButtonAjustes" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPaneTweets" min="-2" pref="788" max="-2" attributes="0"/>
+                  <Component id="componenteNuevoTweet" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPaneTweets" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="Buscador" max="32767" attributes="0"/>
-                          <Component id="jButtonAjustes" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="Buscador" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonAjustes" min="-2" pref="62" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="jScrollPaneTweets" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="componenteNuevoTweet" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="jLabelUsuario" pref="180" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="jPanelTrendingTopics" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jLabelUsuario" min="-2" pref="181" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jPanelTrendingTopics" max="32767" attributes="0"/>
+                  <Component id="jScrollPaneTweets" pref="0" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -79,27 +90,28 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="trendingTopic10" pref="0" max="32767" attributes="0"/>
+                      <Component id="trendingTopic9" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="trendingTopic8" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="trendingTopic7" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="trendingTopic6" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="trendingTopic5" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="trendingTopic4" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="trendingTopic3" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="trendingTopic2" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="trendingTopic1" alignment="0" pref="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                          <Component id="jLabelTituloTrendingTopics" min="-2" pref="163" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jLabelLugarTrendingTopics" min="-2" pref="146" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jLabelTituloTrendingTopics" pref="163" max="32767" attributes="0"/>
+                              <Component id="jLabelLugarTrendingTopics" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
-                      <Component id="trendingTopic5" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="trendingTopic6" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="trendingTopic7" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="trendingTopic8" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="trendingTopic9" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="trendingTopic10" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="trendingTopic1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="trendingTopic4" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="trendingTopic3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="trendingTopic2" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -107,10 +119,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabelTituloTrendingTopics" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="jLabelLugarTrendingTopics" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jLabelTituloTrendingTopics" min="-2" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jLabelLugarTrendingTopics" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="trendingTopic1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -193,18 +204,23 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="tweet5" pref="773" max="32767" attributes="0"/>
-                          <Component id="tweet6" max="32767" attributes="0"/>
-                          <Component id="tweet7" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tweet8" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tweet9" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tweet10" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tweet4" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tweet3" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tweet2" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tweet1" alignment="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="tweet1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tweet2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tweet10" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tweet9" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tweet8" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tweet7" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tweet6" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="tweet5" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="tweet3" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="tweet4" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -213,9 +229,8 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="tweet1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="tweet2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="tweet3" min="-2" max="-2" attributes="0"/>
@@ -243,25 +258,27 @@
             </Component>
             <Component class="componentes.Tweet" name="tweet2">
             </Component>
-            <Component class="componentes.Tweet" name="tweet3">
-            </Component>
-            <Component class="componentes.Tweet" name="tweet4">
-            </Component>
-            <Component class="componentes.Tweet" name="tweet5">
-            </Component>
-            <Component class="componentes.Tweet" name="tweet6">
-            </Component>
-            <Component class="componentes.Tweet" name="tweet7">
-            </Component>
-            <Component class="componentes.Tweet" name="tweet8">
+            <Component class="componentes.Tweet" name="tweet10">
             </Component>
             <Component class="componentes.Tweet" name="tweet9">
             </Component>
-            <Component class="componentes.Tweet" name="tweet10">
+            <Component class="componentes.Tweet" name="tweet8">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet7">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet6">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet5">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet3">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet4">
             </Component>
           </SubComponents>
         </Container>
       </SubComponents>
     </Container>
+    <Component class="componentes.NuevoTweet" name="componenteNuevoTweet">
+    </Component>
   </SubComponents>
 </Form>
