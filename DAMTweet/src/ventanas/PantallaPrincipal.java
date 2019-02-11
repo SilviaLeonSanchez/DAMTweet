@@ -6,7 +6,7 @@
 package ventanas;
 
 import componentes.TrendingTopic;
-import componentes.Tweet;
+import componentes.ComponenteTweet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +25,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     
     
     private ArrayList<TrendingTopic> componentesTrendingTopic;
-    private ArrayList<Tweet> componentesTweet;
+    private ArrayList<ComponenteTweet> componentesTweet;
     
     
     /**
@@ -87,7 +87,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     private void inicializarTweets(){
         List<Status> tweets = gestionTwitter.getUltimosTweetsUsuariosSeguidos();
         int i = 0;
-        for (Tweet componente : componentesTweet) {
+        for (ComponenteTweet componente : componentesTweet) {
            componente.inicializarComponente(tweets.get(i));
            i++;
         }
@@ -120,16 +120,16 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         Buscador = new componentes.Buscar();
         jScrollPaneTweets = new javax.swing.JScrollPane();
         jPanelTweets = new javax.swing.JPanel();
-        tweet1 = new componentes.Tweet();
-        tweet2 = new componentes.Tweet();
-        tweet10 = new componentes.Tweet();
-        tweet9 = new componentes.Tweet();
-        tweet8 = new componentes.Tweet();
-        tweet7 = new componentes.Tweet();
-        tweet6 = new componentes.Tweet();
-        tweet5 = new componentes.Tweet();
-        tweet3 = new componentes.Tweet();
-        tweet4 = new componentes.Tweet();
+        tweet1 = new componentes.ComponenteTweet();
+        tweet2 = new componentes.ComponenteTweet();
+        tweet10 = new componentes.ComponenteTweet();
+        tweet9 = new componentes.ComponenteTweet();
+        tweet8 = new componentes.ComponenteTweet();
+        tweet7 = new componentes.ComponenteTweet();
+        tweet6 = new componentes.ComponenteTweet();
+        tweet5 = new componentes.ComponenteTweet();
+        tweet3 = new componentes.ComponenteTweet();
+        tweet4 = new componentes.ComponenteTweet();
         componenteNuevoTweet = new componentes.NuevoTweet();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -313,15 +313,15 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     private componentes.TrendingTopic trendingTopic7;
     private componentes.TrendingTopic trendingTopic8;
     private componentes.TrendingTopic trendingTopic9;
-    private componentes.Tweet tweet1;
-    private componentes.Tweet tweet10;
-    private componentes.Tweet tweet2;
-    private componentes.Tweet tweet3;
-    private componentes.Tweet tweet4;
-    private componentes.Tweet tweet5;
-    private componentes.Tweet tweet6;
-    private componentes.Tweet tweet7;
-    private componentes.Tweet tweet8;
-    private componentes.Tweet tweet9;
+    private componentes.ComponenteTweet tweet1;
+    private componentes.ComponenteTweet tweet10;
+    private componentes.ComponenteTweet tweet2;
+    private componentes.ComponenteTweet tweet3;
+    private componentes.ComponenteTweet tweet4;
+    private componentes.ComponenteTweet tweet5;
+    private componentes.ComponenteTweet tweet6;
+    private componentes.ComponenteTweet tweet7;
+    private componentes.ComponenteTweet tweet8;
+    private componentes.ComponenteTweet tweet9;
     // End of variables declaration//GEN-END:variables
 }

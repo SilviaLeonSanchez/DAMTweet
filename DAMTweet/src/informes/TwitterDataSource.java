@@ -13,7 +13,6 @@ import logica.ConexionTwitter;
 import logica.GestionTwitter;
 import twitter4j.Status;
 import twitter4j.User;
-import static ventanas.PantallaLogin.gestionTwitter;
 
 /**
  *
@@ -25,7 +24,7 @@ public class TwitterDataSource {
 
     // Falta indicar como parametro el usuario del que se quieren conseguir los tweets
     // De momento esta puesto para los del usuario logueado
-    public static List<Tweet> getTweets() {
+    public static ArrayList<Tweet> getTweets() {
         // SOLO PARA PRUEBAS
         ConexionTwitter conexionTwitter = new ConexionTwitter(true);
         GestionTwitter gestionTwitter = new GestionTwitter(conexionTwitter.getTwitter());
@@ -37,7 +36,7 @@ public class TwitterDataSource {
         return tweets;
     }
 
-    public static List<UsuarioTwitter> getSeguidores() {
+    public static ArrayList<UsuarioTwitter> getSeguidores() {
         // SOLO PARA PRUEBAS
         ConexionTwitter conexionTwitter = new ConexionTwitter(true);
         GestionTwitter gestionTwitter = new GestionTwitter(conexionTwitter.getTwitter());
@@ -49,7 +48,7 @@ public class TwitterDataSource {
         return seguidores;
     }
 
-    public static List<UsuarioTwitter> getSeguidos() {
+    public static ArrayList<UsuarioTwitter> getSeguidos() {
         // SOLO PARA PRUEBAS
         ConexionTwitter conexionTwitter = new ConexionTwitter(true);
         GestionTwitter gestionTwitter = new GestionTwitter(conexionTwitter.getTwitter());

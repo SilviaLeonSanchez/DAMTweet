@@ -255,25 +255,25 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="componentes.Tweet" name="tweet1">
+            <Component class="componentes.ComponenteTweet" name="tweet1">
             </Component>
-            <Component class="componentes.Tweet" name="tweet2">
+            <Component class="componentes.ComponenteTweet" name="tweet2">
             </Component>
-            <Component class="componentes.Tweet" name="tweet10">
+            <Component class="componentes.ComponenteTweet" name="tweet10">
             </Component>
-            <Component class="componentes.Tweet" name="tweet9">
+            <Component class="componentes.ComponenteTweet" name="tweet9">
             </Component>
-            <Component class="componentes.Tweet" name="tweet8">
+            <Component class="componentes.ComponenteTweet" name="tweet8">
             </Component>
-            <Component class="componentes.Tweet" name="tweet7">
+            <Component class="componentes.ComponenteTweet" name="tweet7">
             </Component>
-            <Component class="componentes.Tweet" name="tweet6">
+            <Component class="componentes.ComponenteTweet" name="tweet6">
             </Component>
-            <Component class="componentes.Tweet" name="tweet5">
+            <Component class="componentes.ComponenteTweet" name="tweet5">
             </Component>
-            <Component class="componentes.Tweet" name="tweet3">
+            <Component class="componentes.ComponenteTweet" name="tweet3">
             </Component>
-            <Component class="componentes.Tweet" name="tweet4">
+            <Component class="componentes.ComponenteTweet" name="tweet4">
             </Component>
           </SubComponents>
         </Container>

@@ -21,7 +21,7 @@ import static ventanas.PantallaLogin.gestionTwitter;
  *
  * @author Annie
  */
-public class Tweet extends javax.swing.JPanel implements Serializable, ListCellRenderer {
+public class ComponenteTweet extends javax.swing.JPanel implements Serializable, ListCellRenderer {
 
     // ATRIBUTOS
     private String nombreUsuario;
@@ -33,7 +33,7 @@ public class Tweet extends javax.swing.JPanel implements Serializable, ListCellR
     private Status tweet;
 
     // METODOS
-    public Tweet() {
+    public ComponenteTweet() {
         initComponents();
         sdf = new SimpleDateFormat("dd-MM-yyyy");
     }
@@ -276,7 +276,7 @@ public class Tweet extends javax.swing.JPanel implements Serializable, ListCellR
         try {
             urlImagen = new URL(status.getUser().getProfileImageURL());
         } catch (MalformedURLException ex) {
-            Logger.getLogger(Tweet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ComponenteTweet.class.getName()).log(Level.SEVERE, null, ex);
         }
         ImageIcon imagen = new ImageIcon(urlImagen);
         jLabelFoto.setIcon(imagen);
