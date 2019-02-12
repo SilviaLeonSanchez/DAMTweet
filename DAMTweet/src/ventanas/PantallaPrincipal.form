@@ -3,7 +3,6 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="locationByPlatform" type="boolean" value="true"/>
     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[1280, 720]"/>
     </Property>
@@ -36,11 +35,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jPanelTrendingTopics" max="32767" attributes="0"/>
-                  <Component id="jLabelUsuario" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jPanelTrendingTopics" min="-2" max="-2" attributes="0"/>
+                  <Component id="usuario1" min="-2" pref="361" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="99" max="32767" attributes="0"/>
+              <EmptySpace pref="40" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="Buscador" pref="0" max="32767" attributes="0"/>
@@ -58,9 +57,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jLabelUsuario" min="-2" pref="156" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="usuario1" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanelTrendingTopics" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -75,18 +74,12 @@
                       <Component id="jScrollPaneTweets" min="-2" pref="427" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="71" max="32767" attributes="0"/>
+              <EmptySpace pref="45" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabelUsuario">
-      <Properties>
-        <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="USUARIO ( Y SEGUIDORES )"/>
-      </Properties>
-    </Component>
     <Container class="javax.swing.JPanel" name="jPanelTrendingTopics">
 
       <Layout>
@@ -206,22 +199,16 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="tweet1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tweet2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tweet10" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tweet9" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tweet8" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tweet7" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tweet6" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="tweet5" alignment="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="tweet3" alignment="1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="tweet4" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="tweetConScroll1" max="32767" attributes="0"/>
+                          <Component id="tweetConScroll2" pref="699" max="32767" attributes="0"/>
+                          <Component id="tweetConScroll3" pref="699" max="32767" attributes="0"/>
+                          <Component id="tweetConScroll4" max="32767" attributes="0"/>
+                          <Component id="tweetConScroll5" max="32767" attributes="0"/>
+                          <Component id="tweetConScroll6" pref="699" max="32767" attributes="0"/>
+                          <Component id="tweetConScroll7" pref="699" max="32767" attributes="0"/>
+                          <Component id="tweetConScroll8" max="32767" attributes="0"/>
+                          <Component id="tweetConScroll9" max="32767" attributes="0"/>
+                          <Component id="tweetConScroll10" pref="699" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -230,56 +217,58 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="tweet1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="tweet2" min="-2" max="-2" attributes="0"/>
+                      <Component id="tweetConScroll1" min="-2" pref="115" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tweet3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tweetConScroll2" min="-2" pref="115" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tweet4" min="-2" max="-2" attributes="0"/>
+                      <Component id="tweetConScroll4" min="-2" pref="115" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tweet5" min="-2" max="-2" attributes="0"/>
+                      <Component id="tweetConScroll3" min="-2" pref="115" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tweet6" min="-2" max="-2" attributes="0"/>
+                      <Component id="tweetConScroll8" min="-2" pref="115" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tweet7" min="-2" max="-2" attributes="0"/>
+                      <Component id="tweetConScroll7" min="-2" pref="115" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tweet8" min="-2" max="-2" attributes="0"/>
+                      <Component id="tweetConScroll9" min="-2" pref="115" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tweet9" min="-2" max="-2" attributes="0"/>
+                      <Component id="tweetConScroll10" min="-2" pref="115" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tweet10" min="-2" max="-2" attributes="0"/>
+                      <Component id="tweetConScroll5" min="-2" pref="115" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tweetConScroll6" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace pref="1133" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="componentes.ComponenteTweet" name="tweet1">
+            <Component class="componentes.TweetConScroll" name="tweetConScroll1">
             </Component>
-            <Component class="componentes.ComponenteTweet" name="tweet2">
+            <Component class="componentes.TweetConScroll" name="tweetConScroll2">
             </Component>
-            <Component class="componentes.ComponenteTweet" name="tweet10">
+            <Component class="componentes.TweetConScroll" name="tweetConScroll3">
             </Component>
-            <Component class="componentes.ComponenteTweet" name="tweet9">
+            <Component class="componentes.TweetConScroll" name="tweetConScroll4">
             </Component>
-            <Component class="componentes.ComponenteTweet" name="tweet8">
+            <Component class="componentes.TweetConScroll" name="tweetConScroll5">
             </Component>
-            <Component class="componentes.ComponenteTweet" name="tweet7">
+            <Component class="componentes.TweetConScroll" name="tweetConScroll6">
             </Component>
-            <Component class="componentes.ComponenteTweet" name="tweet6">
+            <Component class="componentes.TweetConScroll" name="tweetConScroll7">
             </Component>
-            <Component class="componentes.ComponenteTweet" name="tweet5">
+            <Component class="componentes.TweetConScroll" name="tweetConScroll8">
             </Component>
-            <Component class="componentes.ComponenteTweet" name="tweet3">
+            <Component class="componentes.TweetConScroll" name="tweetConScroll9">
             </Component>
-            <Component class="componentes.ComponenteTweet" name="tweet4">
+            <Component class="componentes.TweetConScroll" name="tweetConScroll10">
             </Component>
           </SubComponents>
         </Container>
       </SubComponents>
     </Container>
     <Component class="componentes.NuevoTweet" name="componenteNuevoTweet">
+    </Component>
+    <Component class="componentes.Usuario" name="usuario1">
     </Component>
   </SubComponents>
 </Form>

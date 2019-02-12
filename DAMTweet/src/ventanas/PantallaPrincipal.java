@@ -7,45 +7,48 @@ package ventanas;
 
 import componentes.TrendingTopic;
 import componentes.ComponenteTweet;
+import componentes.TweetConScroll;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import twitter4j.Status;
 import twitter4j.Trend;
+import utils.Listeners;
 import static ventanas.PantallaLogin.BBDD;
 import static ventanas.PantallaLogin.gestionTwitter;
-
-
 
 /**
  *
  * @author alumnop
  */
 public class PantallaPrincipal extends javax.swing.JDialog {
-    
-    
+
     private ArrayList<TrendingTopic> componentesTrendingTopic;
-    private ArrayList<ComponenteTweet> componentesTweet;
-    
-    
+    private ArrayList<TweetConScroll> tweetsConScroll;
+    private Listeners listener;
+
     /**
      * Creates new form TwitterMain2
      */
     public PantallaPrincipal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        listener = new Listeners();
         setLocationRelativeTo(null);
         generarListasComponentes();
         inicializarTweets();
+        aplicarListenerBotones();
         this.componenteNuevoTweet.inicializarComponente();
-        
+
         // MIENTRAS SE ENLAZA CON AJUSTES LLAMA A UNA LOCALIZACION CUALQUIERA
         HashMap<String, Integer> tt = BBDD.getWoeidTrendingTopic();
         String lugar = tt.keySet().iterator().next();
         inicializarTrendingTopics(lugar);   // Mantener este metodo
+
     }
-    
-    private void generarListasComponentes(){
+
+    private void generarListasComponentes() {
         this.componentesTrendingTopic = new ArrayList<>();
         this.componentesTrendingTopic.add(trendingTopic1);
         this.componentesTrendingTopic.add(trendingTopic2);
@@ -57,24 +60,24 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         this.componentesTrendingTopic.add(trendingTopic8);
         this.componentesTrendingTopic.add(trendingTopic9);
         this.componentesTrendingTopic.add(trendingTopic10);
-        
-        this.componentesTweet = new ArrayList<>();
-        this.componentesTweet.add(tweet1);
-        this.componentesTweet.add(tweet2);
-        this.componentesTweet.add(tweet10);
-        this.componentesTweet.add(tweet4);
-        this.componentesTweet.add(tweet5);
-        this.componentesTweet.add(tweet6);
-        this.componentesTweet.add(tweet7);
-        this.componentesTweet.add(tweet8);
-        this.componentesTweet.add(tweet9);
-        this.componentesTweet.add(tweet10);
+
+        this.tweetsConScroll = new ArrayList<>();
+        this.tweetsConScroll.add(tweetConScroll1);
+        this.tweetsConScroll.add(tweetConScroll2);
+        this.tweetsConScroll.add(tweetConScroll3);
+        this.tweetsConScroll.add(tweetConScroll4);
+        this.tweetsConScroll.add(tweetConScroll5);
+        this.tweetsConScroll.add(tweetConScroll6);
+        this.tweetsConScroll.add(tweetConScroll7);
+        this.tweetsConScroll.add(tweetConScroll8);
+        this.tweetsConScroll.add(tweetConScroll9);
+        this.tweetsConScroll.add(tweetConScroll10);
     }
-    
+
     private void inicializarTrendingTopics(String lugar) {
         HashMap<String, Integer> tt = BBDD.getWoeidTrendingTopic();
         int woeid = tt.get(lugar);
-        
+
         this.jLabelLugarTrendingTopics.setText(lugar);
         Trend[] trendingTopics = gestionTwitter.getTrendingTopics(woeid);
         int i = 0;
@@ -83,14 +86,23 @@ public class PantallaPrincipal extends javax.swing.JDialog {
             i++;
         }
     }
-    
-    private void inicializarTweets(){
+
+    private void inicializarTweets() {
         List<Status> tweets = gestionTwitter.getUltimosTweetsUsuariosSeguidos();
         int i = 0;
-        for (ComponenteTweet componente : componentesTweet) {
-           componente.inicializarComponente(tweets.get(i));
-           i++;
+        for (TweetConScroll componente : tweetsConScroll) {
+            componente.inicializarComponente(tweets.get(i));
+            i++;
         }
+    }
+
+    private void aplicarListenerBotones() {
+        final Color azulOscuro = new Color(29, 161, 242);
+        final Color azulClaro = new Color(128, 216, 255);
+        final Color rojo = new Color(255, 0, 0);
+
+        listener.cambiarColorAlPasarPorEncima(jButtonAjustes, azulClaro, rojo);
+        listener.cambiarColorAlPasarPorEncima(jButtonAjustes, azulClaro, azulOscuro);
     }
 
     /**
@@ -102,7 +114,6 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelUsuario = new javax.swing.JLabel();
         jPanelTrendingTopics = new javax.swing.JPanel();
         trendingTopic1 = new componentes.TrendingTopic();
         trendingTopic2 = new componentes.TrendingTopic();
@@ -120,27 +131,24 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         Buscador = new componentes.Buscar();
         jScrollPaneTweets = new javax.swing.JScrollPane();
         jPanelTweets = new javax.swing.JPanel();
-        tweet1 = new componentes.ComponenteTweet();
-        tweet2 = new componentes.ComponenteTweet();
-        tweet10 = new componentes.ComponenteTweet();
-        tweet9 = new componentes.ComponenteTweet();
-        tweet8 = new componentes.ComponenteTweet();
-        tweet7 = new componentes.ComponenteTweet();
-        tweet6 = new componentes.ComponenteTweet();
-        tweet5 = new componentes.ComponenteTweet();
-        tweet3 = new componentes.ComponenteTweet();
-        tweet4 = new componentes.ComponenteTweet();
+        tweetConScroll1 = new componentes.TweetConScroll();
+        tweetConScroll2 = new componentes.TweetConScroll();
+        tweetConScroll3 = new componentes.TweetConScroll();
+        tweetConScroll4 = new componentes.TweetConScroll();
+        tweetConScroll5 = new componentes.TweetConScroll();
+        tweetConScroll6 = new componentes.TweetConScroll();
+        tweetConScroll7 = new componentes.TweetConScroll();
+        tweetConScroll8 = new componentes.TweetConScroll();
+        tweetConScroll9 = new componentes.TweetConScroll();
+        tweetConScroll10 = new componentes.TweetConScroll();
         componenteNuevoTweet = new componentes.NuevoTweet();
+        usuario1 = new componentes.Usuario();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setLocationByPlatform(true);
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
-
-        jLabelUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelUsuario.setText("USUARIO ( Y SEGUIDORES )");
 
         jLabelTituloTrendingTopics.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabelTituloTrendingTopics.setText("Trending Topics");
@@ -208,44 +216,41 @@ public class PantallaPrincipal extends javax.swing.JDialog {
             jPanelTweetsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTweetsLayout.createSequentialGroup()
                 .addGroup(jPanelTweetsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelTweetsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanelTweetsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelTweetsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(tweet1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tweet2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tweet10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tweet9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tweet8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tweet7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tweet6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(tweet5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(tweet3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(tweet4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tweetConScroll1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tweetConScroll2, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
+                    .addComponent(tweetConScroll3, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
+                    .addComponent(tweetConScroll4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tweetConScroll5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tweetConScroll6, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
+                    .addComponent(tweetConScroll7, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
+                    .addComponent(tweetConScroll8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tweetConScroll9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tweetConScroll10, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelTweetsLayout.setVerticalGroup(
             jPanelTweetsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTweetsLayout.createSequentialGroup()
-                .addComponent(tweet1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tweet2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tweetConScroll1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tweet3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tweetConScroll2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tweet4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tweetConScroll4, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tweet5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tweetConScroll3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tweet6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tweetConScroll8, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tweet7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tweetConScroll7, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tweet8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tweetConScroll9, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tweet9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tweetConScroll10, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tweet10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(tweetConScroll5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tweetConScroll6, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1133, Short.MAX_VALUE))
         );
 
         jScrollPaneTweets.setViewportView(jPanelTweets);
@@ -256,10 +261,10 @@ public class PantallaPrincipal extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(72, 72, 72)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanelTrendingTopics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelTrendingTopics, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(Buscador, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -273,9 +278,9 @@ public class PantallaPrincipal extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(usuario1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelTrendingTopics, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -286,7 +291,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                         .addComponent(componenteNuevoTweet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPaneTweets, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
@@ -299,7 +304,6 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     private javax.swing.JButton jButtonAjustes;
     private javax.swing.JLabel jLabelLugarTrendingTopics;
     private javax.swing.JLabel jLabelTituloTrendingTopics;
-    private javax.swing.JLabel jLabelUsuario;
     private javax.swing.JPanel jPanelTrendingTopics;
     private javax.swing.JPanel jPanelTweets;
     private javax.swing.JScrollPane jScrollPaneTweets;
@@ -313,15 +317,16 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     private componentes.TrendingTopic trendingTopic7;
     private componentes.TrendingTopic trendingTopic8;
     private componentes.TrendingTopic trendingTopic9;
-    private componentes.ComponenteTweet tweet1;
-    private componentes.ComponenteTweet tweet10;
-    private componentes.ComponenteTweet tweet2;
-    private componentes.ComponenteTweet tweet3;
-    private componentes.ComponenteTweet tweet4;
-    private componentes.ComponenteTweet tweet5;
-    private componentes.ComponenteTweet tweet6;
-    private componentes.ComponenteTweet tweet7;
-    private componentes.ComponenteTweet tweet8;
-    private componentes.ComponenteTweet tweet9;
+    private componentes.TweetConScroll tweetConScroll1;
+    private componentes.TweetConScroll tweetConScroll10;
+    private componentes.TweetConScroll tweetConScroll2;
+    private componentes.TweetConScroll tweetConScroll3;
+    private componentes.TweetConScroll tweetConScroll4;
+    private componentes.TweetConScroll tweetConScroll5;
+    private componentes.TweetConScroll tweetConScroll6;
+    private componentes.TweetConScroll tweetConScroll7;
+    private componentes.TweetConScroll tweetConScroll8;
+    private componentes.TweetConScroll tweetConScroll9;
+    private componentes.Usuario usuario1;
     // End of variables declaration//GEN-END:variables
 }
