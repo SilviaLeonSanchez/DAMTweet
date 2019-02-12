@@ -1,5 +1,6 @@
 package componentes;
 
+import java.awt.Color;
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -9,6 +10,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import twitter4j.User;
+import utils.ListenerBotones;
 import static ventanas.PantallaLogin.gestionTwitter;
 
 /**
@@ -17,9 +19,12 @@ import static ventanas.PantallaLogin.gestionTwitter;
  */
 public class NuevoTweet extends javax.swing.JPanel implements Serializable {
 
+    private ListenerBotones listener;
 
     public NuevoTweet() {
         initComponents();
+        listener=new ListenerBotones();
+        aplicarListenerBotones();
     }
     
     public void inicializarComponente(){
@@ -61,15 +66,15 @@ public class NuevoTweet extends javax.swing.JPanel implements Serializable {
 
         jPanelEscribirTweet.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButtonAnhadirEmoji.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cara.png"))); // NOI18N
+        jButtonAnhadirEmoji.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cara_blanco.png"))); // NOI18N
 
-        jButtonImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imagen.png"))); // NOI18N
+        jButtonImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imagen_blanco.png"))); // NOI18N
 
-        jButtonGif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gif.png"))); // NOI18N
+        jButtonGif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gif_blanco.png"))); // NOI18N
 
-        jButtonEncuesta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/encuesta.png"))); // NOI18N
+        jButtonEncuesta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lista_blancco.png"))); // NOI18N
 
-        jButtonMas_Anhadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mas_anhadir.png"))); // NOI18N
+        jButtonMas_Anhadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/anhadir_blanco.png"))); // NOI18N
 
         jButtonTwittear.setText("Twittear");
         jButtonTwittear.addActionListener(new java.awt.event.ActionListener() {
@@ -161,6 +166,19 @@ public class NuevoTweet extends javax.swing.JPanel implements Serializable {
         }
     }//GEN-LAST:event_jButtonTwittearActionPerformed
 
+    private void aplicarListenerBotones() {
+        final Color azulOscuro = new Color(29, 161, 242);
+        final Color azulClaro = new Color(128, 216, 255);
+        final Color rojo = new Color(255, 0, 0);
+
+        listener.cambiarColorAlPasarPorEncima(jButtonAnhadirEmoji, azulClaro, azulOscuro);
+        listener.cambiarColorAlPasarPorEncima(jButtonEncuesta, azulClaro, azulOscuro);
+        listener.cambiarColorAlPasarPorEncima(jButtonGif, azulClaro, azulOscuro);
+        listener.cambiarColorAlPasarPorEncima(jButtonImagen, azulClaro, azulOscuro);
+        listener.cambiarColorAlPasarPorEncima(jButtonMas_Anhadir, azulClaro, azulOscuro);
+        listener.cambiarColorAlPasarPorEncima(jButtonTwittear, azulClaro, azulOscuro);
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAnhadirEmoji;

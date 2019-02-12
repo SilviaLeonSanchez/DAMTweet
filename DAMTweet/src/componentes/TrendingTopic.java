@@ -58,7 +58,7 @@ public class TrendingTopic extends javax.swing.JPanel implements Serializable {
         jLabelIdUsuario = new javax.swing.JLabel();
         jLabelTotalTweets = new javax.swing.JLabel();
 
-        jPanelTrendingSinCabecera.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelTrendingSinCabecera.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(68, 196, 255)));
 
         jLabelIdUsuario.setText("Id Usuario");
 

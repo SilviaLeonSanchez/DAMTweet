@@ -1,9 +1,11 @@
 package componentes;
 
+import utils.ListenerBotones;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -16,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
+import javax.swing.border.LineBorder;
 import twitter4j.Status;
 import twitter4j.User;
 import static ventanas.PantallaLogin.gestionTwitter;
@@ -35,11 +38,44 @@ public class ComponenteTweet extends javax.swing.JPanel implements Serializable,
     private SimpleDateFormat sdf;
     private Status tweet;
 
+    private ListenerBotones listeners;
+
     // METODOS
     public ComponenteTweet() {
         initComponents();
+        listeners = new ListenerBotones();
         sdf = new SimpleDateFormat("dd-MM-yyyy");
+        aplicarListenerBotones();
 
+        /*   jButtonRetweet.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+                           
+				jButtonRetweet.setBackground(azulOscuro);
+			jButtonLike.setBackground(Color.RED);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				jButtonRetweet.setBackground(azulClaro);
+				jButtonLike.setBackground(azulClaro);
+				            
+			}
+            
+		});
+         */
     }
 
     public void inicializarComponente(Status tweet) {
@@ -249,7 +285,14 @@ public class ComponenteTweet extends javax.swing.JPanel implements Serializable,
     private void jButtonLikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLikeActionPerformed
 
     }//GEN-LAST:event_jButtonLikeActionPerformed
+    private void aplicarListenerBotones() {
+        final Color azulOscuro = new Color(29, 161, 242);
+        final Color azulClaro = new Color(128, 216, 255);
+        final Color rojo = new Color(255, 0, 0);
 
+        listeners.cambiarColorAlPasarPorEncima(jButtonLike, azulClaro, rojo);
+        listeners.cambiarColorAlPasarPorEncima(jButtonRetweet, azulClaro, azulOscuro);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLike;

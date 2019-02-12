@@ -94,35 +94,35 @@
         <Component class="javax.swing.JButton" name="jButtonAnhadirEmoji">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/cara.png"/>
+              <Image iconType="3" name="/img/cara_blanco.png"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonImagen">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/imagen.png"/>
+              <Image iconType="3" name="/img/imagen_blanco.png"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonGif">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/gif.png"/>
+              <Image iconType="3" name="/img/gif_blanco.png"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonEncuesta">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/encuesta.png"/>
+              <Image iconType="3" name="/img/lista_blancco.png"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonMas_Anhadir">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/mas_anhadir.png"/>
+              <Image iconType="3" name="/img/anhadir_blanco.png"/>
             </Property>
           </Properties>
         </Component>

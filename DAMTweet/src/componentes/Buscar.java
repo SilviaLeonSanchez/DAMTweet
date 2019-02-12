@@ -1,7 +1,9 @@
 package componentes;
 
+import java.awt.Color;
 import java.io.Serializable;
 import logica.GestionTwitter;
+import utils.ListenerBotones;
 
 /**
  *
@@ -10,15 +12,17 @@ import logica.GestionTwitter;
 public class Buscar extends javax.swing.JPanel implements Serializable {
 
     private GestionTwitter twitter;
+    private ListenerBotones listener;
 
     public Buscar() {
         initComponents();
-    }
-    
-    public void inicializarComponente(GestionTwitter twitter){
-        this.twitter = twitter;
+        listener = new ListenerBotones();
+        aplicarListenerBotones();
     }
 
+    public void inicializarComponente(GestionTwitter twitter) {
+        this.twitter = twitter;
+    }
 
     public String getTextoBuscar() {
         return this.jTextFieldTexto.getText();
@@ -33,10 +37,9 @@ public class Buscar extends javax.swing.JPanel implements Serializable {
 
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setMaximumSize(new java.awt.Dimension(640, 64));
-        setMinimumSize(null);
         setPreferredSize(new java.awt.Dimension(640, 62));
 
-        jButtonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
+        jButtonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lupa_blanco.png"))); // NOI18N
 
         jTextFieldTexto.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jTextFieldTexto.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -74,7 +77,14 @@ public class Buscar extends javax.swing.JPanel implements Serializable {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldTextoActionPerformed
 
+    private void aplicarListenerBotones() {
+        final Color azulOscuro = new Color(29, 161, 242);
+        final Color azulClaro = new Color(128, 216, 255);
+        final Color rojo = new Color(255, 0, 0);
 
+        listener.cambiarColorAlPasarPorEncima(jButtonBuscar, azulClaro, azulOscuro);
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JTextField jTextFieldTexto;

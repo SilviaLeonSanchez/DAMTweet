@@ -200,7 +200,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jButtonAjustes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ajustes.png"))); // NOI18N
+        jButtonAjustes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ajustes_blanco.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelTweetsLayout = new javax.swing.GroupLayout(jPanelTweets);
         jPanelTweets.setLayout(jPanelTweetsLayout);
