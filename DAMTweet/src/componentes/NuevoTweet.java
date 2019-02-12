@@ -10,7 +10,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import twitter4j.User;
-import utils.ListenerBotones;
+import utils.Listeners;
 import static ventanas.PantallaLogin.gestionTwitter;
 
 /**
@@ -19,23 +19,23 @@ import static ventanas.PantallaLogin.gestionTwitter;
  */
 public class NuevoTweet extends javax.swing.JPanel implements Serializable {
 
-    private ListenerBotones listener;
+    private Listeners listener;
 
     public NuevoTweet() {
         initComponents();
-        listener=new ListenerBotones();
+        listener = new Listeners();
         aplicarListenerBotones();
     }
-    
-    public void inicializarComponente(){
+
+    public void inicializarComponente() {
         setFotoPerfil();
     }
 
     public Icon getFotoPerfil() {
         return this.jLabelFoto.getIcon();
     }
-    
-    public void setFotoPerfil(){
+
+    public void setFotoPerfil() {
         try {
             User usuario = gestionTwitter.getUsuario();
             URL urlImagen = new URL(usuario.getProfileImageURL());
@@ -158,11 +158,11 @@ public class NuevoTweet extends javax.swing.JPanel implements Serializable {
 
     private void jButtonTwittearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTwittearActionPerformed
         String tweet = this.jTextFieldTexto.getText();
-        if (tweet.length() > 140){
+        if (tweet.length() > 140) {
             JOptionPane.showMessageDialog(this, "Tweet demasiado largo: maximo 140 caracteres");
-        }else{
-        gestionTwitter.enviarTweet(tweet);
-        JOptionPane.showMessageDialog(this, "Tweet enviado correctamente");
+        } else {
+            gestionTwitter.enviarTweet(tweet);
+            JOptionPane.showMessageDialog(this, "Tweet enviado correctamente");
         }
     }//GEN-LAST:event_jButtonTwittearActionPerformed
 
