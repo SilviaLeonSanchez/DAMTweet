@@ -37,8 +37,10 @@
     <Container class="javax.swing.JPanel" name="jPanelTweetsSinFoto">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
-            <BevelBorder/>
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder>
+              <Color PropertyName="color" blue="ff" green="c4" red="44" type="rgb"/>
+            </LineBorder>
           </Border>
         </Property>
       </Properties>
@@ -127,7 +129,7 @@
         <Component class="javax.swing.JButton" name="jButtonLike">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/like.png"/>
+              <Image iconType="3" name="/img/corazon_blanco.png"/>
             </Property>
           </Properties>
           <Events>
@@ -137,7 +139,7 @@
         <Component class="javax.swing.JButton" name="jButtonRetweet">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/retweet.png"/>
+              <Image iconType="3" name="/img/refrescar_blanco.png"/>
             </Property>
           </Properties>
           <Events>

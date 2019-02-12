@@ -1,6 +1,9 @@
 package componentes;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -36,14 +39,15 @@ public class ComponenteTweet extends javax.swing.JPanel implements Serializable,
     public ComponenteTweet() {
         initComponents();
         sdf = new SimpleDateFormat("dd-MM-yyyy");
+
     }
 
     public void inicializarComponente(Status tweet) {
         try {
             this.tweet = tweet;
             setFecha(tweet.getCreatedAt());
-            setNombreUsuario(tweet.getUser().getName());     
-            setId("@"+tweet.getUser().getScreenName());
+            setNombreUsuario(tweet.getUser().getName());
+            setId("@" + tweet.getUser().getScreenName());
             setRetweets(Integer.toString(tweet.getRetweetCount()));
             setFotoUsuario();
             setTextoTweet(tweet.getText());
@@ -70,7 +74,7 @@ public class ComponenteTweet extends javax.swing.JPanel implements Serializable,
         this.id = id;
         this.jLabelId.setText(id);
     }
-    
+
     public String getRetweets() {
         return retweets;
     }
@@ -112,8 +116,8 @@ public class ComponenteTweet extends javax.swing.JPanel implements Serializable,
     public void setFecha(Date fecha) {
         this.jLabelFecha.setText(sdf.format(fecha));
     }
-    
-    private String dividirTexto(String textoTweet){
+
+    private String dividirTexto(String textoTweet) {
         String[] palabras = textoTweet.split(" ");
         String texto = "";
         int letras = 0;
@@ -147,7 +151,7 @@ public class ComponenteTweet extends javax.swing.JPanel implements Serializable,
         jButtonRetweet = new javax.swing.JButton();
         jLabelId = new javax.swing.JLabel();
 
-        jPanelTweetsSinFoto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelTweetsSinFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(68, 196, 255)));
 
         jLabelUsuario.setText("Usuario");
 
@@ -157,14 +161,14 @@ public class ComponenteTweet extends javax.swing.JPanel implements Serializable,
 
         jLabelFecha.setText("Fecha");
 
-        jButtonLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/like.png"))); // NOI18N
+        jButtonLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/corazon_blanco.png"))); // NOI18N
         jButtonLike.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLikeActionPerformed(evt);
             }
         });
 
-        jButtonRetweet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/retweet.png"))); // NOI18N
+        jButtonRetweet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/refrescar_blanco.png"))); // NOI18N
         jButtonRetweet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRetweetActionPerformed(evt);
