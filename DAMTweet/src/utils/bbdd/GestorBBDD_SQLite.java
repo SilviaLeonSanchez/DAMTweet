@@ -206,6 +206,27 @@ public class GestorBBDD_SQLite {
 
     }
 
+    public void deleteUser(long id) {
+
+        try {
+
+            String sql = "DELETE FROM USERS WHERE id = ?";
+
+            this.reconectarBBDD();
+            PreparedStatement pstmt = conexion.prepareStatement(sql);
+
+            // set the corresponding param
+            pstmt.setLong(1, id);
+
+            // execute the delete statement
+            pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(GestorBBDD_SQLite.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
     public UsuarioAplicacion getUserData(String user_name) {
         try {
             String sql = "SELECT * FROM USERS WHERE user_name=?";
@@ -229,40 +250,39 @@ public class GestorBBDD_SQLite {
         }
         return null;
     }
-    
-    public HashMap<String, Integer> getWoeidTrendingTopic(){
+
+    public HashMap<String, Integer> getWoeidTrendingTopic() {
         try {
             ResultSet resultado = ejecutarSELECT("select * from LUGARES_TT");
             HashMap<String, Integer> lugaresTT = new HashMap<>();
-            
+
             while (resultado.next()) {
                 lugaresTT.put(resultado.getString("ciudad"), resultado.getInt("woeid"));
             }
-            
+
             return lugaresTT;
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(GestorBBDD_SQLite.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-    
-    public List<String> getLugaresTrendingTopic(){
+
+    public List<String> getLugaresTrendingTopic() {
         try {
             ResultSet resultado = ejecutarSELECT("select ciudad from LUGARES_TT");
             ArrayList<String> lugaresTT = new ArrayList<>();
-            
+
             while (resultado.next()) {
                 lugaresTT.add(resultado.getString("ciudad"));
             }
-            
+
             return lugaresTT;
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(GestorBBDD_SQLite.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-    
 
 }

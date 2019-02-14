@@ -218,6 +218,7 @@ public class PantallaLogin extends javax.swing.JFrame {
         this.setVisible(false);
         lanzarPantallaPrincipal();
         this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jButtonIniciarActionPerformed
 
     /**
