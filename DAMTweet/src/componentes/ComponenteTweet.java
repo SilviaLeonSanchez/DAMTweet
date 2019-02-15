@@ -1,6 +1,6 @@
 package componentes;
 
-import utils.ListenerBotones;
+import utils.Listeners;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
@@ -38,44 +38,14 @@ public class ComponenteTweet extends javax.swing.JPanel implements Serializable,
     private SimpleDateFormat sdf;
     private Status tweet;
 
-    private ListenerBotones listeners;
+    private Listeners listeners;
 
     // METODOS
     public ComponenteTweet() {
         initComponents();
-        listeners = new ListenerBotones();
+        listeners = new Listeners();
         sdf = new SimpleDateFormat("dd-MM-yyyy");
         aplicarListenerBotones();
-
-        /*   jButtonRetweet.addMouseListener(new MouseListener() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-                           
-				jButtonRetweet.setBackground(azulOscuro);
-			jButtonLike.setBackground(Color.RED);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				jButtonRetweet.setBackground(azulClaro);
-				jButtonLike.setBackground(azulClaro);
-				            
-			}
-            
-		});
-         */
     }
 
     public void inicializarComponente(Status tweet) {
@@ -265,8 +235,7 @@ public class ComponenteTweet extends javax.swing.JPanel implements Serializable,
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jPanelTweetsSinFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addComponent(jPanelTweetsSinFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

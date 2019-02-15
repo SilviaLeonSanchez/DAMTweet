@@ -3,7 +3,7 @@ package componentes;
 import java.awt.Color;
 import java.io.Serializable;
 import logica.GestionTwitter;
-import utils.ListenerBotones;
+import utils.Listeners;
 
 /**
  *
@@ -12,11 +12,11 @@ import utils.ListenerBotones;
 public class Buscar extends javax.swing.JPanel implements Serializable {
 
     private GestionTwitter twitter;
-    private ListenerBotones listener;
+    private Listeners listener;
 
     public Buscar() {
         initComponents();
-        listener = new ListenerBotones();
+        listener = new Listeners();
         aplicarListenerBotones();
     }
 

@@ -21,6 +21,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import logica.ConexionTwitter;
 import logica.GestionTwitter;
 import dto.UsuarioAplicacion;
+import javax.swing.border.LineBorder;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialColors;
@@ -105,9 +106,11 @@ public class PantallaLogin extends javax.swing.JFrame {
 
         /* Configuracion de los colores de las aplicaciones, habria que crear una
         clase para el manejo de los colores, las fuentes tipograficas y que quede todo igual.*/
-        jButtonIniciar.setForeground(MaterialColors.LIGHT_BLUE_A200);
+        
+        //jButtonIniciar.setBorder(new LineBorder(MaterialColors.LIGHT_BLUE_A400));
+        jButtonIniciar.setForeground(MaterialColors.LIGHT_BLUE_A400);
         jButtonIniciar.setBackground(MaterialColors.WHITE);
-        jButtonRegistro.setBackground(MaterialColors.LIGHT_BLUE_A200);
+        jButtonRegistro.setBackground(MaterialColors.LIGHT_BLUE_A400);
 
         jComboBoxUsuarios.removeAllItems();
 
@@ -116,7 +119,7 @@ public class PantallaLogin extends javax.swing.JFrame {
         cambie el color
          */
         MaterialUIMovement.add(jButtonIniciar, MaterialColors.LIGHT_BLUE_100, WIDTH, ERROR);
-        MaterialUIMovement.add(jButtonRegistro, MaterialColors.BLUE_200, 5, 100 / 30);
+        MaterialUIMovement.add(jButtonRegistro, MaterialColors.BLUE_100, 5, 100 / 30);
 
     }
 
@@ -218,7 +221,6 @@ public class PantallaLogin extends javax.swing.JFrame {
         this.setVisible(false);
         lanzarPantallaPrincipal();
         this.setVisible(false);
-        this.dispose();
     }//GEN-LAST:event_jButtonIniciarActionPerformed
 
     /**

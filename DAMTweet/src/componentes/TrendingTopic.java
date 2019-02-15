@@ -5,50 +5,61 @@
  */
 package componentes;
 
+import java.awt.Color;
 import java.io.Serializable;
 import twitter4j.Trend;
+import utils.Listeners;
 
 /**
  *
  * @author Annie
  */
 public class TrendingTopic extends javax.swing.JPanel implements Serializable {
-
+    
     private String numTweets;
     private String trend;
+    private Listeners listener;
     
     public TrendingTopic() {
         initComponents();
+        listener = new Listeners();
+        aplicarListenerJPanel();
     }
     
-    public void inicializarComponente(Trend trendingTopic){
+    public void inicializarComponente(Trend trendingTopic) {
         String nombre = trendingTopic.getName();
-        if (!nombre.startsWith("#")){
-            nombre = "#"+nombre;
+        if (!nombre.startsWith("#")) {
+            nombre = "#" + nombre;
         }
         setIdUsuario(nombre);
         int tweets = trendingTopic.getTweetVolume();
-        setNumTweets(((tweets != -1)? tweets+"" : ""));
+        setNumTweets(((tweets != -1) ? tweets + "" : ""));
     }
-
+    
     public String getNumTweets() {
         return numTweets;
     }
-
+    
     public void setNumTweets(String numTweets) {
         this.numTweets = numTweets;
         this.jLabelTotalTweets.setText(numTweets);
     }
-
+    
     public String getIdUsuario() {
         return trend;
     }
-
+    
     public void setIdUsuario(String idUsuario) {
         this.trend = idUsuario;
         this.jLabelIdUsuario.setText(idUsuario);
     }
-
+    
+    public void aplicarListenerJPanel() {
+        final Color azulOscuro = new Color(29, 161, 242);
+        final Color azulClaro = new Color(128, 216, 255);
+               
+        listener.cambiarColorJPanelAlPasarPorEncima(jPanelTrendingSinCabecera, azulClaro, azulOscuro);
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
