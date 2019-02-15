@@ -5,13 +5,22 @@
  */
 package ventanas;
 
+import dto.Tweet;
+import informes.TwitterDataSource;
 import java.awt.Desktop;
-import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import twitter4j.TwitterException;
-import utils.bbdd.GestorBBDD_SQLite;
 import static ventanas.PantallaLogin.BBDD;
 import static ventanas.PantallaLogin.gestionTwitter;
 
@@ -22,6 +31,8 @@ import static ventanas.PantallaLogin.gestionTwitter;
 public class PantallaAjustes extends javax.swing.JDialog {
 
     Desktop desktop = null;
+    private JFileChooser jfc;
+    private JRDataSource dataSource;
 
     /**
      * Creates new form PantallaAjustes
@@ -29,7 +40,7 @@ public class PantallaAjustes extends javax.swing.JDialog {
     public PantallaAjustes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
+        jfc = new JFileChooser();
         desktop = Desktop.getDesktop();
         
         //  desktop.open(new File("rutaPDF"));
@@ -127,7 +138,6 @@ public class PantallaAjustes extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonInformeFechas, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
@@ -136,17 +146,18 @@ public class PantallaAjustes extends javax.swing.JDialog {
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
                                 .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonFollowesFollowed, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonTweetsUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
-                                .addGap(99, 99, 99)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel6))
+                                .addGap(83, 83, 83)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButtonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jButtonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButtonInformeFechas)
+                            .addComponent(jButtonFollowesFollowed)
+                            .addComponent(jButtonTweetsUsuario)
+                            .addComponent(jLabel5))))
                 .addGap(31, 31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -186,20 +197,38 @@ public class PantallaAjustes extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private String pedirRutaInforme(){
+        int resultado = jfc.showSaveDialog(this);
+        if (resultado == JFileChooser.APPROVE_OPTION){
+                return jfc.getSelectedFile().getAbsolutePath();
+        }else{
+            JOptionPane.showConfirmDialog(this, "No se ha indicado donde guardar el archivo por lo tanto no se generará el informe.", "Sin ruta especificada", JOptionPane.INFORMATION_MESSAGE);
+            return null;
+        }
+    }
+    
     private void jButtonInformeFechasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInformeFechasActionPerformed
-        // TODO add your handling code here:
+        String ruta = pedirRutaInforme();
     }//GEN-LAST:event_jButtonInformeFechasActionPerformed
 
     private void jButtonFollowesFollowedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFollowesFollowedActionPerformed
-        // TODO add your handling code here:
+        String ruta = pedirRutaInforme();
     }//GEN-LAST:event_jButtonFollowesFollowedActionPerformed
 
     private void jButtonTweetsUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTweetsUsuarioActionPerformed
-        // TODO add your handling code here:
+        try {
+            String ruta = pedirRutaInforme();
+            ArrayList<Tweet> tweets = TwitterDataSource.getTweets();
+            this.dataSource = new JRBeanCollectionDataSource(tweets);
+            JasperPrint print = JasperFillManager.fillReport("archivos_informes/PruebaInformeTwitter.jasper", new HashMap(), dataSource);
+            JasperExportManager.exportReportToPdfFile(print, ruta);
+        } catch (JRException ex) {
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al generar el informe", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonTweetsUsuarioActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
+        String ruta = pedirRutaInforme();
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButtonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogoutActionPerformed

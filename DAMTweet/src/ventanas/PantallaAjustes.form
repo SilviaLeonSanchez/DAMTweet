@@ -36,7 +36,6 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButtonInformeFechas" min="-2" pref="137" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -46,20 +45,21 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jSpinner1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jLabel5" min="-2" pref="337" max="-2" attributes="0"/>
-                          <Component id="jButtonFollowesFollowed" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
-                          <Component id="jButtonTweetsUsuario" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel6" min="-2" pref="251" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jTextField1" min="-2" pref="137" max="-2" attributes="0"/>
                                   <Component id="jButtonLogout" min="-2" pref="107" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <Component id="jButtonInformeFechas" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonFollowesFollowed" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonTweetsUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
