@@ -5,19 +5,30 @@
  */
 package ventanas;
 
+import java.util.ArrayList;
+import twitter4j.User;
+
 /**
  *
  * @author silvia
  */
-public class PantallaBuscados extends javax.swing.JDialog {
+public class PantallaUsuariosBuscados extends javax.swing.JDialog {
 
+    private ArrayList<User> usuariosBuscados;
+    
     /**
-     * Creates new form PantallaBuscados
+     * Creates new form PantallaUsuariosBuscados
      */
-    public PantallaBuscados(java.awt.Frame parent, boolean modal) {
+    public PantallaUsuariosBuscados(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.usuariosBuscados = new ArrayList<>();
     }
+
+    public void setUsuariosBuscados(ArrayList<User> usuariosBuscados) {
+        this.usuariosBuscados = usuariosBuscados;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,20 +72,20 @@ public class PantallaBuscados extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PantallaBuscados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaUsuariosBuscados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PantallaBuscados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaUsuariosBuscados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PantallaBuscados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaUsuariosBuscados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PantallaBuscados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaUsuariosBuscados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                PantallaBuscados dialog = new PantallaBuscados(new javax.swing.JFrame(), true);
+                PantallaUsuariosBuscados dialog = new PantallaUsuariosBuscados(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

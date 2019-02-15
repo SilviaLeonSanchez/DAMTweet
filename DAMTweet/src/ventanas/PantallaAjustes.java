@@ -8,6 +8,8 @@ package ventanas;
 import dto.Tweet;
 import informes.TwitterDataSource;
 import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -222,8 +224,11 @@ public class PantallaAjustes extends javax.swing.JDialog {
             this.dataSource = new JRBeanCollectionDataSource(tweets);
             JasperPrint print = JasperFillManager.fillReport("archivos_informes/PruebaInformeTwitter.jasper", new HashMap(), dataSource);
             JasperExportManager.exportReportToPdfFile(print, ruta);
+            desktop.open(new File(ruta));
         } catch (JRException ex) {
             JOptionPane.showMessageDialog(this, "Ha ocurrido un error al generar el informe", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            Logger.getLogger(PantallaAjustes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonTweetsUsuarioActionPerformed
 

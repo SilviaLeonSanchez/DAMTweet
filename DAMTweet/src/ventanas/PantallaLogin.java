@@ -21,7 +21,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import logica.ConexionTwitter;
 import logica.GestionTwitter;
 import dto.UsuarioAplicacion;
-import javax.swing.border.LineBorder;
+import java.awt.Frame;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialColors;
@@ -37,9 +37,11 @@ public class PantallaLogin extends javax.swing.JFrame {
     public static String RUTA_BBDD = null;
     public static GestorBBDD_SQLite BBDD;
     public static GestionTwitter gestionTwitter;
+    public static Frame padre;
 
     public PantallaLogin() {
         initComponents();
+        padre = this;
         setLocationRelativeTo(null);
         //jLabelLogo.setIcon(new ImageIcon(getClass().getResource(RUTA_LOGO)));
 
@@ -186,7 +188,7 @@ public class PantallaLogin extends javax.swing.JFrame {
                         .addComponent(jComboBoxUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(jButtonIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(272, 272, 272))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

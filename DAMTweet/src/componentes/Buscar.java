@@ -2,8 +2,12 @@ package componentes;
 
 import java.awt.Color;
 import java.io.Serializable;
+import java.util.ArrayList;
 import logica.GestionTwitter;
+import twitter4j.Status;
 import utils.Listeners;
+import ventanas.PantallaTweetsBuscados;
+import ventanas.PantallaLogin;
 
 /**
  *
@@ -13,6 +17,7 @@ public class Buscar extends javax.swing.JPanel implements Serializable {
 
     private GestionTwitter twitter;
     private Listeners listener;
+    
 
     public Buscar() {
         initComponents();
@@ -25,6 +30,7 @@ public class Buscar extends javax.swing.JPanel implements Serializable {
     }
 
     public String getTextoBuscar() {
+        
         return this.jTextFieldTexto.getText();
     }
 
@@ -40,16 +46,16 @@ public class Buscar extends javax.swing.JPanel implements Serializable {
         setPreferredSize(new java.awt.Dimension(640, 62));
 
         jButtonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lupa_blanco.png"))); // NOI18N
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
 
         jTextFieldTexto.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jTextFieldTexto.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextFieldTexto.setText("Buscar...");
         jTextFieldTexto.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextFieldTexto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldTextoActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -73,9 +79,12 @@ public class Buscar extends javax.swing.JPanel implements Serializable {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTextoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldTextoActionPerformed
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        PantallaTweetsBuscados ventana = new PantallaTweetsBuscados(PantallaLogin.padre, true);
+        ArrayList<Status> tweetsBuscados = (ArrayList<Status>) twitter.buscarTweets(this.getTextoBuscar());
+        ventana.setTweetsBuscados(tweetsBuscados);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void aplicarListenerBotones() {
         final Color azulOscuro = new Color(29, 161, 242);
