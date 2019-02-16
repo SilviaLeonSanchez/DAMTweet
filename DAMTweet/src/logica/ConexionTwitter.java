@@ -104,9 +104,7 @@ public class ConexionTwitter {
 
             } catch (TwitterException ex) {
                 System.out.println(ex.getMessage());
-            } catch (IOException ex) {
-                Logger.getLogger(ConexionTwitter.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (URISyntaxException ex) {
+            } catch (IOException | URISyntaxException ex) {
                 Logger.getLogger(ConexionTwitter.class.getName()).log(Level.SEVERE, null, ex);
             }
         } while (accessToken == null);
@@ -117,8 +115,8 @@ public class ConexionTwitter {
             byte[] tokenEncriptado = null;
             String nombreUsuario = twitter.showUser(twitter.getId()).getScreenName();
             String nombre =  twitter.showUser(twitter.getId()).getName();
-            tokenEncriptado = utils.EncryptUtils.cifra(accessToken.getTokenSecret().toString());
-            gestorDB.insertarUsuario(twitter.getId(), nombre, nombreUsuario, accessToken.getToken().toString(), tokenEncriptado);
+            tokenEncriptado = utils.EncryptUtils.cifra(accessToken.getTokenSecret());
+            gestorDB.insertarUsuario(twitter.getId(), nombre, nombreUsuario, accessToken.getToken(), tokenEncriptado);
         } catch (Exception ex) {
             Logger.getLogger(ConexionTwitter.class.getName()).log(Level.SEVERE, null, ex);
         }

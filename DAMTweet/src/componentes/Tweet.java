@@ -25,7 +25,7 @@ import static ventanas.PantallaLogin.gestionTwitter;
  *
  * @author Annie
  */
-public class TweetConScroll extends javax.swing.JPanel implements Serializable{
+public class Tweet extends javax.swing.JPanel implements Serializable{
 
     // ATRIBUTOS
     private String nombreUsuario;
@@ -38,7 +38,7 @@ public class TweetConScroll extends javax.swing.JPanel implements Serializable{
 
     private Listeners listeners;
 
-    public TweetConScroll() {
+    public Tweet() {
         initComponents();
         listeners = new Listeners();
         sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -159,6 +159,8 @@ public class TweetConScroll extends javax.swing.JPanel implements Serializable{
         jButtonLike = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(68, 196, 255)));
+        setMaximumSize(new java.awt.Dimension(700, 115));
+        setMinimumSize(new java.awt.Dimension(700, 115));
         setLayout(null);
 
         jScrollPaneTweets.setBorder(null);
@@ -175,15 +177,15 @@ public class TweetConScroll extends javax.swing.JPanel implements Serializable{
 
         jLabelUsuario.setText("Usuario");
         add(jLabelUsuario);
-        jLabelUsuario.setBounds(120, 10, 150, 20);
+        jLabelUsuario.setBounds(120, 10, 150, 15);
 
         jLabelId.setText("Id");
         add(jLabelId);
-        jLabelId.setBounds(280, 10, 160, 20);
+        jLabelId.setBounds(280, 10, 160, 15);
 
         jLabelFecha.setText("Fecha");
         add(jLabelFecha);
-        jLabelFecha.setBounds(450, 10, 110, 20);
+        jLabelFecha.setBounds(450, 10, 110, 15);
 
         jButtonRetweet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/refrescar_blanco.png"))); // NOI18N
         add(jButtonRetweet);

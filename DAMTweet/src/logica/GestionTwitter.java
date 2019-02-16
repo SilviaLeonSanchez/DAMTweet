@@ -6,6 +6,7 @@
 package logica;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -122,16 +123,8 @@ public class GestionTwitter {
         try {
             Query busqueda = new Query(stringQuery);
             QueryResult result = twitter.search(busqueda);
-            List<Status> tweets = result.getTweets();
-
-            // Para comporprobar que funciona el metodo
-            for (Status tweet : tweets) {
-                System.out.println("@" + tweet.getUser().getScreenName() + " - " + tweet.getText());
-            }
-
-            return tweets;
+            return result.getTweets();
         } catch (TwitterException te) {
-            te.printStackTrace();
             System.out.println("Fallo al buscar tweets: " + te.getMessage());
             System.exit(-1);
         }
@@ -152,21 +145,30 @@ public class GestionTwitter {
         try {
             do {
                 usuarios = twitter.searchUsers(username, 1);
-
-                // Compruba que el metodo funciona
-                for (User usuario : usuarios) {
-                    if (usuario.getStatus() != null) {
-                        System.out.println("@" + usuario.getScreenName() + " - " + usuario.getStatus().getText());
-                    } else {
-                        // el usuario es privado
-                        System.out.println("@" + usuario.getScreenName());
-                    }
-                }
                 page++;
             } while (usuarios.size() != 0 && page < numPaginas);
 
         } catch (TwitterException te) {
             te.printStackTrace();
+            System.out.println("Error al buscar ususario: " + te.getMessage());
+            System.exit(-1);
+        }
+        return usuarios;
+    }
+    
+    public List<User> buscarUsuariosPublicos(String username) {
+        List<User> usuarios = new ArrayList<>();
+        try {
+            
+            for (User usuario : twitter.searchUsers(username, 1)) {
+                // Solo añade los usuarios cuyos tweets estan accesibles
+                if (usuario != null){
+                    if (usuario.getStatus() != null) {
+                        usuarios.add(usuario);
+                    } 
+                }
+            }
+        } catch (TwitterException te) {
             System.out.println("Error al buscar ususario: " + te.getMessage());
             System.exit(-1);
         }

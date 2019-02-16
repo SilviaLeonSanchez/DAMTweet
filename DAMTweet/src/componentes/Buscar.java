@@ -2,12 +2,15 @@ package componentes;
 
 import java.awt.Color;
 import java.io.Serializable;
-import java.util.ArrayList;
-import logica.GestionTwitter;
+import java.util.List;
+import javax.swing.JOptionPane;
 import twitter4j.Status;
+import twitter4j.User;
 import utils.Listeners;
 import ventanas.PantallaTweetsBuscados;
-import ventanas.PantallaLogin;
+import static ventanas.PantallaLogin.gestionTwitter;
+import static ventanas.PantallaLogin.padre;
+import ventanas.PantallaUsuariosBuscados;
 
 /**
  *
@@ -15,23 +18,12 @@ import ventanas.PantallaLogin;
  */
 public class Buscar extends javax.swing.JPanel implements Serializable {
 
-    private GestionTwitter twitter;
     private Listeners listener;
-    
 
     public Buscar() {
         initComponents();
         listener = new Listeners();
         aplicarListenerBotones();
-    }
-
-    public void inicializarComponente(GestionTwitter twitter) {
-        this.twitter = twitter;
-    }
-
-    public String getTextoBuscar() {
-        
-        return this.jTextFieldTexto.getText();
     }
 
     @SuppressWarnings("unchecked")
@@ -80,10 +72,25 @@ public class Buscar extends javax.swing.JPanel implements Serializable {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        PantallaTweetsBuscados ventana = new PantallaTweetsBuscados(PantallaLogin.padre, true);
-        ArrayList<Status> tweetsBuscados = (ArrayList<Status>) twitter.buscarTweets(this.getTextoBuscar());
-        ventana.setTweetsBuscados(tweetsBuscados);
-        ventana.setVisible(true);
+        String textoBuscar = this.jTextFieldTexto.getText();
+        if (textoBuscar.startsWith("@")) {
+            textoBuscar.replace("@", "");
+            List<User> usuariosBuscados = gestionTwitter.buscarUsuariosPublicos(textoBuscar);
+            if (usuariosBuscados != null) {
+                PantallaUsuariosBuscados ventana = new PantallaUsuariosBuscados(padre, true, usuariosBuscados);
+                ventana.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(padre, "La lista de usuarios buscados es nula");
+            }
+        } else {
+            List<Status> tweetsBuscados = gestionTwitter.buscarTweets(textoBuscar);
+            if (tweetsBuscados != null) {
+                PantallaTweetsBuscados ventana = new PantallaTweetsBuscados(padre, true, tweetsBuscados);
+                ventana.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(padre, "La lista de tweets buscados es nula");
+            }
+        }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void aplicarListenerBotones() {

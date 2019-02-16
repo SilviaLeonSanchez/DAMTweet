@@ -5,21 +5,10 @@
  */
 package componentes;
 
+import dto.UsuarioTwitter;
 import java.io.Serializable;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import mdlaf.MaterialLookAndFeel;
-import mdlaf.animation.MaterialUIMovement;
-import mdlaf.utils.MaterialColors;
-import twitter4j.Status;
 import twitter4j.User;
-import static ventanas.PantallaLogin.gestionTwitter;
 
 /**
  *
@@ -27,72 +16,43 @@ import static ventanas.PantallaLogin.gestionTwitter;
  */
 public class Usuario extends javax.swing.JPanel implements Serializable {
 
-    private String nombreUsuario;
-    private String id;
-
-    private Status tweet;
+    private UsuarioTwitter usuario;
 
     public Usuario() {
         initComponents();
-        
     }
 
-    public void inicializarComponente(Status tweet) {
-        try {
-            this.tweet = tweet;
-
-            setNombreUsuario(tweet.getUser().getName());
-            setId("@" + tweet.getUser().getScreenName());
-
-            setFotoPerfil();
-            setFotoPortada();
-        } catch (IllegalStateException ex) {
-            System.out.println(ex.getMessage());
-        }
+    public void inicializarComponente(User usuario) {
+        this.usuario = new UsuarioTwitter(usuario);
+        this.jLabelIdUsuario.setText(this.usuario.getIdUsuario());
+        this.jLabelNombreUsuario.setText(this.usuario.getNombre());
+        setFotoPerfil();
+        //setFotoPortada();
     }
 
     public void setFotoPerfil() {
-        try {
-            User usuario = gestionTwitter.getUsuario();
-            URL urlImagen = new URL(usuario.getProfileImageURL());
-            ImageIcon imagenUsuario = new ImageIcon(urlImagen);
-            jLabelFotoUsuario.setIcon(imagenUsuario);
-        } catch (IllegalStateException | MalformedURLException ex) {
-            Logger.getLogger(NuevoTweet.class.getName()).log(Level.SEVERE, null, ex);
+        if (this.usuario.getFotoPerfil() != null) {
+            ImageIcon imagenUsuario = new ImageIcon(this.usuario.getFotoPerfil());
+            if (imagenUsuario != null) {
+                jLabelFotoUsuario.setIcon(imagenUsuario);
+            }
         }
     }
 
     //COMPROBAR SI .getProfileBannerURL() ES EL METODO CORRECTO PARA PONER IMAGEN DE PORTADA
     public void setFotoPortada() {
-        try {
-            User usuario = gestionTwitter.getUsuario();
-            URL urlImagen = new URL(usuario.getProfileBannerURL());
-            ImageIcon imagenPortada = new ImageIcon(urlImagen);
-            jLabelFotoPortada.setIcon(imagenPortada);
-        } catch (IllegalStateException | MalformedURLException ex) {
-            Logger.getLogger(NuevoTweet.class.getName()).log(Level.SEVERE, null, ex);
+        if (this.usuario.getFotoPortada() != null) {
+            ImageIcon imagenPortada = new ImageIcon(this.usuario.getFotoPortada());
+            if (imagenPortada != null) {
+                jLabelFotoPortada.setIcon(imagenPortada);
+            }
         }
     }
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
+    public UsuarioTwitter getUsuario() {
+        return usuario;
     }
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-        this.jLabelNombreUsuario.setText(nombreUsuario);
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-        this.jLabelIdUsuario.setText(id);
-    }
-
-  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -107,28 +67,29 @@ public class Usuario extends javax.swing.JPanel implements Serializable {
         jLabelIdUsuario = new javax.swing.JLabel();
         jLabelNombreUsuario = new javax.swing.JLabel();
 
-        setMaximumSize(new java.awt.Dimension(209, 20));
-        setMinimumSize(new java.awt.Dimension(209, 20));
-        setPreferredSize(new java.awt.Dimension(209, 20));
+        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        setMaximumSize(new java.awt.Dimension(360, 176));
+        setMinimumSize(new java.awt.Dimension(360, 176));
+        setPreferredSize(new java.awt.Dimension(360, 176));
         setLayout(null);
 
         jLabelFotoUsuario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         add(jLabelFotoUsuario);
-        jLabelFotoUsuario.setBounds(30, 50, 60, 60);
+        jLabelFotoUsuario.setBounds(50, 50, 50, 50);
 
         jLabelFotoPortada.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         add(jLabelFotoPortada);
-        jLabelFotoPortada.setBounds(0, 0, 370, 80);
+        jLabelFotoPortada.setBounds(0, 0, 360, 80);
 
         jLabelIdUsuario.setText("@Usuario");
         jLabelIdUsuario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         add(jLabelIdUsuario);
-        jLabelIdUsuario.setBounds(190, 120, 170, 24);
+        jLabelIdUsuario.setBounds(190, 140, 150, 19);
 
         jLabelNombreUsuario.setText("NombreUsuario");
         jLabelNombreUsuario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         add(jLabelNombreUsuario);
-        jLabelNombreUsuario.setBounds(10, 120, 170, 24);
+        jLabelNombreUsuario.setBounds(40, 140, 140, 19);
     }// </editor-fold>//GEN-END:initComponents
 
 

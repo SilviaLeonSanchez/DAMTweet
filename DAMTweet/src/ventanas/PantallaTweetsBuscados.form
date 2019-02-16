@@ -23,13 +23,146 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
+          <Component id="jScrollPane" min="-2" pref="719" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="300" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jScrollPane" pref="534" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="jPanel">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="tweet1" alignment="0" min="-2" pref="700" max="-2" attributes="0"/>
+                          <Component id="tweet2" min="-2" pref="700" max="-2" attributes="0"/>
+                          <Component id="tweet3" min="-2" pref="700" max="-2" attributes="0"/>
+                          <Component id="tweet4" min="-2" pref="700" max="-2" attributes="0"/>
+                          <Component id="tweet5" min="-2" pref="700" max="-2" attributes="0"/>
+                          <Component id="tweet6" min="-2" pref="700" max="-2" attributes="0"/>
+                          <Component id="tweet7" min="-2" pref="700" max="-2" attributes="0"/>
+                          <Component id="tweet8" min="-2" pref="700" max="-2" attributes="0"/>
+                          <Component id="tweet9" min="-2" pref="700" max="-2" attributes="0"/>
+                          <Component id="tweet10" min="-2" pref="700" max="-2" attributes="0"/>
+                          <Component id="tweet11" min="-2" pref="700" max="-2" attributes="0"/>
+                          <Component id="tweet12" min="-2" pref="700" max="-2" attributes="0"/>
+                          <Component id="tweet13" min="-2" pref="700" max="-2" attributes="0"/>
+                          <Component id="tweet14" min="-2" pref="700" max="-2" attributes="0"/>
+                          <Component id="tweet15" min="-2" pref="700" max="-2" attributes="0"/>
+                          <Component id="tweet16" min="-2" pref="700" max="-2" attributes="0"/>
+                          <Component id="tweet17" min="-2" pref="700" max="-2" attributes="0"/>
+                          <Component id="tweet18" min="-2" pref="700" max="-2" attributes="0"/>
+                          <Component id="tweet19" min="-2" pref="700" max="-2" attributes="0"/>
+                          <Component id="tweet20" min="-2" pref="700" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="71" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="tweet1" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tweet2" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tweet3" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tweet4" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tweet5" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tweet6" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tweet7" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tweet8" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tweet9" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tweet10" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tweet11" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tweet12" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tweet13" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tweet14" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tweet15" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tweet16" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tweet17" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tweet18" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tweet19" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tweet20" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="componentes.Tweet" name="tweet1">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet2">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet3">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet4">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet5">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet6">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet7">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet8">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet9">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet10">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet11">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet12">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet13">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet14">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet15">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet16">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet17">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet18">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet19">
+            </Component>
+            <Component class="componentes.Tweet" name="tweet20">
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+  </SubComponents>
 </Form>
