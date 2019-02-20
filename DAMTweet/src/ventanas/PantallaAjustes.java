@@ -12,8 +12,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRDataSource;
@@ -47,6 +49,10 @@ public class PantallaAjustes extends javax.swing.JDialog {
         initComponents();
         jfc = new JFileChooser();
         desktop = Desktop.getDesktop();
+        this.setTitle("Informes");
+        String[] lugaresTrendingTopic = BBDD.getLugaresTrendingTopic();
+        this.jComboBoxCiudades.setModel(new DefaultComboBoxModel<String>(lugaresTrendingTopic));
+        this.jComboBoxCiudades.setSelectedIndex(0);
 
         //  desktop.open(new File("rutaPDF"));
     }
@@ -66,17 +72,19 @@ public class PantallaAjustes extends javax.swing.JDialog {
 
         jButtonLogout = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jSpinnerB = new javax.swing.JSpinner();
         jSpinnerA = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
         jButtonInformeFechas = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jButtonFollowesFollowed = new javax.swing.JButton();
+        jButtonFollowersFollowed = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jTextFieldBuscar = new javax.swing.JTextField();
         jButtonTweetsUsuario = new javax.swing.JButton();
+        jLabelCiudades = new javax.swing.JLabel();
+        jComboBoxCiudades = new javax.swing.JComboBox<>();
+        jButtonCambiarCiudad = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1200, 800));
@@ -93,8 +101,6 @@ public class PantallaAjustes extends javax.swing.JDialog {
 
         jLabel2.setText("BORRAR REGISTROS Y DESLOGEARSE");
 
-        jLabel3.setText("INFORMES");
-
         jLabel4.setText("Tweets publicados entre");
 
         jSpinnerB.setModel(new javax.swing.SpinnerDateModel());
@@ -103,19 +109,19 @@ public class PantallaAjustes extends javax.swing.JDialog {
 
         jLabel1.setText("y");
 
-        jButtonInformeFechas.setText("Generear Informe");
+        jButtonInformeFechas.setText("Generar Informe");
         jButtonInformeFechas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonInformeFechasActionPerformed(evt);
             }
         });
 
-        jLabel5.setText("Seguidores que tiene la cuenta y la lista  de seguidos");
+        jLabel5.setText("Informe con seguidores y seguidos");
 
-        jButtonFollowesFollowed.setText("Generear Informe");
-        jButtonFollowesFollowed.addActionListener(new java.awt.event.ActionListener() {
+        jButtonFollowersFollowed.setText("Generar Informe");
+        jButtonFollowersFollowed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFollowesFollowedActionPerformed(evt);
+                jButtonFollowersFollowedActionPerformed(evt);
             }
         });
 
@@ -123,10 +129,19 @@ public class PantallaAjustes extends javax.swing.JDialog {
 
         jTextFieldBuscar.setText("Buscar usuario...");
 
-        jButtonTweetsUsuario.setText("Generear Informe");
+        jButtonTweetsUsuario.setText("Generar Informe");
         jButtonTweetsUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonTweetsUsuarioActionPerformed(evt);
+            }
+        });
+
+        jLabelCiudades.setText("Ciudad ");
+
+        jButtonCambiarCiudad.setText("Cambiar ciudad");
+        jButtonCambiarCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCambiarCiudadActionPerformed(evt);
             }
         });
 
@@ -135,40 +150,45 @@ public class PantallaAjustes extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSpinnerA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSpinnerB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(jSpinnerA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jSpinnerB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel6))
-                                .addGap(83, 83, 83)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButtonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jButtonInformeFechas)
-                            .addComponent(jButtonFollowesFollowed)
-                            .addComponent(jButtonTweetsUsuario)
-                            .addComponent(jLabel5))))
-                .addGap(31, 31, Short.MAX_VALUE))
+                            .addComponent(jLabelCiudades)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jButtonInformeFechas, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel2)
+                                                .addComponent(jLabel6))
+                                            .addGap(66, 66, 66))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(jComboBoxCiudades, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(51, 51, 51)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextFieldBuscar)
+                                        .addComponent(jButtonLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonTweetsUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonFollowersFollowed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonCambiarCiudad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addGap(60, 60, 60))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jSpinnerA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -176,25 +196,26 @@ public class PantallaAjustes extends javax.swing.JDialog {
                     .addComponent(jSpinnerB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonInformeFechas)
-                .addGap(42, 42, 42)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonFollowesFollowed)
-                .addGap(24, 24, 24)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jButtonFollowersFollowed))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonTweetsUsuario)
-                        .addGap(0, 75, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonLogout)
-                            .addComponent(jLabel2))))
-                .addGap(23, 23, 23))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonTweetsUsuario)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCambiarCiudad)
+                    .addComponent(jComboBoxCiudades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCiudades))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonLogout)
+                    .addComponent(jLabel2))
+                .addGap(32, 32, 32))
         );
 
         pack();
@@ -235,9 +256,9 @@ public class PantallaAjustes extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jButtonInformeFechasActionPerformed
 
-    private void jButtonFollowesFollowedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFollowesFollowedActionPerformed
+    private void jButtonFollowersFollowedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFollowersFollowedActionPerformed
         String ruta = pedirRutaInforme();
-    }//GEN-LAST:event_jButtonFollowesFollowedActionPerformed
+    }//GEN-LAST:event_jButtonFollowersFollowedActionPerformed
 
     private void jButtonTweetsUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTweetsUsuarioActionPerformed
         User usuario = gestionTwitter.buscarUsuarioPublico(this.jTextFieldBuscar.getText());
@@ -275,18 +296,26 @@ public class PantallaAjustes extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jButtonLogoutActionPerformed
 
+    private void jButtonCambiarCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCambiarCiudadActionPerformed
+        String ciudad = this.jComboBoxCiudades.getSelectedItem().toString();
+        BBDD.cambiarCiudadUsuario(ciudad);
+        this.dispose();
+    }//GEN-LAST:event_jButtonCambiarCiudadActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonFollowesFollowed;
+    private javax.swing.JButton jButtonCambiarCiudad;
+    private javax.swing.JButton jButtonFollowersFollowed;
     private javax.swing.JButton jButtonInformeFechas;
     private javax.swing.JButton jButtonLogout;
     private javax.swing.JButton jButtonTweetsUsuario;
+    private javax.swing.JComboBox<String> jComboBoxCiudades;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabelCiudades;
     private javax.swing.JSpinner jSpinnerA;
     private javax.swing.JSpinner jSpinnerB;
     private javax.swing.JTextField jTextFieldBuscar;

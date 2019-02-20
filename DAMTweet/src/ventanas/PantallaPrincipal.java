@@ -43,10 +43,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         listener = new Listeners();
         aplicarListenerBotones();
 
-        // MIENTRAS SE ENLAZA CON AJUSTES LLAMA A UNA LOCALIZACION CUALQUIERA
-        HashMap<String, Integer> tt = BBDD.getWoeidTrendingTopic();
-        String lugar = tt.keySet().iterator().next();
-        inicializarTrendingTopics(lugar);   // Mantener este metodo
+        inicializarTrendingTopics(BBDD.getCiudadUsuario());   
 
     }
 
@@ -311,8 +308,9 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         if (ventana.isLogout()) {
             ventana.dispose();
             this.dispose();
+        }else{
+            inicializarTrendingTopics(BBDD.getCiudadUsuario());
         }
-        System.out.println("");
     }//GEN-LAST:event_jButtonAjustesActionPerformed
 
 

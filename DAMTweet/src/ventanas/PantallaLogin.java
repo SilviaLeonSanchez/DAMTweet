@@ -55,6 +55,7 @@ public class PantallaLogin extends javax.swing.JFrame {
         System.out.println(RUTA_BBDD);
         BBDD = new GestorBBDD_SQLite(RUTA_BBDD);
         BBDD.crearTablas();
+        BBDD.inicializarCiudad();
         configureWindowAndComponents();
         rellenarComoBoxUsuarios(getUsuariosLogeados());
 

@@ -8,10 +8,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import dto.UsuarioAplicacion;
+import static ventanas.PantallaLogin.BBDD;
 
 /**
  *
@@ -177,8 +177,14 @@ public class GestorBBDD_SQLite {
                     + "	ciudad text NOT NULL\n"
                     + ");";
 
+            String sql_ciudad = "CREATE TABLE IF NOT EXISTS CIUDAD_USUARIO (\n"
+                    + "	id integer PRIMARY KEY,\n"
+                    + "	ciudad text NOT NULL\n"
+                    + ");";
+
             consulta.execute(sql_usuarios);
             consulta.execute(sql_TT);
+            consulta.execute(sql_ciudad);
 
         } catch (SQLException ex) {
             Logger.getLogger(GestorBBDD_SQLite.class.getName()).log(Level.SEVERE, null, ex);
@@ -268,7 +274,7 @@ public class GestorBBDD_SQLite {
         return null;
     }
 
-    public List<String> getLugaresTrendingTopic() {
+    public String[] getLugaresTrendingTopic() {
         try {
             ResultSet resultado = ejecutarSELECT("select ciudad from LUGARES_TT");
             ArrayList<String> lugaresTT = new ArrayList<>();
@@ -277,12 +283,38 @@ public class GestorBBDD_SQLite {
                 lugaresTT.add(resultado.getString("ciudad"));
             }
 
-            return lugaresTT;
+            String[] lugares = new String[lugaresTT.size()];
+            for (int i = 0; i < lugares.length; i++) {
+                lugares[i] = lugaresTT.get(i);
+            }
+            return lugares;
 
         } catch (SQLException ex) {
             Logger.getLogger(GestorBBDD_SQLite.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    public String getCiudadUsuario() {
+        try {
+            ResultSet resultado = ejecutarSELECT("select ciudad from CIUDAD_USUARIO");
+            return resultado.getString("ciudad");
+
+        } catch (SQLException ex) {
+        }
+        return null;
+    }
+
+    public boolean cambiarCiudadUsuario(String ciudad) {
+        ejecutar("delete from CIUDAD_USUARIO");
+        return ejecutar("insert into CIUDAD_USUARIO(ciudad) values ('" + ciudad + "')");
+    }
+
+    public void inicializarCiudad() {
+        String ciudadUsuario = getCiudadUsuario();
+        if (ciudadUsuario == null){
+            cambiarCiudadUsuario(getLugaresTrendingTopic()[0]);
+        }
     }
 
 }
