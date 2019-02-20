@@ -5,12 +5,15 @@
  */
 package logica;
 
+import dto.Tweet;
+import dto.UsuarioTwitter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import twitter4j.PagableResponseList;
+import twitter4j.Paging;
 import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.ResponseList;
@@ -61,6 +64,15 @@ public class GestionTwitter {
         return null;
     }
 
+    public List<Status> getTweetsUsuario(User usuario) {
+        try {
+            return this.twitter.getUserTimeline(usuario.getId());
+        } catch (TwitterException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public List<Status> getUltimosTweetsUsuariosSeguidos() {
         try {
             return this.twitter.getHomeTimeline();
@@ -73,7 +85,6 @@ public class GestionTwitter {
     public void enviarTweet(String textoTweet) {
         try {
             Status tweet = twitter.updateStatus(textoTweet);
-            System.out.println("Successfully updated the status to [" + tweet.getText() + "].");
         } catch (TwitterException ex) {
             Logger.getLogger(ConexionTwitter.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -82,7 +93,6 @@ public class GestionTwitter {
     public void retwitearTweet(Status tweet) {
         try {
             Status retwittedTweet = twitter.retweetStatus(tweet.getId());
-            System.out.println("Successfully retweeted [" + retwittedTweet.getText() + "].");
         } catch (TwitterException ex) {
             Logger.getLogger(ConexionTwitter.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -99,7 +109,7 @@ public class GestionTwitter {
 
         return seguidores;
     }
-    
+
     public List<User> getSeguidos() {
         PagableResponseList<User> seguidos = null;
 
@@ -111,7 +121,6 @@ public class GestionTwitter {
 
         return seguidos;
     }
-    
 
     /**
      * Realiza una busqueda standar tanto de texto como de hastags
@@ -150,29 +159,46 @@ public class GestionTwitter {
 
         } catch (TwitterException te) {
             te.printStackTrace();
-            System.out.println("Error al buscar ususario: " + te.getMessage());
+            System.out.println("Error al buscar usuario: " + te.getMessage());
             System.exit(-1);
         }
         return usuarios;
     }
-    
+
     public List<User> buscarUsuariosPublicos(String username) {
         List<User> usuarios = new ArrayList<>();
         try {
-            
+
             for (User usuario : twitter.searchUsers(username, 1)) {
                 // Solo añade los usuarios cuyos tweets estan accesibles
-                if (usuario != null){
+                if (usuario != null) {
                     if (usuario.getStatus() != null) {
                         usuarios.add(usuario);
-                    } 
+                    }
                 }
             }
         } catch (TwitterException te) {
-            System.out.println("Error al buscar ususario: " + te.getMessage());
+            System.out.println("Error al buscar usuario: " + te.getMessage());
             System.exit(-1);
         }
         return usuarios;
+    }
+
+    public User buscarUsuarioPublico(String username) {
+        try {
+
+            for (User usuario : twitter.searchUsers(username, 1)) {
+                if (usuario != null) {
+                    if (usuario.getStatus() != null) {
+                        return usuario;
+                    }
+                }
+            }
+        } catch (TwitterException te) {
+            System.out.println("Error al buscar usuario: " + te.getMessage());
+            System.exit(-1);
+        }
+        return null;
     }
 
     public Trend[] getTrendingTopics(int woeid) {
@@ -201,6 +227,30 @@ public class GestionTwitter {
 
     public String getTrendingTopic(Trend t) {
         return t.getName();
+    }
+
+    public ArrayList<UsuarioTwitter> getSeguidosInforme() {
+        ArrayList<UsuarioTwitter> seguidos = new ArrayList<>();
+        for (User seguido : getSeguidos()) {
+            seguidos.add(new UsuarioTwitter(seguido));
+        }
+        return seguidos;
+    }
+
+    public ArrayList<UsuarioTwitter> getSeguidoresInforme() {
+        ArrayList<UsuarioTwitter> seguidores = new ArrayList<>();
+        for (User seguidor : getSeguidores()) {
+            seguidores.add(new UsuarioTwitter(seguidor));
+        }
+        return seguidores;
+    }
+
+    public ArrayList<Tweet> getTweetsInforme(User usuario) {
+        ArrayList<Tweet> tweets = new ArrayList<>();
+        for (Status tweet : getTweetsUsuario(usuario)) {
+            tweets.add(new Tweet(tweet));
+        }
+        return tweets;
     }
 
 }

@@ -6,11 +6,9 @@
 package ventanas;
 
 import dto.Tweet;
-import informes.TwitterDataSource;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -25,8 +23,10 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import twitter4j.TwitterException;
+import twitter4j.User;
 import static ventanas.PantallaLogin.BBDD;
 import static ventanas.PantallaLogin.gestionTwitter;
+import static ventanas.PantallaLogin.padre;
 
 /**
  *
@@ -75,7 +75,7 @@ public class PantallaAjustes extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jButtonFollowesFollowed = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldBuscar = new javax.swing.JTextField();
         jButtonTweetsUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -121,12 +121,7 @@ public class PantallaAjustes extends javax.swing.JDialog {
 
         jLabel6.setText("Informe con los tweets de un usuario ");
 
-        jTextField1.setText("Buscar usuario...");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
+        jTextFieldBuscar.setText("Buscar usuario...");
 
         jButtonTweetsUsuario.setText("Generear Informe");
         jButtonTweetsUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -160,7 +155,7 @@ public class PantallaAjustes extends javax.swing.JDialog {
                                     .addComponent(jLabel6))
                                 .addGap(83, 83, 83)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButtonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jButtonInformeFechas)
                             .addComponent(jButtonFollowesFollowed)
@@ -188,7 +183,7 @@ public class PantallaAjustes extends javax.swing.JDialog {
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -216,13 +211,13 @@ public class PantallaAjustes extends javax.swing.JDialog {
     }
 
     private void jButtonInformeFechasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInformeFechasActionPerformed
-        
+
         try {
             String ruta = pedirRutaInforme();
             ArrayList<Tweet> tweets = new ArrayList<Tweet>();
-            for (Tweet tweet : TwitterDataSource.getTweets()) {
-                if (tweet.getFecha().after((Date) jSpinnerA.getValue()) 
-                        & tweet.getFecha().before((Date) jSpinnerB.getValue())) {                    
+            for (Tweet tweet : gestionTwitter.getTweetsInforme(gestionTwitter.getUsuario())) {
+                if (tweet.getFecha().after((Date) jSpinnerA.getValue())
+                        & tweet.getFecha().before((Date) jSpinnerB.getValue())) {
                     tweets.add(tweet);
                     System.out.println(tweet.getTexto());
                 }
@@ -236,8 +231,8 @@ public class PantallaAjustes extends javax.swing.JDialog {
         } catch (IOException ex) {
             Logger.getLogger(PantallaAjustes.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
+
     }//GEN-LAST:event_jButtonInformeFechasActionPerformed
 
     private void jButtonFollowesFollowedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFollowesFollowedActionPerformed
@@ -245,23 +240,24 @@ public class PantallaAjustes extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonFollowesFollowedActionPerformed
 
     private void jButtonTweetsUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTweetsUsuarioActionPerformed
-        try {
-            String ruta = pedirRutaInforme();
-            ArrayList<Tweet> tweets = TwitterDataSource.getTweets();
-            this.dataSource = new JRBeanCollectionDataSource(tweets);
-            JasperPrint print = JasperFillManager.fillReport("archivos_informes/PruebaInformeTwitter.jasper", new HashMap(), dataSource);
-            JasperExportManager.exportReportToPdfFile(print, ruta);
-            desktop.open(new File(ruta));
-        } catch (JRException ex) {
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al generar el informe", "Error", JOptionPane.ERROR_MESSAGE);
-        } catch (IOException ex) {
-            Logger.getLogger(PantallaAjustes.class.getName()).log(Level.SEVERE, null, ex);
+        User usuario = gestionTwitter.buscarUsuarioPublico(this.jTextFieldBuscar.getText());
+        if (usuario != null) {
+            try {
+                String ruta = pedirRutaInforme();
+                ArrayList<Tweet> tweets = gestionTwitter.getTweetsInforme(usuario);
+                this.dataSource = new JRBeanCollectionDataSource(tweets);
+                JasperPrint print = JasperFillManager.fillReport("archivos_informes/InformeTweetsUsuario.jasper", new HashMap(), dataSource);
+                JasperExportManager.exportReportToPdfFile(print, ruta);
+                desktop.open(new File(ruta));
+            } catch (JRException ex) {
+                JOptionPane.showMessageDialog(this, "Ha ocurrido un error al generar el informe", "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (IOException ex) {
+                Logger.getLogger(PantallaAjustes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(padre, "No se ha encontrado ningún usuario público con ese nombre");
         }
     }//GEN-LAST:event_jButtonTweetsUsuarioActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        String ruta = pedirRutaInforme();
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButtonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogoutActionPerformed
         try {
@@ -293,6 +289,6 @@ public class PantallaAjustes extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JSpinner jSpinnerA;
     private javax.swing.JSpinner jSpinnerB;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldBuscar;
     // End of variables declaration//GEN-END:variables
 }
