@@ -66,7 +66,7 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jButtonAjustes" max="32767" attributes="0"/>
-                          <Component id="buscador" max="32767" attributes="0"/>
+                          <Component id="buscador" pref="74" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="nuevoTweet" min="-2" max="-2" attributes="0"/>

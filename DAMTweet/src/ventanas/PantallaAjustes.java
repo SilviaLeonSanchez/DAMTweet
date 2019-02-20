@@ -10,7 +10,9 @@ import informes.TwitterDataSource;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,6 +37,7 @@ public class PantallaAjustes extends javax.swing.JDialog {
     Desktop desktop = null;
     private JFileChooser jfc;
     private JRDataSource dataSource;
+    private boolean logout = false;
 
     /**
      * Creates new form PantallaAjustes
@@ -44,9 +47,12 @@ public class PantallaAjustes extends javax.swing.JDialog {
         initComponents();
         jfc = new JFileChooser();
         desktop = Desktop.getDesktop();
-        
-        //  desktop.open(new File("rutaPDF"));
 
+        //  desktop.open(new File("rutaPDF"));
+    }
+
+    public boolean isLogout() {
+        return logout;
     }
 
     /**
@@ -62,8 +68,8 @@ public class PantallaAjustes extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
+        jSpinnerB = new javax.swing.JSpinner();
+        jSpinnerA = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
         jButtonInformeFechas = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -91,9 +97,9 @@ public class PantallaAjustes extends javax.swing.JDialog {
 
         jLabel4.setText("Tweets publicados entre");
 
-        jSpinner1.setModel(new javax.swing.SpinnerDateModel());
+        jSpinnerB.setModel(new javax.swing.SpinnerDateModel());
 
-        jSpinner2.setModel(new javax.swing.SpinnerDateModel());
+        jSpinnerA.setModel(new javax.swing.SpinnerDateModel());
 
         jLabel1.setText("y");
 
@@ -104,7 +110,7 @@ public class PantallaAjustes extends javax.swing.JDialog {
             }
         });
 
-        jLabel5.setText("Seguidores que tiene una cuenta y la lista seguidos");
+        jLabel5.setText("Seguidores que tiene la cuenta y la lista  de seguidos");
 
         jButtonFollowesFollowed.setText("Generear Informe");
         jButtonFollowesFollowed.addActionListener(new java.awt.event.ActionListener() {
@@ -143,11 +149,11 @@ public class PantallaAjustes extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
-                                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jSpinnerA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jSpinnerB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -170,9 +176,9 @@ public class PantallaAjustes extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinnerA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSpinnerB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonInformeFechas)
                 .addGap(42, 42, 42)
@@ -199,18 +205,39 @@ public class PantallaAjustes extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private String pedirRutaInforme(){
+    private String pedirRutaInforme() {
         int resultado = jfc.showSaveDialog(this);
-        if (resultado == JFileChooser.APPROVE_OPTION){
-                return jfc.getSelectedFile().getAbsolutePath();
-        }else{
+        if (resultado == JFileChooser.APPROVE_OPTION) {
+            return jfc.getSelectedFile().getAbsolutePath();
+        } else {
             JOptionPane.showConfirmDialog(this, "No se ha indicado donde guardar el archivo por lo tanto no se generará el informe.", "Sin ruta especificada", JOptionPane.INFORMATION_MESSAGE);
             return null;
         }
     }
-    
+
     private void jButtonInformeFechasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInformeFechasActionPerformed
-        String ruta = pedirRutaInforme();
+        
+        try {
+            String ruta = pedirRutaInforme();
+            ArrayList<Tweet> tweets = new ArrayList<Tweet>();
+            for (Tweet tweet : TwitterDataSource.getTweets()) {
+                if (tweet.getFecha().after((Date) jSpinnerA.getValue()) 
+                        & tweet.getFecha().before((Date) jSpinnerB.getValue())) {                    
+                    tweets.add(tweet);
+                    System.out.println(tweet.getTexto());
+                }
+            }
+            this.dataSource = new JRBeanCollectionDataSource(tweets);
+            JasperPrint print = JasperFillManager.fillReport("archivos_informes/InformeTwetsFehcas.jasper", new HashMap(), dataSource);
+            JasperExportManager.exportReportToPdfFile(print, ruta);
+            desktop.open(new File(ruta));
+        } catch (JRException ex) {
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al generar el informe", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            Logger.getLogger(PantallaAjustes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }//GEN-LAST:event_jButtonInformeFechasActionPerformed
 
     private void jButtonFollowesFollowedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFollowesFollowedActionPerformed
@@ -246,9 +273,9 @@ public class PantallaAjustes extends javax.swing.JDialog {
         }
 
         // Desconectar de twiiter
-        gestionTwitter.getTwitter().setOAuth2Token(null);
-
-        // Pendiente cerrar ventanas hasta login....
+        gestionTwitter.getTwitter().setOAuthAccessToken(null);
+        this.logout = true;
+        this.setVisible(false);
 
     }//GEN-LAST:event_jButtonLogoutActionPerformed
 
@@ -264,8 +291,8 @@ public class PantallaAjustes extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
+    private javax.swing.JSpinner jSpinnerA;
+    private javax.swing.JSpinner jSpinnerB;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

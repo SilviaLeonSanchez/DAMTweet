@@ -27,7 +27,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     private ArrayList<TrendingTopic> componentesTrendingTopic;
     private ArrayList<Tweet> componentesTweet;
     private Listeners listener;
-    
+
     /**
      * Creates new form TwitterMain2
      */
@@ -39,7 +39,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         inicializarTweets();
         this.nuevoTweet.inicializarComponente();
         this.usuario.inicializarComponente(gestionTwitter.getUsuario());
-        
+
         listener = new Listeners();
         aplicarListenerBotones();
 
@@ -293,7 +293,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonAjustes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buscador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(buscador, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(nuevoTweet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -305,9 +305,14 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAjustesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjustesActionPerformed
-        PantallaAjustes ventana = new PantallaAjustes(padre, true);
+        final PantallaAjustes ventana = new PantallaAjustes(padre, true);
+        boolean salir = false;
         ventana.setVisible(true);
-        
+        if (ventana.isLogout()) {
+            ventana.dispose();
+            this.dispose();
+        }
+        System.out.println("");
     }//GEN-LAST:event_jButtonAjustesActionPerformed
 
 

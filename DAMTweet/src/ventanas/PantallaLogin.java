@@ -210,7 +210,7 @@ public class PantallaLogin extends javax.swing.JFrame {
         gestionTwitter = new GestionTwitter(conexionTwitter.getTwitter());
         this.setVisible(false);
         lanzarPantallaPrincipal();
-        this.setVisible(false);
+        this.setVisible(true);
     }//GEN-LAST:event_jButtonRegistroActionPerformed
 
     private void jButtonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarActionPerformed
@@ -220,7 +220,7 @@ public class PantallaLogin extends javax.swing.JFrame {
         gestionTwitter = new GestionTwitter(conexionTwitter.getTwitter());
         this.setVisible(false);
         lanzarPantallaPrincipal();
-        this.setVisible(false);
+        this.setVisible(true);
     }//GEN-LAST:event_jButtonIniciarActionPerformed
 
     /**

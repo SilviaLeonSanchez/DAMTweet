@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PruebaDAMTweet" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="74b8b04c-95b8-4e64-b6d9-bc5b1b15d2f3">
+	<property name="ireport.zoom" value="1.6105100000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="enRespuestaAUsuario" class="java.lang.String">
+		<fieldDescription><![CDATA[enRespuestaAUsuario]]></fieldDescription>
+	</field>
+	<field name="esFavorito" class="java.lang.String">
+		<fieldDescription><![CDATA[esFavorito]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.util.Date">
+		<fieldDescription><![CDATA[fecha]]></fieldDescription>
+	</field>
+	<field name="id" class="java.lang.Long">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="idioma" class="java.lang.String">
+		<fieldDescription><![CDATA[idioma]]></fieldDescription>
+	</field>
+	<field name="texto" class="java.lang.String">
+		<fieldDescription><![CDATA[texto]]></fieldDescription>
+	</field>
+	<field name="totalFavoritos" class="java.lang.Integer">
+		<fieldDescription><![CDATA[totalFavoritos]]></fieldDescription>
+	</field>
+	<field name="totalRetweets" class="java.lang.Integer">
+		<fieldDescription><![CDATA[totalRetweets]]></fieldDescription>
+	</field>
+	<field name="twiteadoPor" class="java.lang.String">
+		<fieldDescription><![CDATA[twiteadoPor]]></fieldDescription>
+	</field>
+	<variable name="id_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{id}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="26" uuid="f7b5aeba-c905-46dc-a9b9-d7c02d7506d2"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[ 				Tweets del usuario		]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="288" y="0" width="124" height="26" uuid="3a4b88b4-8333-40e4-9a94-b2e35a44f7a7"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{twiteadoPor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="99" splitType="Stretch">
+			<staticText>
+				<reportElement x="36" y="7" width="51" height="20" uuid="c386aa8f-8faf-44ed-92ce-56dd2e51babd"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="113" y="7" width="124" height="20" uuid="9a85f498-7a0a-40c8-984a-bbc2f09cfc95"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="36" y="27" width="51" height="20" uuid="6d36cad8-57c3-44d8-9deb-774206cddb7b"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TEXTO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="113" y="27" width="419" height="20" uuid="fc82b923-a1b9-4721-a41f-fce12d3e0579"/>
+				<textFieldExpression><![CDATA[$F{texto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="36" y="67" width="51" height="20" uuid="e0f7d8eb-2fb0-48c5-be5a-33f92a9c606c"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[IDIOMA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="113" y="67" width="143" height="20" uuid="e8cc87a7-06b5-4dfe-ae2e-892d5b1d0a9c"/>
+				<textFieldExpression><![CDATA[$F{idioma}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="36" y="47" width="51" height="20" uuid="65e13f22-72d8-45a3-b7d7-f42ef06444ca"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="113" y="47" width="143" height="20" uuid="388920ac-031d-4420-961b-0f7b750405d3"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="16" y="0" width="516" height="1" uuid="e1859aa9-07e0-4064-9ea2-e8799b0193eb"/>
+			</line>
+		</band>
+	</detail>
+	<summary>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="412" y="0" width="116" height="20" uuid="c8d40268-6c88-47dd-a1e3-7edf5c678072"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Total de tweets : "+$V{id_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
