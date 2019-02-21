@@ -25,13 +25,14 @@ import static ventanas.PantallaLogin.gestionTwitter;
  *
  * @author Annie
  */
-public class Tweet extends javax.swing.JPanel implements Serializable{
+public class Tweet extends javax.swing.JPanel implements Serializable {
 
     // ATRIBUTOS
     private String nombreUsuario;
     private String id;
     private String retweets;
     private String textoTweet;
+    private int lineas;
 
     private SimpleDateFormat sdf;
     private Status tweet;
@@ -43,7 +44,7 @@ public class Tweet extends javax.swing.JPanel implements Serializable{
         listeners = new Listeners();
         sdf = new SimpleDateFormat("dd-MM-yyyy");
         aplicarListenerBotones();
-       
+        this.textAreaTweet.setEditable(false);
     }
 
     public void inicializarComponente(Status tweet) {
@@ -85,7 +86,7 @@ public class Tweet extends javax.swing.JPanel implements Serializable{
 
     public void setRetweets(String retwets) {
         this.retweets = retwets;
-        this.jLabelTweets.setText(retwets);
+        this.textAreaTweet.setText(retwets);
     }
 
     public String getTextoTweet() {
@@ -95,7 +96,7 @@ public class Tweet extends javax.swing.JPanel implements Serializable{
     public void setTextoTweet(String textoTweet) {
         String texto = dividirTexto(textoTweet);
         this.textoTweet = texto;
-        this.jLabelTweets.setText(texto);
+        this.textAreaTweet.setText(texto);
     }
 
     public Icon getFotoUsuario() {
@@ -131,12 +132,17 @@ public class Tweet extends javax.swing.JPanel implements Serializable{
             texto += palabra;
             if (letras >= 60) {
                 texto += "\n";
+                lineas++;
+                if (lineas > 4){
+                    this.textAreaTweet.setSize(this.textAreaTweet.getWidth(), this.textAreaTweet.getHeight()+10);
+                }
                 letras = 0;
             } else {
                 texto += " ";
                 letras++;
             }
         }
+        this.textAreaTweet.setRows(lineas);
         return texto;
     }
 
@@ -149,25 +155,18 @@ public class Tweet extends javax.swing.JPanel implements Serializable{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPaneTweets = new javax.swing.JScrollPane();
-        jLabelTweets = new javax.swing.JLabel();
         jLabelFoto = new javax.swing.JLabel();
         jLabelUsuario = new javax.swing.JLabel();
         jLabelId = new javax.swing.JLabel();
         jLabelFecha = new javax.swing.JLabel();
         jButtonRetweet = new javax.swing.JButton();
         jButtonLike = new javax.swing.JButton();
+        textAreaTweet = new javax.swing.JTextArea();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(68, 196, 255)));
-        setMaximumSize(new java.awt.Dimension(700, 115));
+        setMaximumSize(null);
         setMinimumSize(new java.awt.Dimension(700, 115));
         setLayout(null);
-
-        jScrollPaneTweets.setBorder(null);
-        jScrollPaneTweets.setViewportView(jLabelTweets);
-
-        add(jScrollPaneTweets);
-        jScrollPaneTweets.setBounds(120, 60, 570, 50);
 
         jLabelFoto.setMaximumSize(new java.awt.Dimension(48, 48));
         jLabelFoto.setMinimumSize(new java.awt.Dimension(48, 48));
@@ -194,6 +193,11 @@ public class Tweet extends javax.swing.JPanel implements Serializable{
         jButtonLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/corazon_blanco.png"))); // NOI18N
         add(jButtonLike);
         jButtonLike.setBounds(650, 10, 40, 40);
+
+        textAreaTweet.setColumns(20);
+        textAreaTweet.setRows(5);
+        add(textAreaTweet);
+        textAreaTweet.setBounds(120, 60, 570, 40);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRetweetActionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,8 +224,7 @@ public class Tweet extends javax.swing.JPanel implements Serializable{
     private javax.swing.JLabel jLabelFecha;
     private javax.swing.JLabel jLabelFoto;
     private javax.swing.JLabel jLabelId;
-    private javax.swing.JLabel jLabelTweets;
     private javax.swing.JLabel jLabelUsuario;
-    private javax.swing.JScrollPane jScrollPaneTweets;
+    private javax.swing.JTextArea textAreaTweet;
     // End of variables declaration//GEN-END:variables
 }
