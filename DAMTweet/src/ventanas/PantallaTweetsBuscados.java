@@ -28,6 +28,7 @@ public class PantallaTweetsBuscados extends javax.swing.JDialog {
         this.tweetsBuscados = new ArrayList<Status>(tweetsBuscados);
         generarListasComponentes();
         inicializarTweets();
+        setLocationRelativeTo(null);
     }
 
     private void generarListasComponentes() {

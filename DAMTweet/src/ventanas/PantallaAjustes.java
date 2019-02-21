@@ -53,7 +53,7 @@ public class PantallaAjustes extends javax.swing.JDialog {
         String[] lugaresTrendingTopic = BBDD.getLugaresTrendingTopic();
         this.jComboBoxCiudades.setModel(new DefaultComboBoxModel<String>(lugaresTrendingTopic));
         this.jComboBoxCiudades.setSelectedIndex(0);
-
+        setLocationRelativeTo(null);
         //  desktop.open(new File("rutaPDF"));
     }
 

@@ -80,7 +80,7 @@ public class Buscar extends javax.swing.JPanel implements Serializable {
                 PantallaUsuariosBuscados ventana = new PantallaUsuariosBuscados(padre, true, usuariosBuscados);
                 ventana.setVisible(true);
             } else {
-                JOptionPane.showMessageDialog(padre, "La lista de usuarios buscados es nula");
+                JOptionPane.showMessageDialog(padre, "No se han encontrado resultado usuarios con ese nombre");
             }
         } else {
             List<Status> tweetsBuscados = gestionTwitter.buscarTweets(textoBuscar);
