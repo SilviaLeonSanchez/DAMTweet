@@ -17,6 +17,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import twitter4j.Status;
+import twitter4j.TwitterException;
 import twitter4j.User;
 import utils.Listeners;
 import static ventanas.PantallaLogin.gestionTwitter;
@@ -32,12 +33,17 @@ public class Tweet extends javax.swing.JPanel implements Serializable {
     private String id;
     private String retweets;
     private String textoTweet;
-    private int lineas;
+    private boolean favorito;
 
     private SimpleDateFormat sdf;
     private Status tweet;
 
     private Listeners listeners;
+    final Color azulOscuro = new Color(29, 161, 242);
+    final Color azulClaro = new Color(128, 216, 255);
+    final Color rojoClaro = new Color(255, 0, 0);
+    final Color rojoOscuro = new Color(200, 0, 0);
+    final Color colorBotonFavorito;
 
     public Tweet() {
         initComponents();
@@ -45,6 +51,7 @@ public class Tweet extends javax.swing.JPanel implements Serializable {
         sdf = new SimpleDateFormat("dd-MM-yyyy");
         aplicarListenerBotones();
         this.textAreaTweet.setEditable(false);
+        this.colorBotonFavorito = this.jButtonLike.getBackground();
     }
 
     public void inicializarComponente(Status tweet) {
@@ -114,10 +121,6 @@ public class Tweet extends javax.swing.JPanel implements Serializable {
         }
     }
 
-    public String getFecha() {
-        return null;
-    }
-
     public void setFecha(Date fecha) {
         this.jLabelFecha.setText(sdf.format(fecha));
     }
@@ -132,17 +135,12 @@ public class Tweet extends javax.swing.JPanel implements Serializable {
             texto += palabra;
             if (letras >= 60) {
                 texto += "\n";
-                lineas++;
-                if (lineas > 4){
-                    this.textAreaTweet.setSize(this.textAreaTweet.getWidth(), this.textAreaTweet.getHeight()+10);
-                }
                 letras = 0;
             } else {
                 texto += " ";
                 letras++;
             }
         }
-        this.textAreaTweet.setRows(lineas);
         return texto;
     }
 
@@ -161,6 +159,7 @@ public class Tweet extends javax.swing.JPanel implements Serializable {
         jLabelFecha = new javax.swing.JLabel();
         jButtonRetweet = new javax.swing.JButton();
         jButtonLike = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
         textAreaTweet = new javax.swing.JTextArea();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(68, 196, 255)));
@@ -187,34 +186,52 @@ public class Tweet extends javax.swing.JPanel implements Serializable {
         jLabelFecha.setBounds(450, 10, 110, 15);
 
         jButtonRetweet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/refrescar_blanco.png"))); // NOI18N
+        jButtonRetweet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRetweetActionPerformed(evt);
+            }
+        });
         add(jButtonRetweet);
         jButtonRetweet.setBounds(600, 10, 40, 40);
 
         jButtonLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/corazon_blanco.png"))); // NOI18N
+        jButtonLike.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLikeActionPerformed(evt);
+            }
+        });
         add(jButtonLike);
         jButtonLike.setBounds(650, 10, 40, 40);
 
         textAreaTweet.setColumns(20);
         textAreaTweet.setRows(5);
-        add(textAreaTweet);
-        textAreaTweet.setBounds(120, 60, 570, 40);
+        jScrollPane1.setViewportView(textAreaTweet);
+
+        add(jScrollPane1);
+        jScrollPane1.setBounds(120, 60, 570, 40);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonRetweetActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jButtonLikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLikeActionPerformed
+
+        this.favorito = !this.favorito;
+        if (favorito) {
+            gestionTwitter.darFavorito(this.tweet.getId());
+            listeners.cambiarColorAlPasarPorEncima(jButtonLike, rojoClaro, rojoOscuro);
+            this.jButtonLike.setBackground(rojoClaro);
+        } else {
+            gestionTwitter.quitarFavorito(this.tweet.getId());
+            listeners.cambiarColorAlPasarPorEncima(jButtonLike, azulClaro, azulOscuro);
+            this.jButtonLike.setBackground(this.colorBotonFavorito);
+        }
+    }//GEN-LAST:event_jButtonLikeActionPerformed
+
+    private void jButtonRetweetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetweetActionPerformed
         gestionTwitter.retwitearTweet(tweet);
         JOptionPane.showMessageDialog(this, "Se ha retuiteado correctamente");
-    }
-
-    private void jButtonLikeActionPerformed(java.awt.event.ActionEvent evt) {
-
-    }
+    }//GEN-LAST:event_jButtonRetweetActionPerformed
 
     private void aplicarListenerBotones() {
-        final Color azulOscuro = new Color(29, 161, 242);
-        final Color azulClaro = new Color(128, 216, 255);
-        final Color rojo = new Color(255, 0, 0);
-
-        listeners.cambiarColorAlPasarPorEncima(jButtonLike, azulClaro, rojo);
+        listeners.cambiarColorAlPasarPorEncima(jButtonLike, azulClaro, azulOscuro);
         listeners.cambiarColorAlPasarPorEncima(jButtonRetweet, azulClaro, azulOscuro);
     }
 
@@ -225,6 +242,7 @@ public class Tweet extends javax.swing.JPanel implements Serializable {
     private javax.swing.JLabel jLabelFoto;
     private javax.swing.JLabel jLabelId;
     private javax.swing.JLabel jLabelUsuario;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea textAreaTweet;
     // End of variables declaration//GEN-END:variables
 }

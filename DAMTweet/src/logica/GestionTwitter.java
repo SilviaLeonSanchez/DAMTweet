@@ -21,6 +21,7 @@ import twitter4j.Trend;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.User;
+import static ventanas.PantallaLogin.gestionTwitter;
 
 /**
  *
@@ -252,4 +253,20 @@ public class GestionTwitter {
         return tweets;
     }
 
+    public void darFavorito(long idTweet) {
+        try {
+            this.twitter.favorites().createFavorite(idTweet);
+        } catch (TwitterException ex) {
+            System.out.println("Error al dar favorito");
+        }
+    }
+    
+    public void quitarFavorito(long idTweet) {
+        try {
+            this.twitter.favorites().destroyFavorite(idTweet);
+        } catch (TwitterException ex) {
+            System.out.println("Error al dar favorito");
+        }
+    }
+    
 }
