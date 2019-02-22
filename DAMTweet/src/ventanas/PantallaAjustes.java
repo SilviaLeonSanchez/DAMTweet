@@ -6,15 +6,19 @@
 package ventanas;
 
 import dto.Tweet;
+import java.awt.Color;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -26,6 +30,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import twitter4j.TwitterException;
 import twitter4j.User;
+import utils.Listeners;
 import static ventanas.PantallaLogin.BBDD;
 import static ventanas.PantallaLogin.gestionTwitter;
 import static ventanas.PantallaLogin.padre;
@@ -40,6 +45,7 @@ public class PantallaAjustes extends javax.swing.JDialog {
     private JFileChooser jfc;
     private JRDataSource dataSource;
     private boolean logout = false;
+    private Listeners listener;
 
     /**
      * Creates new form PantallaAjustes
@@ -50,11 +56,15 @@ public class PantallaAjustes extends javax.swing.JDialog {
         jfc = new JFileChooser();
         desktop = Desktop.getDesktop();
         this.setTitle("Informes");
+        listener = new Listeners();
         String[] lugaresTrendingTopic = BBDD.getLugaresTrendingTopic();
         this.jComboBoxCiudades.setModel(new DefaultComboBoxModel<String>(lugaresTrendingTopic));
         this.jComboBoxCiudades.setSelectedIndex(0);
         setLocationRelativeTo(null);
         //  desktop.open(new File("rutaPDF"));
+        aplicarListenerBotones();
+        ponLaAyuda();
+
     }
 
     public boolean isLogout() {
@@ -85,9 +95,10 @@ public class PantallaAjustes extends javax.swing.JDialog {
         jLabelCiudades = new javax.swing.JLabel();
         jComboBoxCiudades = new javax.swing.JComboBox<>();
         jButtonCambiarCiudad = new javax.swing.JButton();
+        jButtonAyuda = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1200, 800));
         setMinimumSize(new java.awt.Dimension(600, 400));
 
         jButtonLogout.setBackground(new java.awt.Color(254, 95, 95));
@@ -145,16 +156,25 @@ public class PantallaAjustes extends javax.swing.JDialog {
             }
         });
 
+        jButtonAyuda.setText("Ayuda");
+        jButtonAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAyudaActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Ayuda Cliente Twitter");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jSpinnerA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -168,21 +188,27 @@ public class PantallaAjustes extends javax.swing.JDialog {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jButtonInformeFechas, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel2)
-                                                .addComponent(jLabel6))
-                                            .addGap(66, 66, 66))
+                                            .addComponent(jLabel6)
+                                            .addGap(68, 68, 68))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addComponent(jComboBoxCiudades, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGap(0, 0, Short.MAX_VALUE)
+                                                    .addComponent(jComboBoxCiudades, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabel2)
+                                                    .addGap(0, 0, Short.MAX_VALUE)))
                                             .addGap(51, 51, 51)))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jTextFieldBuscar)
                                         .addComponent(jButtonLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jButtonTweetsUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jButtonFollowersFollowed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButtonCambiarCiudad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                        .addComponent(jButtonCambiarCiudad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonAyuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addGap(60, 60, 60))))
         );
         layout.setVerticalGroup(
@@ -211,11 +237,15 @@ public class PantallaAjustes extends javax.swing.JDialog {
                     .addComponent(jButtonCambiarCiudad)
                     .addComponent(jComboBoxCiudades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelCiudades))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAyuda)
+                    .addComponent(jLabel3))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonLogout)
                     .addComponent(jLabel2))
-                .addGap(32, 32, 32))
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -302,8 +332,43 @@ public class PantallaAjustes extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_jButtonCambiarCiudadActionPerformed
 
+    private void jButtonAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAyudaActionPerformed
+        ponLaAyuda();
+    }//GEN-LAST:event_jButtonAyudaActionPerformed
 
+    private void ponLaAyuda() {
+        try {
+           
+            File fichero = new File("help" + File.separator + "help_set.hs");
+            URL hsURL = fichero.toURI().toURL();
+            
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();//
+
+            hb.enableHelpOnButton(jButtonAyuda, "pantallaajustes", helpset);
+            hb.enableHelpKey(jButtonAyuda, "pantallaajustes", helpset);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void aplicarListenerBotones() {
+        final Color azulOscuro = new Color(29, 161, 242);
+        final Color azulClaro = new Color(128, 216, 255);
+        final Color rojoClaro = new Color(254, 95, 95);
+        final Color rojoOscuro = new Color(241, 148, 138);
+
+        listener.cambiarColorAlPasarPorEncima(jButtonAyuda, azulClaro, azulOscuro);
+        listener.cambiarColorAlPasarPorEncima(jButtonCambiarCiudad, azulClaro, azulOscuro);
+        listener.cambiarColorAlPasarPorEncima(jButtonFollowersFollowed, azulClaro, azulOscuro);
+        listener.cambiarColorAlPasarPorEncima(jButtonInformeFechas, azulClaro, azulOscuro);
+        listener.cambiarColorAlPasarPorEncima(jButtonTweetsUsuario, azulClaro, azulOscuro);
+        listener.cambiarColorAlPasarPorEncima(jButtonLogout, rojoClaro, rojoOscuro);
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAyuda;
     private javax.swing.JButton jButtonCambiarCiudad;
     private javax.swing.JButton jButtonFollowersFollowed;
     private javax.swing.JButton jButtonInformeFechas;
@@ -312,6 +377,7 @@ public class PantallaAjustes extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> jComboBoxCiudades;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

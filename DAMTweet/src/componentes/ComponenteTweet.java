@@ -23,7 +23,7 @@ import static ventanas.PantallaLogin.gestionTwitter;
  *
  * @author Annie
  */
-public class ComponenteTweet extends javax.swing.JPanel implements Serializable, ListCellRenderer {
+public class ComponenteTweet extends javax.swing.JPanel implements Serializable, ListCellRenderer{
 
     // ATRIBUTOS
     private String nombreUsuario;
@@ -257,6 +257,7 @@ public class ComponenteTweet extends javax.swing.JPanel implements Serializable,
 
         listeners.cambiarColorAlPasarPorEncima(jButtonLike, azulClaro, rojo);
         listeners.cambiarColorAlPasarPorEncima(jButtonRetweet, azulClaro, azulOscuro);
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -296,4 +297,7 @@ public class ComponenteTweet extends javax.swing.JPanel implements Serializable,
         return this;
 
     }
+
+  
+    
 }
