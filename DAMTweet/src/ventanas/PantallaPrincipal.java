@@ -8,9 +8,13 @@ package ventanas;
 import componentes.TrendingTopic;
 import componentes.Tweet;
 import java.awt.Color;
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import twitter4j.Status;
 import twitter4j.Trend;
 import utils.Listeners;
@@ -39,11 +43,11 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         inicializarTweets();
         this.nuevoTweet.inicializarComponente();
         this.usuario.inicializarComponente(gestionTwitter.getUsuario());
-
+        ponLaAyuda();
         listener = new Listeners();
         aplicarListenerBotones();
 
-        inicializarTrendingTopics(BBDD.getCiudadUsuario());   
+        inicializarTrendingTopics(BBDD.getCiudadUsuario());
 
     }
 
@@ -290,7 +294,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonAjustes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buscador, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
+                            .addComponent(buscador, javax.swing.GroupLayout.PREFERRED_SIZE, 74, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(nuevoTweet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -308,12 +312,27 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         if (ventana.isLogout()) {
             ventana.dispose();
             this.dispose();
-        }else{
+        } else {
             inicializarTrendingTopics(BBDD.getCiudadUsuario());
         }
+
     }//GEN-LAST:event_jButtonAjustesActionPerformed
 
+    private void ponLaAyuda() {
+        try {
 
+            File fichero = new File("help" + File.separator + "help_set.hs");
+            URL hsURL = fichero.toURI().toURL();
+
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();//
+
+            hb.enableHelpKey(getRootPane(), "pantallaprincipal", helpset);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private componentes.Buscar buscador;
     private javax.swing.JButton jButtonAjustes;

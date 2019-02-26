@@ -22,6 +22,9 @@ import logica.ConexionTwitter;
 import logica.GestionTwitter;
 import dto.UsuarioAplicacion;
 import java.awt.Frame;
+import java.net.URL;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.animation.MaterialUIMovement;
 import mdlaf.utils.MaterialColors;
@@ -43,6 +46,7 @@ public class PantallaLogin extends javax.swing.JFrame {
         initComponents();
         padre = this;
         setLocationRelativeTo(null);
+        ponLaAyuda();
         //jLabelLogo.setIcon(new ImageIcon(getClass().getResource(RUTA_LOGO)));
 
         File paquete_bbdd = new File("bbdd" + File.separator + "twitter.sqlite3");
@@ -109,7 +113,6 @@ public class PantallaLogin extends javax.swing.JFrame {
 
         /* Configuracion de los colores de las aplicaciones, habria que crear una
         clase para el manejo de los colores, las fuentes tipograficas y que quede todo igual.*/
-        
         //jButtonIniciar.setBorder(new LineBorder(MaterialColors.LIGHT_BLUE_A400));
         jButtonIniciar.setForeground(MaterialColors.LIGHT_BLUE_A400);
         jButtonIniciar.setBackground(MaterialColors.WHITE);
@@ -261,6 +264,23 @@ public class PantallaLogin extends javax.swing.JFrame {
             }
         });
     }
+
+    private void ponLaAyuda() {
+        try {
+
+            File fichero = new File("help" + File.separator + "help_set.hs");
+            URL hsURL = fichero.toURI().toURL();
+
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();//
+
+            hb.enableHelpKey(getRootPane(), "pantallalogin", helpset);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonIniciar;

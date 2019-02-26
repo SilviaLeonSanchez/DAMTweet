@@ -7,8 +7,12 @@ package ventanas;
 
 import componentes.Usuario;
 import dto.UsuarioTwitter;
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import twitter4j.User;
 
 /**
@@ -25,13 +29,14 @@ public class PantallaUsuariosBuscados extends javax.swing.JDialog {
      */
     public PantallaUsuariosBuscados(java.awt.Frame parent, boolean modal, List<User> usuariosBuscados) {
         super(parent, modal);
-        initComponents();
+        initComponents();        
         this.usuariosBuscados = new ArrayList(usuariosBuscados);
         generarListasComponentes();
         inicializarUsuarios();
         setLocationRelativeTo(null);
+        ponLaAyuda();
     }
-    
+
     private void generarListasComponentes() {
         this.componentesUsuarios = new ArrayList<>();
         this.componentesUsuarios.add(usuario1);
@@ -57,7 +62,23 @@ public class PantallaUsuariosBuscados extends javax.swing.JDialog {
             i++;
         }
     }
-    
+
+    private void ponLaAyuda() {
+        try {
+
+            File fichero = new File("help" + File.separator + "help_set.hs");
+            URL hsURL = fichero.toURI().toURL();
+
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();//
+
+            hb.enableHelpKey(getRootPane(), "pantallausuariosbuscados", helpset);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -169,7 +190,4 @@ public class PantallaUsuariosBuscados extends javax.swing.JDialog {
     private componentes.Usuario usuario9;
     // End of variables declaration//GEN-END:variables
 
-    
-
-    
 }

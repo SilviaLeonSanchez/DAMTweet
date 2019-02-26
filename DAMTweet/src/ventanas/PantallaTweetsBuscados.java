@@ -6,8 +6,12 @@
 package ventanas;
 
 import componentes.Tweet;
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import twitter4j.Status;
 
 /**
@@ -25,6 +29,7 @@ public class PantallaTweetsBuscados extends javax.swing.JDialog {
     public PantallaTweetsBuscados(java.awt.Frame parent, boolean modal, List<Status> tweetsBuscados) {
         super(parent, modal);
         initComponents();
+        ponLaAyuda();
         this.tweetsBuscados = new ArrayList<Status>(tweetsBuscados);
         generarListasComponentes();
         inicializarTweets();
@@ -64,6 +69,22 @@ public class PantallaTweetsBuscados extends javax.swing.JDialog {
                 componente.setVisible(false);
             }
             i++;
+        }
+    }
+
+    private void ponLaAyuda() {
+        try {
+
+            File fichero = new File("help" + File.separator + "help_set.hs");
+            URL hsURL = fichero.toURI().toURL();
+
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();//
+
+            hb.enableHelpKey(getRootPane(), "pantallatweetsbuscados", helpset);
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
