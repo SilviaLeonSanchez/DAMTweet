@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PruebaDAMTweet" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="74b8b04c-95b8-4e64-b6d9-bc5b1b15d2f3">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InformeTweetsUsuario" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="74b8b04c-95b8-4e64-b6d9-bc5b1b15d2f3">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="54"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
 		<![CDATA[]]>
@@ -44,7 +44,7 @@
 			<staticText>
 				<reportElement x="0" y="14" width="369" height="28" uuid="f7b5aeba-c905-46dc-a9b9-d7c02d7506d2"/>
 				<textElement textAlignment="Center">
-					<font fontName="Abyssinica SIL" size="18" isBold="true"/>
+					<font fontName="Serif" size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TWEETS]]></text>
 			</staticText>
@@ -55,70 +55,70 @@
 			<textField>
 				<reportElement x="63" y="30" width="419" height="34" uuid="fc82b923-a1b9-4721-a41f-fce12d3e0579"/>
 				<textElement>
-					<font fontName="Abyssinica SIL" size="12"/>
+					<font fontName="Serif" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{texto}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="382" y="10" width="100" height="19" uuid="388920ac-031d-4420-961b-0f7b750405d3"/>
 				<textElement>
-					<font fontName="Abyssinica SIL" size="14"/>
+					<font fontName="Serif" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="63" y="10" width="45" height="19" uuid="68513ade-6fda-481a-905a-504e3c26db8f"/>
 				<textElement>
-					<font fontName="Abyssinica SIL" size="14"/>
+					<font fontName="Serif" size="14"/>
 				</textElement>
 				<text><![CDATA[Autor:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="108" y="10" width="192" height="19" uuid="3a4b88b4-8333-40e4-9a94-b2e35a44f7a7"/>
 				<textElement>
-					<font fontName="Abyssinica SIL" size="14"/>
+					<font fontName="Serif" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{twiteadoPor}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="63" y="64" width="62" height="20" uuid="42d4d7f4-ea02-4dbc-953b-b8fbc4202a7b"/>
 				<textElement>
-					<font fontName="Abyssinica SIL" size="12"/>
+					<font fontName="Serif" size="12"/>
 				</textElement>
 				<text><![CDATA[Retweets:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="125" y="64" width="83" height="20" uuid="ecf86515-f3c1-47d2-ad97-0aa22519049b"/>
 				<textElement>
-					<font fontName="Abyssinica SIL" size="12"/>
+					<font fontName="Serif" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{totalRetweets}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="63" y="84" width="62" height="20" uuid="b3b36e63-1067-49b3-80e7-15c9ab246a89"/>
 				<textElement>
-					<font fontName="Abyssinica SIL" size="12"/>
+					<font fontName="Serif" size="12"/>
 				</textElement>
 				<text><![CDATA[Likes:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="125" y="84" width="83" height="20" uuid="3ff8f11a-ab89-4803-b901-4194d3a34274"/>
 				<textElement>
-					<font fontName="Abyssinica SIL" size="12"/>
+					<font fontName="Serif" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{totalFavoritos}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="282" y="64" width="100" height="20" uuid="16257aab-0723-4a58-9f26-700923a0d093"/>
 				<textElement>
-					<font fontName="Abyssinica SIL" size="12"/>
+					<font fontName="Serif" size="12"/>
 				</textElement>
 				<text><![CDATA[¿Es favorito?:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="382" y="64" width="100" height="20" uuid="c59e5ccf-1a7c-4da7-a844-de94d7b40768"/>
 				<textElement>
-					<font fontName="Abyssinica SIL" size="12"/>
+					<font fontName="Serif" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{esFavorito}]]></textFieldExpression>
 			</textField>
@@ -132,7 +132,7 @@
 			<textField>
 				<reportElement x="412" y="0" width="116" height="20" uuid="c8d40268-6c88-47dd-a1e3-7edf5c678072"/>
 				<textElement>
-					<font fontName="Abyssinica SIL" size="14" isBold="true"/>
+					<font fontName="Serif" size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["TOTAL: "+$V{id_1}]]></textFieldExpression>
 			</textField>

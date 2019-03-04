@@ -73,6 +73,7 @@
 		  
 		# Grabar los archivos necesarios
 		File DAMTweet.jar
+		File twitter4j.properties
 		File /r lib
 		File /r archivos_informes
 		File /r help
@@ -114,6 +115,7 @@ Section "uninstall"
 
     # Borrar los archivos 
     Delete "$INSTDIR\DAMTweet.jar"
+	Delete "$INSTDIR\twitter4j.properties"
     RMDir /r "$INSTDIR\archivos_informes"
     RMDir /r "$INSTDIR\lib"
 	RMDir /r "$INSTDIR\help"

@@ -88,8 +88,8 @@
 				<textFieldExpression><![CDATA["Seguidores y Seguidos de " + $P{NOMBRE}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="59" y="28" width="101" height="89" uuid="fbf42571-9fe9-4f3d-b525-ee996be1242f"/>
-				<imageExpression><![CDATA["/home/silvia/Descargas/DAMTweet/DAMTweet/src/img/Twitter_Logo_Blue240.png"]]></imageExpression>
+				<reportElement x="67" y="27" width="90" height="90" uuid="0b2bc3ed-04ab-4a21-ba44-e0f63f805e48"/>
+				<imageExpression><![CDATA["Twitter_Logo_Blue240.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

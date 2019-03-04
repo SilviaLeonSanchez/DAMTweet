@@ -325,8 +325,10 @@ public class PantallaAjustes extends javax.swing.JDialog {
                 JasperPrint print = JasperFillManager.fillReport("archivos_informes/InformeSeguidosySeguidores.jasper", parametros, dataSource);
                 JasperExportManager.exportReportToPdfFile(print, ruta);
                 desktop.open(new File(ruta));
+                
             } catch (JRException ex) {
                 JOptionPane.showMessageDialog(this, "Ha ocurrido un error al generar el informe", "Error", JOptionPane.ERROR_MESSAGE);
+                System.out.println(ex.getMessage());
             } catch (IOException ex) {
                 Logger.getLogger(PantallaAjustes.class.getName()).log(Level.SEVERE, null, ex);
             }
