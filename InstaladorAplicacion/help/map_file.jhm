@@ -1,0 +1,7 @@
+<map version="1.0">
+   <mapID target="pantallaajustes" url="html/pantallaajustes.html" />
+   <mapID target="pantallalogin" url="html/pantallalogin.html" />
+   <mapID target="pantallaprincipal" url="html/pantallaprincipal.html" />
+   <mapID target="pantallatweetsbuscados" url="html/pantallatweetsbuscados.html" />
+   <mapID target="pantallausuariosbuscados" url="html/pantallausuariosbuscados.html" />
+</map>

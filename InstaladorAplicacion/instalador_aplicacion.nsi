@@ -1,5 +1,5 @@
 #######################
-# Instalador Informes #
+# Instalador AplicacionTwitter #
 #######################
 
 	#Incluir UI moderna
@@ -44,7 +44,7 @@
 	RequestExecutionLevel admin
 
 	#Directorio por defecto
-	InstallDir $PROGRAMFILES
+	InstallDir $DESKTOP
 
 	DirText "Elija un directorio donde instalar la aplicación:"
 	#Indicamos que cuando la instalación se complete no se cierre el instalador automáticamente
@@ -69,29 +69,31 @@
 	Section
 
 		# Establecemos el directorio de salida al directorio de instalacion
-		SetOutPath $INSTDIR\AplicacionInformes
+		SetOutPath $INSTDIR\AplicacionTwitter
 		  
 		# Grabar los archivos necesarios
 		File DAMTweet.jar
 		File /r lib
-		File /r informes
+		File /r archivos_informes
+		File /r help
+		File /r bbdd
 
 		# Creamos el desinstalador
-		WriteUninstaller "$INSTDIR\AplicacionInformes\uninstall.exe"
+		WriteUninstaller "$INSTDIR\AplicacionTwitter\uninstall.exe"
 		  
 		# Crear accesos directos
-		CreateDirectory "$SMPROGRAMS\AplicacionInformes"
-		CreateShortCut "$SMPROGRAMS\AplicacionInformes\DesinstalarInformes.lnk" "$INSTDIR\AplicacionInformes\uninstall.exe" 
-		CreateShortCut "$SMPROGRAMS\AplicacionInformes\Informes.lnk" "$INSTDIR\AplicacionInformes\informes.jar" 
-		CreateShortCut "$DESKTOP\Informes.lnk" "$INSTDIR\AplicacionInformes\informes.jar" 
+		CreateDirectory "$SMPROGRAMS\AplicacionTwitter"
+		CreateShortCut "$SMPROGRAMS\AplicacionTwitter\DesinstalarAplicacionTwitter.lnk" "$INSTDIR\AplicacionTwitter\uninstall.exe" 
+		CreateShortCut "$SMPROGRAMS\AplicacionTwitter\AplicacionTwitter.lnk" "$INSTDIR\AplicacionTwitter\DAMTweet.jar" 
+		CreateShortCut "$DESKTOP\AplicacionTwitter.lnk" "$INSTDIR\AplicacionTwitter\DAMTweet.jar" 
 		  
 		#Añadimos información para que salga en el menú de desinstalar de Windows
-		WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Informes" \
-					   "DisplayName" "Informes"
-		WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Informes" \
-					   "Publisher" "Silvia - Desarrollo Interfaces"
-		WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Informes" \
-					   "UninstallString" "$\"$INSTDIR\AplicacionInformes\uninstall.exe$\""
+		WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AplicacionTwitter" \
+					   "DisplayName" "AplicacionTwitter"
+		WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AplicacionTwitter" \
+					   "Publisher" "Silvia, Ana y Kevin - Desarrollo Interfaces"
+		WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AplicacionTwitter" \
+					   "UninstallString" "$\"$INSTDIR\AplicacionTwitter\uninstall.exe$\""
 	  
 	# Fin de la seccion
 	SectionEnd
@@ -112,20 +114,22 @@ Section "uninstall"
 
     # Borrar los archivos 
     Delete "$INSTDIR\DAMTweet.jar"
-    RMDir /r "$INSTDIR\informes"
+    RMDir /r "$INSTDIR\archivos_informes"
     RMDir /r "$INSTDIR\lib"
+	RMDir /r "$INSTDIR\help"
+	RMDir /r "$INSTDIR\bbdd"
 
     # Borrar el directorio 
-    RMDir "$INSTDIR\..\AplicacionInformes"
+    RMDir "$INSTDIR\..\AplicacionTwitter"
 
     # Borrar los accesos directos
-	Delete "$DESKTOP\Informes.lnk"
-    Delete "$SMPROGRAMS\AplicacionInformes\DesinstalarInformes.lnk"
-    Delete "$SMPROGRAMS\AplicacionInformes\Informes.lnk"
-	RMDir "$SMPROGRAMS\AplicacionInformes"
+	Delete "$DESKTOP\AplicacionTwitter.lnk"
+    Delete "$SMPROGRAMS\AplicacionTwitter\DesinstalarAplicacionTwitter.lnk"
+    Delete "$SMPROGRAMS\AplicacionTwitter\AplicacionTwitter.lnk"
+	RMDir "$SMPROGRAMS\AplicacionTwitter"
  
     #Borramos la entrada del registro
-	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Informes"
+	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AplicacionTwitter"
  
 # Fin de la seccion del desinstalador
 SectionEnd

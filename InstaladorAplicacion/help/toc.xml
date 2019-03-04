@@ -1,0 +1,7 @@
+<toc version="1.0">
+      <tocitem text="Pantalla Ajustes" target="pantallaajustes"/>
+      <tocitem text="Pantalla Login" target="pantallalogin"/>
+      <tocitem text="Pantalla Principal" target="pantallaprincipal"/>
+      <tocitem text="Pantalla Tweets Buscados" target="pantallatweetsbuscados"/>
+      <tocitem text="Pantalla Usuarios Buscados" target="pantallausuariosbuscados"/>
+</toc>

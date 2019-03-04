@@ -1,0 +1,7 @@
+<index version="1.0">
+   <indexitem text="Pantalla Ajustes" target="pantallaajustes"/>
+   <indexitem text="Pantalla Login" target="pantallalogin"/>
+   <indexitem text="Pantalla Principal" target="pantallaprincipal"/>
+   <indexitem text="Pantalla Tweets Buscados" target="pantallatweetsbuscados"/>
+   <indexitem text="Pantalla Usuarios Buscados" target="pantallausuariosbuscados"/>
+</index>
