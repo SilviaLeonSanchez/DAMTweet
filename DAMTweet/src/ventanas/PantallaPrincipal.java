@@ -7,7 +7,6 @@ package ventanas;
 
 import componentes.TrendingTopic;
 import componentes.Tweet;
-import java.awt.Color;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -18,6 +17,8 @@ import javax.help.HelpSet;
 import twitter4j.Status;
 import twitter4j.Trend;
 import utils.Listeners;
+import static utils.Listeners.azulClaro;
+import static utils.Listeners.azulOscuro;
 import static ventanas.PantallaLogin.BBDD;
 import static ventanas.PantallaLogin.gestionTwitter;
 import static ventanas.PantallaLogin.padre;
@@ -100,11 +101,6 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     }
 
     private void aplicarListenerBotones() {
-        final Color azulOscuro = new Color(29, 161, 242);
-        final Color azulClaro = new Color(128, 216, 255);
-        final Color rojo = new Color(255, 0, 0);
-
-        listener.cambiarColorAlPasarPorEncima(jButtonAjustes, azulClaro, rojo);
         listener.cambiarColorAlPasarPorEncima(jButtonAjustes, azulClaro, azulOscuro);
     }
 
@@ -294,7 +290,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonAjustes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buscador, javax.swing.GroupLayout.PREFERRED_SIZE, 74, Short.MAX_VALUE))
+                            .addComponent(buscador, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(nuevoTweet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -307,7 +303,6 @@ public class PantallaPrincipal extends javax.swing.JDialog {
 
     private void jButtonAjustesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjustesActionPerformed
         final PantallaAjustes ventana = new PantallaAjustes(padre, true);
-        boolean salir = false;
         ventana.setVisible(true);
         if (ventana.isLogout()) {
             ventana.dispose();

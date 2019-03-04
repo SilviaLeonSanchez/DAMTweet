@@ -6,9 +6,18 @@
 package componentes;
 
 import dto.UsuarioTwitter;
+import java.awt.Color;
+import java.io.File;
 import java.io.Serializable;
+import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import twitter4j.User;
+import utils.Listeners;
+import static utils.Listeners.azulClaro;
+import static ventanas.PantallaLogin.gestionTwitter;
+import static ventanas.PantallaLogin.padre;
+import ventanas.PantallaUsuariosBuscados;
 
 /**
  *
@@ -17,6 +26,7 @@ import twitter4j.User;
 public class Usuario extends javax.swing.JPanel implements Serializable {
 
     private UsuarioTwitter usuario;
+    private Listeners listeners;
 
     public Usuario() {
         initComponents();
@@ -26,8 +36,13 @@ public class Usuario extends javax.swing.JPanel implements Serializable {
         this.usuario = new UsuarioTwitter(usuario);
         this.jLabelIdUsuario.setText(this.usuario.getIdUsuario());
         this.jLabelNombreUsuario.setText(this.usuario.getNombre());
+        this.jLabelSeguidos.setText(this.usuario.getTotalAmigos() + " seguidos");
+        this.jLabelSeguidores.setText(this.usuario.getTotalSeguidores() + " seguidores");
         setFotoPerfil();
-        //setFotoPortada();
+        setFotoPortada();
+        this.listeners = new Listeners();
+        listeners.cambiarColorAlPasarPorEncima(jLabelSeguidos, this.jLabelSeguidos.getBackground(), azulClaro);
+        listeners.cambiarColorAlPasarPorEncima(jLabelSeguidores, this.jLabelSeguidores.getBackground(), azulClaro);
     }
 
     public void setFotoPerfil() {
@@ -36,6 +51,8 @@ public class Usuario extends javax.swing.JPanel implements Serializable {
             if (imagenUsuario != null) {
                 jLabelFotoUsuario.setIcon(imagenUsuario);
             }
+        } else {
+            jLabelFotoUsuario.setIcon(new ImageIcon(getClass().getResource(File.separator + "img" + File.separator + "Twitter_Logo_Blue240.png")));
         }
     }
 
@@ -46,6 +63,8 @@ public class Usuario extends javax.swing.JPanel implements Serializable {
             if (imagenPortada != null) {
                 jLabelFotoPortada.setIcon(imagenPortada);
             }
+        } else {
+            jLabelFotoPortada.setBackground(new Color(128, 216, 255));
         }
     }
 
@@ -62,16 +81,24 @@ public class Usuario extends javax.swing.JPanel implements Serializable {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabelIdUsuario = new javax.swing.JLabel();
         jLabelFotoUsuario = new javax.swing.JLabel();
         jLabelFotoPortada = new javax.swing.JLabel();
-        jLabelIdUsuario = new javax.swing.JLabel();
         jLabelNombreUsuario = new javax.swing.JLabel();
+        jLabelSeguidores = new javax.swing.JLabel();
+        jLabelSeguidos = new javax.swing.JLabel();
+        jLabelFondo = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setMaximumSize(new java.awt.Dimension(360, 176));
         setMinimumSize(new java.awt.Dimension(360, 176));
         setPreferredSize(new java.awt.Dimension(360, 176));
         setLayout(null);
+
+        jLabelIdUsuario.setText("@Usuario");
+        jLabelIdUsuario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        add(jLabelIdUsuario);
+        jLabelIdUsuario.setBounds(50, 140, 140, 19);
 
         jLabelFotoUsuario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         add(jLabelFotoUsuario);
@@ -81,22 +108,64 @@ public class Usuario extends javax.swing.JPanel implements Serializable {
         add(jLabelFotoPortada);
         jLabelFotoPortada.setBounds(0, 0, 360, 80);
 
-        jLabelIdUsuario.setText("@Usuario");
-        jLabelIdUsuario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        add(jLabelIdUsuario);
-        jLabelIdUsuario.setBounds(190, 140, 150, 19);
-
         jLabelNombreUsuario.setText("NombreUsuario");
         jLabelNombreUsuario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         add(jLabelNombreUsuario);
-        jLabelNombreUsuario.setBounds(40, 140, 140, 19);
+        jLabelNombreUsuario.setBounds(50, 110, 140, 19);
+
+        jLabelSeguidores.setText("Seguidores");
+        jLabelSeguidores.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabelSeguidores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelSeguidoresMouseClicked(evt);
+            }
+        });
+        add(jLabelSeguidores);
+        jLabelSeguidores.setBounds(200, 140, 140, 19);
+
+        jLabelSeguidos.setText("Seguidos");
+        jLabelSeguidos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabelSeguidos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelSeguidosMouseClicked(evt);
+            }
+        });
+        add(jLabelSeguidos);
+        jLabelSeguidos.setBounds(200, 110, 140, 19);
+
+        jLabelFondo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        add(jLabelFondo);
+        jLabelFondo.setBounds(0, 70, 360, 110);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabelSeguidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelSeguidosMouseClicked
+        List<User> usuariosSeguidos = gestionTwitter.getSeguidos(this.usuario.getId());
+        if (usuariosSeguidos != null) {
+            PantallaUsuariosBuscados ventana = new PantallaUsuariosBuscados(padre, true, usuariosSeguidos);
+            ventana.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(padre, "No sigues a ningún usuario");
+        }
+    }//GEN-LAST:event_jLabelSeguidosMouseClicked
+
+    private void jLabelSeguidoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelSeguidoresMouseClicked
+        List<User> usuariosSeguidores = gestionTwitter.getSeguidores(this.usuario.getId());
+        if (usuariosSeguidores != null) {
+            PantallaUsuariosBuscados ventana = new PantallaUsuariosBuscados(padre, true, usuariosSeguidores);
+            ventana.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(padre, "No tienes ningún seguidor");
+        }
+    }//GEN-LAST:event_jLabelSeguidoresMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabelFondo;
     private javax.swing.JLabel jLabelFotoPortada;
     private javax.swing.JLabel jLabelFotoUsuario;
     private javax.swing.JLabel jLabelIdUsuario;
     private javax.swing.JLabel jLabelNombreUsuario;
+    private javax.swing.JLabel jLabelSeguidores;
+    private javax.swing.JLabel jLabelSeguidos;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,9 +17,12 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import twitter4j.Status;
-import twitter4j.TwitterException;
 import twitter4j.User;
 import utils.Listeners;
+import static utils.Listeners.azulClaro;
+import static utils.Listeners.azulOscuro;
+import static utils.Listeners.rojo;
+import static utils.Listeners.rojoOscuro;
 import static ventanas.PantallaLogin.gestionTwitter;
 
 /**
@@ -39,10 +42,6 @@ public class Tweet extends javax.swing.JPanel implements Serializable {
     private Status tweet;
 
     private Listeners listeners;
-    final Color azulOscuro = new Color(29, 161, 242);
-    final Color azulClaro = new Color(128, 216, 255);
-    final Color rojoClaro = new Color(255, 0, 0);
-    final Color rojoOscuro = new Color(200, 0, 0);
     final Color colorBotonFavorito;
 
     public Tweet() {
@@ -63,6 +62,11 @@ public class Tweet extends javax.swing.JPanel implements Serializable {
             setRetweets(Integer.toString(tweet.getRetweetCount()));
             setFotoUsuario();
             setTextoTweet(tweet.getText());
+            if (this.tweet.isFavorited()) {
+                this.favorito = true;
+                listeners.cambiarColorAlPasarPorEncima(jButtonLike, rojo, rojoOscuro);
+                this.jButtonLike.setBackground(rojo);
+            }
         } catch (IllegalStateException ex) {
             System.out.println(ex.getMessage());
         }
@@ -216,8 +220,8 @@ public class Tweet extends javax.swing.JPanel implements Serializable {
         this.favorito = !this.favorito;
         if (favorito) {
             gestionTwitter.darFavorito(this.tweet.getId());
-            listeners.cambiarColorAlPasarPorEncima(jButtonLike, rojoClaro, rojoOscuro);
-            this.jButtonLike.setBackground(rojoClaro);
+            listeners.cambiarColorAlPasarPorEncima(jButtonLike, rojo, rojoOscuro);
+            this.jButtonLike.setBackground(rojo);
         } else {
             gestionTwitter.quitarFavorito(this.tweet.getId());
             listeners.cambiarColorAlPasarPorEncima(jButtonLike, azulClaro, azulOscuro);

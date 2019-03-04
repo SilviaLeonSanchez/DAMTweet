@@ -6,6 +6,7 @@
 package ventanas;
 
 import dto.Tweet;
+import dto.UsuarioTwitter;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.io.File;
@@ -264,19 +265,25 @@ public class PantallaAjustes extends javax.swing.JDialog {
     private void jButtonInformeFechasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInformeFechasActionPerformed
 
         try {
-            String ruta = pedirRutaInforme();
             ArrayList<Tweet> tweets = new ArrayList<Tweet>();
             for (Tweet tweet : gestionTwitter.getTweetsInforme(gestionTwitter.getUsuario())) {
                 if (tweet.getFecha().after((Date) jSpinnerA.getValue())
                         & tweet.getFecha().before((Date) jSpinnerB.getValue())) {
                     tweets.add(tweet);
-                    System.out.println(tweet.getTexto());
                 }
             }
-            this.dataSource = new JRBeanCollectionDataSource(tweets);
-            JasperPrint print = JasperFillManager.fillReport("archivos_informes/InformeTwetsFehcas.jasper", new HashMap(), dataSource);
-            JasperExportManager.exportReportToPdfFile(print, ruta);
-            desktop.open(new File(ruta));
+            
+            if (!tweets.isEmpty()) {
+                
+                String ruta = pedirRutaInforme();
+                this.dataSource = new JRBeanCollectionDataSource(tweets);
+                JasperPrint print = JasperFillManager.fillReport("archivos_informes/InformeTwetsFehcas.jasper", new HashMap(), dataSource);
+                JasperExportManager.exportReportToPdfFile(print, ruta);
+                desktop.open(new File(ruta));
+                
+            } else {
+                JOptionPane.showMessageDialog(padre, "No has publicado tweets entre esas fechas");
+            }
         } catch (JRException ex) {
             JOptionPane.showMessageDialog(this, "Ha ocurrido un error al generar el informe", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
@@ -287,7 +294,38 @@ public class PantallaAjustes extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonInformeFechasActionPerformed
 
     private void jButtonFollowersFollowedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFollowersFollowedActionPerformed
-        String ruta = pedirRutaInforme();
+        
+        ArrayList<UsuarioTwitter> listaUsuarios = new ArrayList<UsuarioTwitter>();
+        
+        // USUARIOS SEGUIDOS
+        List<User> usuariosSeguidos = gestionTwitter.getSeguidos(gestionTwitter.getUsuario().getId());
+        for (User usuario : usuariosSeguidos) {
+            listaUsuarios.add(new UsuarioTwitter(usuario, false));
+        }
+        
+        // SEGUIDORES
+        List<User> seguidores = gestionTwitter.getSeguidores(gestionTwitter.getUsuario().getId());
+        for (User usuario : seguidores) {
+            listaUsuarios.add(new UsuarioTwitter(usuario, true));
+        }
+        
+        if (!listaUsuarios.isEmpty()){
+            String ruta = pedirRutaInforme();
+            try {
+                this.dataSource = new JRBeanCollectionDataSource(listaUsuarios);
+                HashMap parametros = new HashMap();
+                parametros.put("NOMBRE", gestionTwitter.getUsuario().getName());
+                JasperPrint print = JasperFillManager.fillReport("archivos_informes/InformeSeguidosySeguidores.jasper", parametros, dataSource);
+                JasperExportManager.exportReportToPdfFile(print, ruta);
+                desktop.open(new File(ruta));
+            } catch (JRException ex) {
+                JOptionPane.showMessageDialog(this, "Ha ocurrido un error al generar el informe", "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (IOException ex) {
+                Logger.getLogger(PantallaAjustes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(padre, "No tienes ni usuarios seguidos ni seguidores");
+        }
     }//GEN-LAST:event_jButtonFollowersFollowedActionPerformed
 
     private void jButtonTweetsUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTweetsUsuarioActionPerformed
@@ -338,10 +376,10 @@ public class PantallaAjustes extends javax.swing.JDialog {
 
     private void ponLaAyuda() {
         try {
-           
+
             File fichero = new File("help" + File.separator + "help_set.hs");
             URL hsURL = fichero.toURI().toURL();
-            
+
             HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
             HelpBroker hb = helpset.createHelpBroker();//
 

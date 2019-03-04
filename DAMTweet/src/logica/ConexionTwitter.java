@@ -65,7 +65,7 @@ public class ConexionTwitter {
         try {
             tokenDescifrado = utils.EncryptUtils.descifra(usuario.getPrivateToken());
         } catch (Exception ex) {
-            Logger.getLogger(ConexionTwitter.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
         AccessToken accessToken = new AccessToken(usuario.getToken(), tokenDescifrado);
         twitter.setOAuthAccessToken(accessToken);
@@ -110,15 +110,14 @@ public class ConexionTwitter {
         } while (accessToken == null);
 
         // Se guardan los tokens para futuras sesiones
-       
         try {
             byte[] tokenEncriptado = null;
             String nombreUsuario = twitter.showUser(twitter.getId()).getScreenName();
-            String nombre =  twitter.showUser(twitter.getId()).getName();
+            String nombre = twitter.showUser(twitter.getId()).getName();
             tokenEncriptado = utils.EncryptUtils.cifra(accessToken.getTokenSecret());
             gestorDB.insertarUsuario(twitter.getId(), nombre, nombreUsuario, accessToken.getToken(), tokenEncriptado);
         } catch (Exception ex) {
-            Logger.getLogger(ConexionTwitter.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("No se ha guardado la informacion del usuario");
         }
     }
 

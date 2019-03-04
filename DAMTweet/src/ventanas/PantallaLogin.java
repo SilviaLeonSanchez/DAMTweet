@@ -117,7 +117,6 @@ public class PantallaLogin extends javax.swing.JFrame {
         jButtonIniciar.setForeground(MaterialColors.LIGHT_BLUE_A400);
         jButtonIniciar.setBackground(MaterialColors.WHITE);
         jButtonRegistro.setBackground(MaterialColors.LIGHT_BLUE_A400);
-
         jComboBoxUsuarios.removeAllItems();
 
         /* 
@@ -259,6 +258,7 @@ public class PantallaLogin extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new PantallaLogin().setVisible(true);
             }

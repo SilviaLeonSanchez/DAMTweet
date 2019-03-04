@@ -9,8 +9,7 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
+import javax.swing.JComponent;
 
 /**
  *
@@ -18,9 +17,14 @@ import javax.swing.border.LineBorder;
  */
 public class Listeners extends JButton {
 
-    public void cambiarColorAlPasarPorEncima(final JButton button, final Color colorOriginal, final Color colorCambiado) {
+    public static final Color azulOscuro = new Color(29, 161, 242);
+    public static final Color azulClaro = new Color(128, 216, 255);
+    public static final Color rojo = new Color(255, 0, 0);
+    public static final Color rojoOscuro = new Color(200, 0, 0);
 
-        button.addMouseListener(new MouseListener() {
+    public void cambiarColorAlPasarPorEncima(final JComponent componente, final Color colorOriginal, final Color colorCambiado) {
+
+        componente.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
@@ -35,45 +39,15 @@ public class Listeners extends JButton {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                button.setBackground(colorCambiado);
+                componente.setBackground(colorCambiado);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                button.setBackground(colorOriginal);
+                componente.setBackground(colorOriginal);
             }
 
         });
     }
 
-    public void cambiarColorJPanelAlPasarPorEncima(final JPanel panel, final Color colorOriginal, final Color colorCambiado) {
-
-        panel.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                panel.setBorder(new LineBorder(colorCambiado));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                panel.setBorder(new LineBorder(colorOriginal));
-            }
-
-        });
-    }
-    
-    
-    
 }

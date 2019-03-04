@@ -16,25 +16,36 @@ import twitter4j.User;
  */
 public class UsuarioTwitter {
     
-    private final long id;
-    private final String idUsuario;
-    private final String nombre;
-    private final Date fechaAlta;
-    private final String descripcion;
-    private final String email;
-    private final String localizacion;
-    private final String idioma;
+    private long id;
+    private String idUsuario;
+    private String nombre;
+    private Date fechaAlta;
+    private String descripcion;
+    private String email;
+    private String localizacion;
+    private String idioma;
     
-    private final int totalTweetsPublicados;
-    private final int totalSeguidores;
-    private final int totalFavoritos;
-    private final int totalAmigos;
+    private int totalTweetsPublicados;
+    private int totalSeguidores;
+    private int totalFavoritos;
+    private int totalAmigos;
     
     private URL fotoPerfil;
     private URL fotoPortada;
     
+    private boolean esSeguidor;
+    
 
     public UsuarioTwitter(User user) {
+        inicializar(user);
+    }
+    
+    public UsuarioTwitter(User user, boolean esSeguidor){
+        inicializar(user);
+        this.esSeguidor = esSeguidor;
+    }
+    
+    public void inicializar(User user){
         this.id = user.getId();
         this.idUsuario = "@" + user.getScreenName();
         this.nombre = user.getName();
@@ -59,6 +70,10 @@ public class UsuarioTwitter {
         } catch (MalformedURLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    public boolean isEsSeguidor() {
+        return esSeguidor;
     }
 
     public String getNombre() {

@@ -1,6 +1,5 @@
 package componentes;
 
-import java.awt.Color;
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -11,6 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import twitter4j.User;
 import utils.Listeners;
+import static utils.Listeners.azulClaro;
+import static utils.Listeners.azulOscuro;
 import static ventanas.PantallaLogin.gestionTwitter;
 
 /**
@@ -167,10 +168,6 @@ public class NuevoTweet extends javax.swing.JPanel implements Serializable {
     }//GEN-LAST:event_jButtonTwittearActionPerformed
 
     private void aplicarListenerBotones() {
-        final Color azulOscuro = new Color(29, 161, 242);
-        final Color azulClaro = new Color(128, 216, 255);
-        final Color rojo = new Color(255, 0, 0);
-
         listener.cambiarColorAlPasarPorEncima(jButtonAnhadirEmoji, azulClaro, azulOscuro);
         listener.cambiarColorAlPasarPorEncima(jButtonEncuesta, azulClaro, azulOscuro);
         listener.cambiarColorAlPasarPorEncima(jButtonGif, azulClaro, azulOscuro);

@@ -21,7 +21,6 @@ import twitter4j.Trend;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.User;
-import static ventanas.PantallaLogin.gestionTwitter;
 
 /**
  *
@@ -98,11 +97,11 @@ public class GestionTwitter {
         }
     }
 
-    public List<User> getSeguidores() {
+    public List<User> getSeguidores(long idUsuario) {
         PagableResponseList<User> seguidores = null;
 
         try {
-            seguidores = twitter.getFollowersList(getUsuario().getId(), -1);
+            seguidores = twitter.getFollowersList(idUsuario, -1);
         } catch (TwitterException ex) {
             Logger.getLogger(ConexionTwitter.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -110,11 +109,11 @@ public class GestionTwitter {
         return seguidores;
     }
 
-    public List<User> getSeguidos() {
+    public List<User> getSeguidos(long idUsuario) {
         PagableResponseList<User> seguidos = null;
 
         try {
-            seguidos = twitter.getFriendsList(getUsuario().getId(), -1);
+            seguidos = twitter.getFriendsList(idUsuario, -1);
         } catch (TwitterException ex) {
             Logger.getLogger(ConexionTwitter.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -231,7 +230,7 @@ public class GestionTwitter {
 
     public ArrayList<UsuarioTwitter> getSeguidosInforme() {
         ArrayList<UsuarioTwitter> seguidos = new ArrayList<>();
-        for (User seguido : getSeguidos()) {
+        for (User seguido : getSeguidos(getUsuario().getId())) {
             seguidos.add(new UsuarioTwitter(seguido));
         }
         return seguidos;
@@ -239,7 +238,7 @@ public class GestionTwitter {
 
     public ArrayList<UsuarioTwitter> getSeguidoresInforme() {
         ArrayList<UsuarioTwitter> seguidores = new ArrayList<>();
-        for (User seguidor : getSeguidores()) {
+        for (User seguidor : getSeguidores(getUsuario().getId())) {
             seguidores.add(new UsuarioTwitter(seguidor));
         }
         return seguidores;
@@ -252,12 +251,13 @@ public class GestionTwitter {
         }
         return tweets;
     }
+    
 
     public void darFavorito(long idTweet) {
         try {
             this.twitter.favorites().createFavorite(idTweet);
         } catch (TwitterException ex) {
-            System.out.println("Error al dar favorito");
+            System.out.println("Error al dar like");
         }
     }
     
@@ -265,7 +265,7 @@ public class GestionTwitter {
         try {
             this.twitter.favorites().destroyFavorite(idTweet);
         } catch (TwitterException ex) {
-            System.out.println("Error al dar favorito");
+            System.out.println("Error al quitar like");
         }
     }
     

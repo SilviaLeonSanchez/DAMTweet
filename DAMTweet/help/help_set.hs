@@ -1,5 +1,5 @@
 <helpset version="1.0">
-   <title>Ayuda Concurso Carreras</title>
+   <title>Ayuda Cliente Twitter</title>
    <maps>
       <!-- Pagina por defecto al mostrar la ayuda -->
       <homeID>aplicacion</homeID>

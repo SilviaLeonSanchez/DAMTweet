@@ -1,12 +1,13 @@
 package componentes;
 
-import java.awt.Color;
 import java.io.Serializable;
 import java.util.List;
 import javax.swing.JOptionPane;
 import twitter4j.Status;
 import twitter4j.User;
 import utils.Listeners;
+import static utils.Listeners.azulClaro;
+import static utils.Listeners.azulOscuro;
 import ventanas.PantallaTweetsBuscados;
 import static ventanas.PantallaLogin.gestionTwitter;
 import static ventanas.PantallaLogin.padre;
@@ -94,10 +95,6 @@ public class Buscar extends javax.swing.JPanel implements Serializable {
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void aplicarListenerBotones() {
-        final Color azulOscuro = new Color(29, 161, 242);
-        final Color azulClaro = new Color(128, 216, 255);
-        final Color rojo = new Color(255, 0, 0);
-
         listener.cambiarColorAlPasarPorEncima(jButtonBuscar, azulClaro, azulOscuro);
 
     }

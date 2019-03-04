@@ -1,7 +1,6 @@
 package componentes;
 
 import utils.Listeners;
-import java.awt.Color;
 import java.awt.Component;
 import java.io.Serializable;
 import java.net.MalformedURLException;
@@ -17,6 +16,9 @@ import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
 import twitter4j.Status;
 import twitter4j.User;
+import static utils.Listeners.azulClaro;
+import static utils.Listeners.azulOscuro;
+import static utils.Listeners.rojo;
 import static ventanas.PantallaLogin.gestionTwitter;
 
 /**
@@ -251,10 +253,6 @@ public class ComponenteTweet extends javax.swing.JPanel implements Serializable,
 
     }//GEN-LAST:event_jButtonLikeActionPerformed
     private void aplicarListenerBotones() {
-        final Color azulOscuro = new Color(29, 161, 242);
-        final Color azulClaro = new Color(128, 216, 255);
-        final Color rojo = new Color(255, 0, 0);
-
         listeners.cambiarColorAlPasarPorEncima(jButtonLike, azulClaro, rojo);
         listeners.cambiarColorAlPasarPorEncima(jButtonRetweet, azulClaro, azulOscuro);
         
