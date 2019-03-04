@@ -7,7 +7,6 @@ package ventanas;
 
 import dto.Tweet;
 import dto.UsuarioTwitter;
-import java.awt.Color;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
@@ -32,6 +31,10 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import twitter4j.TwitterException;
 import twitter4j.User;
 import utils.Listeners;
+import static utils.Listeners.azulClaro;
+import static utils.Listeners.azulOscuro;
+import static utils.Listeners.rojo;
+import static utils.Listeners.rojoOscuro;
 import static ventanas.PantallaLogin.BBDD;
 import static ventanas.PantallaLogin.gestionTwitter;
 import static ventanas.PantallaLogin.padre;
@@ -255,7 +258,11 @@ public class PantallaAjustes extends javax.swing.JDialog {
     private String pedirRutaInforme() {
         int resultado = jfc.showSaveDialog(this);
         if (resultado == JFileChooser.APPROVE_OPTION) {
-            return jfc.getSelectedFile().getAbsolutePath();
+            String ruta = jfc.getSelectedFile().getAbsolutePath();
+            if (!ruta.endsWith(".pdf")){
+                ruta += ".pdf";
+            }
+            return ruta;
         } else {
             JOptionPane.showConfirmDialog(this, "No se ha indicado donde guardar el archivo por lo tanto no se generará el informe.", "Sin ruta especificada", JOptionPane.INFORMATION_MESSAGE);
             return null;
@@ -392,17 +399,12 @@ public class PantallaAjustes extends javax.swing.JDialog {
     }
 
     private void aplicarListenerBotones() {
-        final Color azulOscuro = new Color(29, 161, 242);
-        final Color azulClaro = new Color(128, 216, 255);
-        final Color rojoClaro = new Color(254, 95, 95);
-        final Color rojoOscuro = new Color(241, 148, 138);
-
         listener.cambiarColorAlPasarPorEncima(jButtonAyuda, azulClaro, azulOscuro);
         listener.cambiarColorAlPasarPorEncima(jButtonCambiarCiudad, azulClaro, azulOscuro);
         listener.cambiarColorAlPasarPorEncima(jButtonFollowersFollowed, azulClaro, azulOscuro);
         listener.cambiarColorAlPasarPorEncima(jButtonInformeFechas, azulClaro, azulOscuro);
         listener.cambiarColorAlPasarPorEncima(jButtonTweetsUsuario, azulClaro, azulOscuro);
-        listener.cambiarColorAlPasarPorEncima(jButtonLogout, rojoClaro, rojoOscuro);
+        listener.cambiarColorAlPasarPorEncima(jButtonLogout, rojo, rojoOscuro);
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

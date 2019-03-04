@@ -15,7 +15,7 @@ import twitter4j.User;
  * @author silvia
  */
 public class UsuarioTwitter {
-    
+
     private long id;
     private String idUsuario;
     private String nombre;
@@ -24,28 +24,29 @@ public class UsuarioTwitter {
     private String email;
     private String localizacion;
     private String idioma;
-    
+
     private int totalTweetsPublicados;
     private int totalSeguidores;
     private int totalFavoritos;
     private int totalAmigos;
-    
+
     private URL fotoPerfil;
     private URL fotoPortada;
-    
+
     private boolean esSeguidor;
-    
+    private String tituloSeguidor;
 
     public UsuarioTwitter(User user) {
         inicializar(user);
     }
-    
-    public UsuarioTwitter(User user, boolean esSeguidor){
+
+    public UsuarioTwitter(User user, boolean esSeguidor) {
         inicializar(user);
         this.esSeguidor = esSeguidor;
+        this.tituloSeguidor = (esSeguidor) ? "Seguidores" : "Seguidos";
     }
-    
-    public void inicializar(User user){
+
+    public void inicializar(User user) {
         this.id = user.getId();
         this.idUsuario = "@" + user.getScreenName();
         this.nombre = user.getName();
@@ -74,6 +75,10 @@ public class UsuarioTwitter {
 
     public boolean isEsSeguidor() {
         return esSeguidor;
+    }
+    
+    public String getTituloSeguidor() {
+        return tituloSeguidor;
     }
 
     public String getNombre() {
@@ -136,7 +141,5 @@ public class UsuarioTwitter {
     public String toString() {
         return "Usuario{" + "id=" + id + ", nombre=" + idUsuario + ", fechaAlta=" + fechaAlta + ", descripcion=" + descripcion + ", email=" + email + ", localizacion=" + localizacion + ", idioma=" + idioma + ", totalTweetsPublicados=" + totalTweetsPublicados + ", totalSeguidores=" + totalSeguidores + ", totalFavoritos=" + totalFavoritos + ", totalAmigos=" + totalAmigos + '}';
     }
-    
-    
-    
+
 }
